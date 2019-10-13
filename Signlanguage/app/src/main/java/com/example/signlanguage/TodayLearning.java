@@ -24,8 +24,16 @@ public class TodayLearning extends AppCompatActivity {
         Button bt_start = findViewById(R.id.bt_start);
         Button bt_review = findViewById(R.id.bt_review);
         tv_UserNameView = findViewById(R.id.tv_userName);
+        TextView tv_Ncnt = findViewById(R.id.tv_Ncnt);
         tv_progress = findViewById(R.id.tv_progress);
         pb_progress = findViewById(R.id.pb_progress);
+
+        //오늘의 학습페이지(TodayStart)에서 가져온 학습한 단어 수
+        Intent intent = getIntent();
+        int today_cnt = intent.getIntExtra("count", 0);
+        //학습한 단어 수 progress bar에 적용
+        pb_progress.setProgress(today_cnt*10);
+        tv_progress.setText(Integer.toString(today_cnt*10) + " %");
 
         //오늘의 학습 페이지로 이동 TodayStart
         bt_start.setOnClickListener(new View.OnClickListener(){
