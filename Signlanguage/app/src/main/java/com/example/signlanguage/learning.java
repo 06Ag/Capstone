@@ -14,6 +14,7 @@ public class learning extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learning);
 
+        //일일학습 페이지로 이동 TodayLearning.java
         Button bt_today = findViewById(R.id.button);
         bt_today.setOnClickListener(new View.OnClickListener(){
             @Override

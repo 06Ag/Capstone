@@ -159,13 +159,17 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_margin="3dp"
+            android:background="#FA8072"
             android:text="오늘의 \n학습\n시작"
             android:textSize="25sp" />
         <Button
-            android:id="@+id/bt_word"
+            android:id="@+id/bt_review"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_margin="3dp"
+            android:background="#BC8F8F"
             android:textSize="25sp"
             android:text="오답노트 \n및\n총 배운 단어"    />
 
