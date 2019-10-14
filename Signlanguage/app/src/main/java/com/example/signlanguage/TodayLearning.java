@@ -11,20 +11,25 @@ import android.widget.TextView;
 
 public class TodayLearning extends AppCompatActivity {
 
-    TextView tv_UserNameView;
-    TextView tv_progress;
+    TextView tv_UserName;   //이름
+    TextView tv_userIntro;  //@ 님의 학습일지
+    TextView tv_progress;   // # %
+    TextView tv_day;    //학습일수
+    TextView tv_Nday;   // #
+    TextView tv_cnt;    //외운 단어 수
+    TextView tv_Ncnt;   //#
+    TextView tv_proTitle;   //오늘의 성취도
     ProgressBar pb_progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_today_learning);
-        tv_UserNameView = (TextView) findViewById(R.id.tv_userName);
 
         Button bt_start = findViewById(R.id.bt_start);
         Button bt_review = findViewById(R.id.bt_review);
-        tv_UserNameView = findViewById(R.id.tv_userName);
-        TextView tv_Ncnt = findViewById(R.id.tv_Ncnt);
+        tv_UserName = findViewById(R.id.tv_userName);
+        tv_Ncnt = findViewById(R.id.tv_Ncnt);
         tv_progress = findViewById(R.id.tv_progress);
         pb_progress = findViewById(R.id.pb_progress);
 
