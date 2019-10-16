@@ -24,5 +24,16 @@ public class learning extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //카테고리학습 페이지로 이동 CategoryLearning.java
+        Button bt_category = findViewById(R.id.button2);
+        bt_category.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                final Intent intent = new Intent(getApplicationContext(), CategoryLearning.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
     }
 }
