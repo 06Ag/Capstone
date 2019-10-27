@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.signlanguage">
     <!-- 카메라 권한 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -9,8 +10,9 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-<<<<<<< HEAD
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
         <activity android:name=".HsvSetting"></activity>
         <activity android:name=".Translation" />
 =======
@@ -27,10 +29,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-<<<<<<< HEAD
+
         <activity android:name=".CategoryLearning" />
 =======
-        <activity android:name=".CategoryLearning"/>
+
 >>>>>>> 6ce524b3c2500aa88cd62069804333e159a41d7e
     </application>
 
