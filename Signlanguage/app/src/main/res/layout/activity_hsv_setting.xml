@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HsvSetting">
+
+    <TextView
+        android:id="@+id/val4"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="val"
+        app:layout_constraintStart_toEndOf="@+id/seekBar5"
+        app:layout_constraintTop_toTopOf="@+id/seekBar5" />
+
+    <TextView
+        android:id="@+id/val5"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="val"
+        app:layout_constraintBottom_toBottomOf="@+id/seekBar"
+        app:layout_constraintStart_toEndOf="@+id/seekBar" />
+
+    <TextView
+        android:id="@+id/settitle"
+        android:layout_width="100dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/lightpink"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="Setting"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/camera"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="180dp"
+        android:background="@color/mistyrose"
+        android:text="Camera"
+        app:layout_constraintBottom_toTopOf="@+id/finish"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_val"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/honeydew"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="L-H"
+        app:layout_constraintEnd_toStartOf="@+id/seekBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camera" />
+
+
+    <TextView
+        android:id="@+id/tv_val2"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="60dp"
+        android:background="@color/honeydew"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="L-S"
+        app:layout_constraintEnd_toStartOf="@+id/seekBar2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camera" />
+
+    <TextView
+        android:id="@+id/tv_val3"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="105dp"
+        android:background="@color/honeydew"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="L-V"
+        app:layout_constraintEnd_toStartOf="@+id/seekBar3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camera" />
+
+    <TextView
+        android:id="@+id/tv_val4"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/honeydew"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="U-H"
+        app:layout_constraintLeft_toRightOf="@+id/val5"
+        app:layout_constraintTop_toBottomOf="@+id/camera" />
+
+    <TextView
+        android:id="@+id/tv_val5"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="60dp"
+        android:background="@color/honeydew"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="U-S"
+        app:layout_constraintLeft_toRightOf="@+id/val"
+        app:layout_constraintTop_toBottomOf="@+id/camera" />
+
+    <TextView
+        android:id="@+id/tv_val6"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="105dp"
+        android:background="@color/honeydew"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="U-V"
+        app:layout_constraintLeft_toRightOf="@+id/val2"
+        app:layout_constraintTop_toBottomOf="@+id/camera" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/lightsteelblue"
+        android:max="179"
+        app:layout_constraintStart_toEndOf="@+id/tv_val"
+        app:layout_constraintTop_toBottomOf="@+id/camera" />
+
+    <SeekBar
+        android:id="@+id/seekBar2"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="60dp"
+        android:max="255"
+        app:layout_constraintStart_toEndOf="@+id/tv_val2"
+        app:layout_constraintTop_toBottomOf="@+id/camera" />
+
+    <SeekBar
+        android:id="@+id/seekBar3"
+        android:layout_width="120dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="105dp"
+        android:max="255"
+        app:layout_constraintStart_toEndOf="@+id/tv_val3"
+        app:layout_constraintTop_toBottomOf="@+id/camera" />
+
+    <SeekBar
+        android:id="@+id/seekBar4"
+        android:layout_width="110dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="15dp"
+        android:max="179"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_val4"
+        app:layout_constraintTop_toBottomOf="@+id/camera" />
+
+    <SeekBar
+        android:id="@+id/seekBar5"
+        android:layout_width="110dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="60dp"
+        android:max="255"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_val5"
+        app:layout_constraintTop_toBottomOf="@+id/camera" />
+
+
+    <SeekBar
+        android:id="@+id/seekBar6"
+        android:layout_width="110dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="104dp"
+        android:max="255"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tv_val6"
+        app:layout_constraintTop_toBottomOf="@+id/camera" />
+
+    <TextView
+        android:id="@+id/val6"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="val"
+        app:layout_constraintStart_toEndOf="@+id/seekBar6"
+        app:layout_constraintTop_toTopOf="@+id/seekBar6" />
+
+    <TextView
+        android:id="@+id/val3"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="val"
+        app:layout_constraintStart_toEndOf="@+id/seekBar4"
+        app:layout_constraintTop_toTopOf="@+id/seekBar4" />
+
+    <TextView
+        android:id="@+id/val"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="val"
+        app:layout_constraintStart_toEndOf="@+id/seekBar2"
+        app:layout_constraintTop_toTopOf="@+id/seekBar2" />
+
+    <TextView
+        android:id="@+id/val2"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="val"
+        app:layout_constraintStart_toEndOf="@+id/seekBar3"
+        app:layout_constraintTop_toTopOf="@+id/seekBar3" />
+
+    <Button
+        android:id="@+id/finish"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="41dp"
+        android:background="@color/lightpink"
+        android:text="Finish"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/camera" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
