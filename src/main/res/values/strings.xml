@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 <resources>
     <string name="app_name">Signlanguage</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 </resources>
+=======
+<resources>
+    <string name="app_name">Signlanguage</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+</resources>
+>>>>>>> 6ce524b3c2500aa88cd62069804333e159a41d7e
