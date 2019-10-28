@@ -17,11 +17,10 @@ public class HsvSetting extends AppCompatActivity {
         setContentView(R.layout.activity_hsv_setting);
 
         int devalue = 50;
-        SeekBar lhseekBar,lsseekBar,lvseekBar, seekBar;
-        TextView lh, ls, lv;
+        SeekBar  seekBar;
 
         seekBar = (SeekBar)findViewById(R.id.seekBar);
-        final TextView tv=(TextView)findViewById(R.id.val5);
+        final TextView tv=(TextView)findViewById(R.id.LHval);
 
         seekBar.setProgress(devalue); //초기값을 50으로 설정
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
