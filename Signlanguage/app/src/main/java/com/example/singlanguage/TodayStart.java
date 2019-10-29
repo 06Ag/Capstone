@@ -1,26 +1,28 @@
 package com.example.singlanguage;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
-import android.content.pm.ActivityInfo;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
-import androidx.viewpager.widget.*;
-import android.os.Bundle;
-import android.content.Intent;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Toast;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.viewpager.widget.ViewPager;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
+import org.opencv.android.JavaCameraView;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
@@ -30,11 +32,11 @@ import java.util.Collections;
 import java.util.List;
 
 import static android.Manifest.permission.CAMERA;
+import static com.example.singlanguage.MainActivity.PERMISSIONS_REQUEST_CODE;
 
 public class TodayStart extends AppCompatActivity
         implements CameraBridgeViewBase.CvCameraViewListener2{
 
-    ViewPager pager;
     Button bt_stop;
     TextView tv_imageNum;
     int pos = 1;
@@ -75,10 +77,9 @@ public class TodayStart extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_today_start);
 
-        tv_imageNum = findViewById(R.id.tv_image);
         bt_stop = findViewById(R.id.bt_stop);
+        tv_imageNum = findViewById(R.id.tv_image);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -88,25 +89,23 @@ public class TodayStart extends AppCompatActivity
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_today_start);
 
         mOpenCvCameraView = (CameraBridgeViewBase)findViewById(R.id.activity_surface_view);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
         mOpenCvCameraView.setCameraIndex(cameraType); // front-camera(1),  back-camera(0)
 
+    }
 
-        //stop시 일일학습페이지로 넘어가며 현 학습한 단어 개수(임의로 pos) 반환
-        bt_stop.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                final Intent intent = new Intent(getApplicationContext(), TodayLearning.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                intent.putExtra("count", pos);
-                startActivity(intent);
-            }
-        });
-
+    //stop시 일일학습페이지로 넘어가며 현 학습한 단어 개수(임의로 pos) 반환
+    public void mStop(View v){
+        if(v.getId() == R.id.bt_stop){
+            final Intent intent = new Intent(getApplicationContext(), TodayLearning.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.putExtra("count", pos);
+            startActivity(intent);
+        }
     }
 
     //onclick속성이 지정된 view를 클릭시 자동으로 호출됨
@@ -135,6 +134,7 @@ public class TodayStart extends AppCompatActivity
         }
 
     }
+
 
     @Override
     public void onPause()
@@ -198,7 +198,7 @@ public class TodayStart extends AppCompatActivity
 
 
     //여기서부턴 퍼미션 관련 메소드
-    private static final int CAMERA_PERMISSION_REQUEST_CODE = 200;
+    private static final int CAMERA_PERMISSION_REQUEST_CODE = 1000;
 
 
     protected void onCameraPermissionGranted() {
