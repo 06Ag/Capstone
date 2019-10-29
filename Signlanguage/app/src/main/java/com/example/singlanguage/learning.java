@@ -35,5 +35,16 @@ public class learning extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //퀴즈 페이지로 이동 QuizStart.java
+        Button bt_quiz = findViewById(R.id.button3);
+        bt_quiz.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                final Intent intent = new Intent(getApplicationContext(), QuizStart.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
     }
 }
