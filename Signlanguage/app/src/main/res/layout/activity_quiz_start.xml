@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/word_cnt"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:text="학습할 단어 수"
+        android:textSize="18sp" />
+
+    <RadioGroup
+        android:id="@+id/RadioGrp1"
+        android:layout_width="match_parent"
+        android:layout_height="149dp">
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="5dp"
+            android:text="5개" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="5dp"
+            android:text="10개" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="5dp"
+            android:text="15개" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/range"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:text="출제 범위"
+        android:textSize="18sp" />
+
+    <RadioGroup
+        android:id="@+id/RadioGrp2"
+        android:layout_width="match_parent"
+        android:layout_height="146dp">
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:text="'오늘의 학습' 진도" />
+
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:text="품사별" />
+
+        <RadioButton
+            android:id="@+id/radioButton6"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:text="장르별" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="퀴즈 시작" />
+
+</LinearLayout>
