@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.signlanguage">
-    <!-- 카메라 권한 -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    package="com.example.singlanguage">
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera.front" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera.front.autofocus"  android:required="false"/>
+
+    <supports-screens android:resizeable="true"
+        android:smallScreens="true"
+        android:normalScreens="true"
+        android:largeScreens="true"
+        android:anyDensity="true" />
 
     <application
         android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".HsvSetting"></activity>
+        <activity android:name=".HsvSetting"    />
         <activity android:name=".Translation" />
-=======
->>>>>>> 6ce524b3c2500aa88cd62069804333e159a41d7e
         <activity android:name=".TodayReview" />
-        <activity android:name=".TodayStart" />
+        <activity android:name=".TodayStart"    />
+      <!--      android:configChanges="keyboardHidden|orientation"  />
+            android:screenOrientation="landscape"   -->
         <activity android:name=".TodayLearning" />
         <activity android:name=".learning" />
         <activity android:name=".IntroActivity">
@@ -31,9 +42,6 @@
         <activity android:name=".MainActivity" />
 
         <activity android:name=".CategoryLearning" />
-=======
-
->>>>>>> 6ce524b3c2500aa88cd62069804333e159a41d7e
     </application>
 
 </manifest>
