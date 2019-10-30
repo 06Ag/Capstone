@@ -39,39 +39,23 @@
             android:onClick="mOnClick"/>
 
     </LinearLayout>
-    <!-- 수화 이미지 -->
-    <LinearLayout
+    <!-- 수화 글자 -->
+    <TextView
+        android:id="@+id/tv_image"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
-        android:orientation="horizontal">
+        android:layout_weight="2"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:text="수화 #1"
+        android:textSize="20sp"/>
 
-        <ImageView
-            android:id="@+id/iv_test"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:scaleType="centerInside"
-            android:src="@drawable/testpicture" />
-        <TextView
-            android:id="@+id/tv_image"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_horizontal"
-            android:text="수화 #1"
-            android:textSize="20sp"/>
-
-    </LinearLayout>
 
     <!-- 카메라의 영상이 출력되는 영역 -->
     <org.opencv.android.JavaCameraView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="6"
+        android:layout_weight="7"
         opencv:camera_id="any"
         android:visibility="gone"
         android:id="@+id/activity_surface_view" />
