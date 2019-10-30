@@ -25,10 +25,10 @@
     <!-- 카메라의 영상이 출력되는 영역 -->
     <org.opencv.android.JavaCameraView
         android:id="@+id/activity_surface_view"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        opencv:camera_id="any"
-        android:visibility="gone"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        opencv:camera_id="any" />
 
     <LinearLayout
         android:layout_width="match_parent"
