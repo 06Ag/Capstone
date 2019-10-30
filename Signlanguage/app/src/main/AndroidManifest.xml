@@ -42,8 +42,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-
         <activity android:name=".CategoryLearning" />
+        <activity android:name=".Quiz" />
+        <activity android:name=".QuizStart" />
     </application>
 
 </manifest>
