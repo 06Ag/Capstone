@@ -48,7 +48,7 @@ public class TodayStart extends AppCompatActivity
     private CameraBridgeViewBase mOpenCvCameraView;
     private int cameraType = 1; //초기 전면카메라
 
-    public native void ConvertRGBtoGray(long matAddrInput, long matAddrResult);
+ //   public native void ConvertRGBtoGray(long matAddrInput, long matAddrResult);
 
 
     static {
@@ -182,13 +182,12 @@ public class TodayStart extends AppCompatActivity
         matInput = inputFrame.rgba();
 
         if ( matResult == null )
+    //        matResult = new Mat(matInput.rows(), matInput.cols(), matInput.type());
 
-            matResult = new Mat(matInput.rows(), matInput.cols(), matInput.type());
-
-        ConvertRGBtoGray(matInput.getNativeObjAddr(), matResult.getNativeObjAddr());
+     //   ConvertRGBtoGray(matInput.getNativeObjAddr(), matResult.getNativeObjAddr());
         //  Core.transpose(matResult,matResult);
-        Core.flip(matResult,matResult, 1);    //수평-양수, 수직-0, 모두-음수
-        return matResult;
+        Core.flip(matInput,matInput, 1);    //수평-양수, 수직-0, 모두-음수
+        return matInput;
     }
 
 
