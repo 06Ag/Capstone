@@ -1,14 +1,19 @@
 package com.example.singlanguage;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "opencv";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +22,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button b = (Button)findViewById(R.id.Learning);
+
+        //카메라 permission
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!hasPermissions(PERMISSIONS)) {
+                requestPermissions(PERMISSIONS, PERMISSIONS_REQUEST_CODE);
+            }
+        }
+
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,4 +52,34 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    // permission
+    static final int PERMISSIONS_REQUEST_CODE = 1000;
+    String[] PERMISSIONS = {"android.permission.CAMERA", "android.permission.READ_EXTERNAL_STORAGE"};
+
+
+    private boolean hasPermissions(String[] permissions) {
+        int result;
+        for (String perms : permissions) {
+            result = ContextCompat.checkSelfPermission(this, perms);
+            if (result == PackageManager.PERMISSION_DENIED) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_marginLeft="1dp"
     android:layout_marginRight="1dp"
     android:layout_marginBottom="20dp"
-    tools:context=".learning">
+    tools:context=".learning"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 
 
     <EditText
@@ -24,7 +24,6 @@
         android:layout_gravity="center"
         android:background="@drawable/back" />
 
-
     <Button
         android:id="@+id/button"
         android:layout_width="300dp"
@@ -32,7 +31,6 @@
         android:layout_marginBottom="50dp"
         android:layout_gravity="center"
         android:text="Today's learning" />
-
     <Button
         android:id="@+id/button2"
         android:layout_width="300dp"
@@ -40,17 +38,15 @@
         android:layout_marginBottom="50dp"
         android:layout_gravity="center"
         android:text="Categery learning"
-   />
-
+        />
     <Button
         android:id="@+id/button3"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_marginBottom="50dp"
-
         android:text="Quiz"
-    />
+        />
 
 
 </LinearLayout>

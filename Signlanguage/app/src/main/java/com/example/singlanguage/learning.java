@@ -1,20 +1,18 @@
 package com.example.singlanguage;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-public class learning extends AppCompatActivity {
+import android.view.View;
+import android.widget.Button;
+import android.content.Intent;
+import android.os.Bundle;
 
+public class learning extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learning);
-
 
         //일일학습 페이지로 이동 TodayLearning.java
         Button bt_today = findViewById(R.id.button);
@@ -37,6 +35,16 @@ public class learning extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
 
+        //퀴즈 페이지로 이동 QuizStart.java
+        Button bt_quiz = findViewById(R.id.button3);
+        bt_quiz.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                final Intent intent = new Intent(getApplicationContext(), QuizStart.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+    }
 }

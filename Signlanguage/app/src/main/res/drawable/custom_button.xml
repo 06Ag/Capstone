@@ -18,8 +18,8 @@
     <item android:state_focused="true" >
         <shape>
             <gradient
-                android:endColor="@color/focused2"
-                android:startColor="@color/focused1"
+                android:endColor="@color/focused1"
+                android:startColor="@color/focused2"
                 android:angle="270" />
 
             <corners
