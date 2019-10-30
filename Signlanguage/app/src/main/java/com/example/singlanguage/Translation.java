@@ -29,7 +29,6 @@ import java.util.List;
 
 import static android.Manifest.permission.CAMERA;
 
-//oepnCV를 이용한 카메라 예제
 public class Translation extends AppCompatActivity
         implements CameraBridgeViewBase.CvCameraViewListener2 {
 
@@ -39,9 +38,6 @@ public class Translation extends AppCompatActivity
 
     private CameraBridgeViewBase mOpenCvCameraView;
     private int cameraType = 1; //초기 전면카메라
-
-    public native void ConvertRGBtoGray(long matAddrInput, long matAddrResult);
-
 
     static {
         System.loadLibrary("opencv_java4");
@@ -136,10 +132,10 @@ public class Translation extends AppCompatActivity
 
             matResult = new Mat(matInput.rows(), matInput.cols(), matInput.type());
 
-        ConvertRGBtoGray(matInput.getNativeObjAddr(), matResult.getNativeObjAddr());
+
         //  Core.transpose(matResult,matResult);
-        Core.flip(matResult,matResult, 1);    //수평-양수, 수직-0, 모두-음수
-        return matResult;
+        Core.flip(matInput,matInput, 1);    //수평-양수, 수직-0, 모두-음수
+        return matInput;
     }
 
 
