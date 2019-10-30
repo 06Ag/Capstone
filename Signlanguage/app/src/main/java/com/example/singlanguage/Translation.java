@@ -132,6 +132,7 @@ public class Translation extends AppCompatActivity
 
             matResult = new Mat(matInput.rows(), matInput.cols(), matInput.type());
 
+
         //  Core.transpose(matResult,matResult);
         Core.flip(matInput,matInput, 1);    //수평-양수, 수직-0, 모두-음수
         return matInput;

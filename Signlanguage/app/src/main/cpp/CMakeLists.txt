@@ -5,9 +5,9 @@
 
 cmake_minimum_required(VERSION 3.4.1)
 
-set(pathPROJECT C:/Users/tkddm/Desktop/Capstone/Signlanguage) #육
+# set(pathPROJECT C:/Users/tkddm/Desktop/Capstone/Signlanguage) #육
+set(pathPROJECT C:/Users/iw67c/AndroidStudioProjects/Capstone/Signlanguage) # 프로젝트 경로로 이름 변경
 #set(pathPROJECT C:/Users/User/AndroidStudioProjects/Capstone/Signlanguage) # 은진
-#set(pathPROJECT C:/Users/tkddm/Desktop/Capstone/Signlanguage) # 프로젝트 경로로 이름 변경
 set(pathOPENCV ${pathPROJECT}/opencv)
 set(pathLIBOPENCV_JAVA ${pathOPENCV}/native/libs/${ANDROID_ABI}/libopencv_java4.so)
 
