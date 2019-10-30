@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical">
+
+
+    <!--user의 학습일지 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="육상은"
+            android:textSize="40sp" />
+        <TextView
+            android:id="@+id/tv_userIntro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="5dp"
+            android:text="님의 학습일지"
+            android:textSize="25sp" />
+    </LinearLayout>
+    <!--학습일수 / 외운 단어 수 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:layout_marginTop="4dp"
+        android:paddingLeft="35dp"
+        android:paddingRight="35dp"
+        android:background="#87CEFA"    >
+        <!--학습일수 -->
+        <TextView
+            android:id="@+id/tv_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:textSize="15sp"
+            android:text="학습 일수"    />
+        <TextView
+            android:id="@+id/tv_Nday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_day"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="3dp"
+            android:text="1"
+            android:textSize="60sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_Nday"
+            android:layout_below="@id/tv_day"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="40dp"
+            android:text="일째"
+            android:textSize="20sp" />
+        <!-- 외운 단어 수 -->
+        <TextView
+            android:id="@+id/tv_cnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:textSize="15sp"
+            android:text="외운 단어 수"  />
+        <TextView
+            android:id="@+id/tv_Ncnt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_cnt"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="25dp"
+            android:layout_alignParentRight="true"
+            android:text="0"
+            android:textSize="60sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_cnt"
+            android:layout_marginTop="40dp"
+            android:layout_alignParentRight="true"
+            android:text="개"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <!-- 오늘의 성취도 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:layout_marginTop="5dp"
+        android:padding="8dp"
+        android:background="#B0C4DE">
+
+        <TextView
+            android:id="@+id/tv_proTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="오늘의 성취도"  />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:id="@+id/pb_progress"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:layout_margin="10dp"   />
+
+            <TextView
+                android:id="@+id/tv_progress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:text="0 %"    />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 학습시작 버튼 / 오답노트 버튼 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="horizontal"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="20dp"   >
+
+        <Button
+            android:id="@+id/bt_start"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="3dp"
+            android:background="#FA8072"
+            android:text="오늘의 \n학습\n시작"
+            android:textSize="20sp" />
+        <Button
+            android:id="@+id/bt_review"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="3dp"
+            android:background="#BC8F8F"
+            android:textSize="20sp"
+            android:text="오답노트 \n및\n총 배운 단어"    />
+
+    </LinearLayout>
+
+</LinearLayout>
