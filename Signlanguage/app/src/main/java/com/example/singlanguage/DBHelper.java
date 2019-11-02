@@ -91,4 +91,29 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return result;
     }
+
+    public String selectResult(String sel) {
+        // 읽기가 가능하게 DB 열기
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+        Cursor cursor = db.rawQuery("SELECT * FROM SIGN_BOOK WHERE TRIM(name) = '"+sel.trim()+"' ;", null);
+        while (cursor.moveToNext()) {
+            result += cursor.getInt(0) //index번호
+                    + ". 수화 이름: "
+                    + cursor.getString(1) //수화이름
+                    + "  분류1: "
+                    + cursor.getString(2) //분류1
+                    + "  분류2: "
+                    + cursor.getString(3) //분류2
+                    + "\n"
+                    + "    이미지: "
+                    + cursor.getBlob(4)//이미지
+                    + "  설명: "
+                    + cursor.getString(5) //설명
+                    + "  학습여부: "
+                    + cursor.getInt(6) //학습여부
+                    + "\n\n";
+        }
+        return result;
+    }
 }

@@ -3,10 +3,12 @@ package com.example.singlanguage;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 
 public class learning extends AppCompatActivity {
 
@@ -14,6 +16,21 @@ public class learning extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learning);
+
+        //sign 검색 결과 페이지로 이동 SignSearch.java
+        final EditText Name = (EditText) findViewById(R.id.searchtext);
+        Button bt_search = findViewById(R.id.search);
+
+        bt_search.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                String na = Name.getText().toString();
+                final Intent intent = new Intent(getApplicationContext(), SignSearch.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("name",na);
+                startActivity(intent);
+            }
+        });
 
         //일일학습 페이지로 이동 TodayLearning.java
         Button bt_today = findViewById(R.id.button);
