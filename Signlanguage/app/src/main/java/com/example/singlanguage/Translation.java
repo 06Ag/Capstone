@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -31,6 +32,9 @@ import static android.Manifest.permission.CAMERA;
 
 public class Translation extends AppCompatActivity
         implements CameraBridgeViewBase.CvCameraViewListener2 {
+
+    int lh, ls, lv, uh, us, uv;
+    TextView tv_transResult;
 
     private static final String TAG = "opencv";
     private Mat matInput;
@@ -63,14 +67,11 @@ public class Translation extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //화면 켜진 상태 유지
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        //세로모드고정
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
 
         setContentView(R.layout.activity_translation);
 
@@ -78,6 +79,21 @@ public class Translation extends AppCompatActivity
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
         mOpenCvCameraView.setCameraIndex(cameraType); // front-camera(1),  back-camera(0)
+
+        tv_transResult = (TextView) findViewById(R.id.transresult);
+
+        Intent intent = getIntent();
+        lh = intent.getExtras().getInt("LH");
+        ls = intent.getExtras().getInt("LS");
+        lv = intent.getExtras().getInt("LV");
+        uh = intent.getExtras().getInt("UH");
+        us = intent.getExtras().getInt("US");
+        uv = intent.getExtras().getInt("UV");
+
+        tv_transResult.setText("HSV 값\nLH - " + lh + "  LS - " + ls + "  LV - " + lv + "\nUH - "+uh+"   US - " + us + "   UV - " + uv);
+    }
+    //딥러닝
+    public void recognise(){
 
     }
 
@@ -125,15 +141,13 @@ public class Translation extends AppCompatActivity
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
 
         matInput = inputFrame.rgba();
+        matResult = matInput;
+        //색 변환 해주거나 하지 않으므로 밑에 생략해도 됨
+    //    if ( matResult == null )
+    //        matResult = new Mat(matInput.rows(), matInput.cols(), matInput.type());
 
-        if ( matResult == null )
-
-            matResult = new Mat(matInput.rows(), matInput.cols(), matInput.type());
-
-
-        //  Core.transpose(matResult,matResult);
-        Core.flip(matInput,matInput, 1);    //수평-양수, 수직-0, 모두-음수
-        return matInput;
+        Core.flip(matResult,matResult, 1);    //수평-양수, 수직-0, 모두-음수
+        return matResult;
     }
 
 
