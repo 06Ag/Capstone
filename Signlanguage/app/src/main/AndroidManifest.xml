@@ -3,19 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.singlanguage">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <uses-feature android:name="android.hardware.camera" android:required="false"/>
-    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
-    <uses-feature android:name="android.hardware.camera.front" android:required="false"/>
-    <uses-feature android:name="android.hardware.camera.front.autofocus"  android:required="false"/>
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front.autofocus"
+        android:required="false" />
 
-    <supports-screens android:resizeable="true"
-        android:smallScreens="true"
-        android:normalScreens="true"
+    <supports-screens
+        android:anyDensity="true"
         android:largeScreens="true"
-        android:anyDensity="true" />
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
 
     <application
         android:allowBackup="true"
@@ -25,13 +34,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <activity android:name=".HsvSetting"    />
+        <activity android:name=".SignSearch"></activity>
+        <activity android:name=".DBtest" />
+        <activity android:name=".HsvSetting" />
         <activity android:name=".Translation" />
         <activity android:name=".TodayReview" />
-        <activity android:name=".TodayStart"    />
-      <!--      android:configChanges="keyboardHidden|orientation"  />
-            android:screenOrientation="landscape"   -->
+        <activity android:name=".TodayStart" />
+        <!--
+      android:configChanges="keyboardHidden|orientation"  />
+            android:screenOrientation="landscape"
+        -->
         <activity android:name=".TodayLearning" />
         <activity android:name=".learning" />
         <activity android:name=".IntroActivity">

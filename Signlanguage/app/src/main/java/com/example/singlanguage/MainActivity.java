@@ -1,5 +1,6 @@
 package com.example.singlanguage;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -14,12 +15,12 @@ import androidx.core.content.ContextCompat;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "opencv";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //xml화면 보임
         setContentView(R.layout.activity_main);
+        final DBHelper dbHelper = new DBHelper(getApplicationContext());
 
         Button b = (Button)findViewById(R.id.Learning);
 
@@ -41,11 +42,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent); // 다음 화면으로 넘어간다
             }
         });
+
         Button bt_trans= (Button)findViewById(R.id.Translation);
         bt_trans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Intent intent = new Intent(getApplicationContext(), HsvSetting.class);
+                startActivity(intent);
+            }
+        });
+
+        Button bt_db= (Button)findViewById(R.id.DBtesting);
+        bt_db.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Intent intent = new Intent(getApplicationContext(), DBtest.class);
                 startActivity(intent);
             }
         });
