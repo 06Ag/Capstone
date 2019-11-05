@@ -4,14 +4,24 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.content.pm.PackageManager;
+import android.util.Log;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 
 
 public class DBHelper extends SQLiteOpenHelper {
+    private Context con; // excel 데이터 넘겨받기위해
     public final static String MY_CARDB_NAME = "SIGN_BOOK";
     public final static String MY_CARDB_TABLE = "SIGN_BOOK";
     public final static int MY_CARDB_VERSION = 1;
 
     private static volatile DBHelper dbHelper;
+
     public static DBHelper getInstance(Context context) {
         if (dbHelper == null) {
             synchronized (DBHelper.class) {
@@ -28,6 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
     // DBHelper 생성자로 관리할 DB 이름과 버전 정보를 받음
     public DBHelper(Context context) {
         super(context, MY_CARDB_NAME , null, MY_CARDB_VERSION);
+        this.con = context;
     }
 
     // DB를 새로 생성할 때 호출되는 함수
@@ -46,13 +57,41 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL( "CREATE TABLE SIGN_BOOK (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                         "name TEXT, class1 TEXT, class2 TEXT, image BLOB, des TEXT, chlearn INTEGER DEFAULT 0);");
 
+
+        //excel데이터 읽어와서 db에 넣을려는 코드(일단 컬럼 3개만 넣어봄)
+        InputStream is = con.getResources().openRawResource(R.raw.capdb);
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(is, Charset.forName("UTF-8"))
+        );
+
+        String line="";
+        try {
+            while((line = reader.readLine()) != null){
+                Log.d("My Activity","Line: "+ line);
+                //Split by ','
+                String[] tokens = line.split(",");
+                //Read the data
+                String  name = tokens[0];
+                String  cl1   = tokens[1];
+                String  cl2 = "";
+                if(tokens.length>=3 && tokens[2].length() >0){
+                    cl2 = tokens[2]; //아직 class2구분안해놓은게 있어서..
+                }
+                // DB에 입력한 값으로 행 추가
+                db.execSQL( "INSERT INTO SIGN_BOOK(_id,name,class1,class2) VALUES(null, " +
+                        "'" + name + "', '" + cl1 + "', '" + cl2 + "');");
+                //은진이 데이터? 여기다가 읽어와서 넣는거를 만들어도 될듯
+            }
+        }catch(IOException e){
+            Log.wtf( "MyActivity","Error reading data file on line" + line, e);
+            e.printStackTrace();;
+        }
     }
 
     // DB 업그레이드를 위해 버전이 변경될 때 호출되는 함수
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
-
 
     //나(영지)가 컬럼 insert할때
     //은진이가 이미지랑 설명이랑 학습여부 삽입할때 써야하는 함수는 만들어야함(보류)
