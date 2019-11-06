@@ -1,17 +1,24 @@
 package com.example.singlanguage;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.util.Log;
+import android.graphics.Bitmap;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
+import java.sql.Blob;
+
 
 
 public class DBHelper extends SQLiteOpenHelper {
@@ -55,7 +62,7 @@ public class DBHelper extends SQLiteOpenHelper {
         image BLOB형, des 문자열 컬럼, chlearn int형 컬럼으로 구성된 테이블을 생성. */
         //초기값을 0(false)로 맞춰둘게
         db.execSQL( "CREATE TABLE SIGN_BOOK (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "name TEXT, class1 TEXT, class2 TEXT, image BLOB, des TEXT, chlearn INTEGER DEFAULT 0);");
+                        "name TEXT, class1 TEXT, class2 TEXT, image TEXT, des TEXT, chlearn INTEGER DEFAULT 0);");
 
 
         //excel데이터 읽어와서 db에 넣을려는 코드(일단 컬럼 3개만 넣어봄)
@@ -74,13 +81,13 @@ public class DBHelper extends SQLiteOpenHelper {
                 String  name = tokens[0];
                 String  cl1   = tokens[1];
                 String  cl2 = "";
-                if(tokens.length>=3 && tokens[2].length() >0){
+                String image = tokens[3];
+                if(tokens.length>=3 && tokens[2].length() >0) {
                     cl2 = tokens[2]; //아직 class2구분안해놓은게 있어서..
                 }
                 // DB에 입력한 값으로 행 추가
-                db.execSQL( "INSERT INTO SIGN_BOOK(_id,name,class1,class2) VALUES(null, " +
-                        "'" + name + "', '" + cl1 + "', '" + cl2 + "');");
-                //은진이 데이터? 여기다가 읽어와서 넣는거를 만들어도 될듯
+                db.execSQL( "INSERT INTO SIGN_BOOK(_id,name,class1,class2,image) VALUES(null, " +
+                        "'" + name + "', '" + cl1 + "', '" + cl2 + "', '" + image + "');");
             }
         }catch(IOException e){
             Log.wtf( "MyActivity","Error reading data file on line" + line, e);
@@ -95,12 +102,12 @@ public class DBHelper extends SQLiteOpenHelper {
 
     //나(영지)가 컬럼 insert할때
     //은진이가 이미지랑 설명이랑 학습여부 삽입할때 써야하는 함수는 만들어야함(보류)
-    public void insert(String name, String class1, String class2) {
+    public void insert(String name, String class1, String class2, Blob image) {
         // 읽고 쓰기가 가능하게 DB 열기
         SQLiteDatabase db = getWritableDatabase();
         // DB에 입력한 값으로 행 추가
-        db.execSQL( "INSERT INTO SIGN_BOOK(_id,name,class1,class2) VALUES(null, " +
-                "'" + name + "', '" + class1 + "', '" + class2 + "');");
+        db.execSQL( "INSERT INTO SIGN_BOOK(_id,name,class1,class2,image) VALUES(null, " +
+                "'" + name + "', '" + class1 + "', '" + class2 + "', '" + image + "');");
         db.close();
     }
 
@@ -121,12 +128,23 @@ public class DBHelper extends SQLiteOpenHelper {
                     + cursor.getString(3) //분류2
                     + "\n"
                     + "    이미지: "
-                    + cursor.getBlob(4)//이미지
+                    + cursor.getString(4)//이미지
                     + "  설명: "
                     + cursor.getString(5) //설명
                     + "  학습여부: "
                     + cursor.getInt(6) //학습여부
                     + "\n\n";
+        }
+        return result;
+    }
+    //이미지 파일 불러오기, 임시로 기역만 불러옴
+    public String getResult_img() {
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+        Cursor cursor = db.rawQuery("SELECT * FROM SIGN_BOOK", null);
+        while (cursor.moveToNext()) {
+            result += cursor.getString(4); //이미지
+            break;
         }
         return result;
     }
@@ -146,7 +164,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     + cursor.getString(3) //분류2
                     + "\n"
                     + "    이미지: "
-                    + cursor.getBlob(4)//이미지
+                    + cursor.getString(4)//이미지
                     + "  설명: "
                     + cursor.getString(5) //설명
                     + "  학습여부: "
