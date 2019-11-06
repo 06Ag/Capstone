@@ -11,7 +11,7 @@
     tools:context=".HsvSetting">
 
     <TextView
-        android:id="@+id/settitle"
+        android:id="@+id/set_title"
         android:layout_width="100dp"
         android:layout_height="25dp"
         android:layout_marginTop="5dp"
@@ -35,8 +35,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
+        <!-- L - H -->
         <TextView
-            android:id="@+id/L-H"
+            android:id="@+id/tv_LH"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="1"
@@ -47,16 +48,17 @@
             />
 
         <SeekBar
-            android:id="@+id/seekBar"
+            android:id="@+id/sb_LH"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="4"
             android:layout_marginLeft="1dp"
             android:layout_marginTop="15dp"
             android:max="179"
+            android:progress="0"
             />
         <TextView
-            android:id="@+id/LHval"
+            android:id="@+id/tv_LHval"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="1"
@@ -64,9 +66,9 @@
             android:text="val"
             android:gravity="center_horizontal|center_vertical"
             />
-
+        <!-- U - H -->
         <TextView
-            android:id="@+id/U-H"
+            android:id="@+id/tv_UH"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="1"
@@ -78,16 +80,17 @@
             />
 
         <SeekBar
-            android:id="@+id/seekBar2"
+            android:id="@+id/sb_UH"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="4"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="1dp"
-            android:max="255"
+            android:max="179"
+            android:progress="179"
             />
         <TextView
-            android:id="@+id/UHval"
+            android:id="@+id/tv_UHval"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="1"
@@ -103,9 +106,9 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
         >
-
+        <!-- L - S -->
         <TextView
-            android:id="@+id/L-S"
+            android:id="@+id/tv_LS"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="1"
@@ -116,16 +119,17 @@
             />
 
         <SeekBar
-            android:id="@+id/seekBar3"
+            android:id="@+id/sb_LS"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="4"
             android:layout_marginLeft="1dp"
             android:layout_marginTop="15dp"
             android:max="255"
+            android:progress="0"
             />
         <TextView
-            android:id="@+id/LSval"
+            android:id="@+id/tv_LSval"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="1"
@@ -133,9 +137,9 @@
             android:text="val"
             android:gravity="center_horizontal|center_vertical"
             />
-
+        <!-- U - S -->
         <TextView
-            android:id="@+id/U-S"
+            android:id="@+id/tv_US"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="1"
@@ -147,16 +151,17 @@
             />
 
         <SeekBar
-            android:id="@+id/seekBa4"
+            android:id="@+id/sb_US"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="4"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="1dp"
             android:max="255"
+            android:progress="255"
             />
         <TextView
-            android:id="@+id/USval"
+            android:id="@+id/tv_USval"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="1"
@@ -172,9 +177,9 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
         >
-
+        <!-- L - V -->
         <TextView
-            android:id="@+id/L-V"
+            android:id="@+id/tv_LV"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="1"
@@ -185,16 +190,17 @@
             />
 
         <SeekBar
-            android:id="@+id/seekBar5"
+            android:id="@+id/sb_LV"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="4"
             android:layout_marginLeft="1dp"
             android:layout_marginTop="15dp"
             android:max="255"
+            android:progress="0"
             />
         <TextView
-            android:id="@+id/LVval"
+            android:id="@+id/tv_LVval"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="1"
@@ -202,9 +208,9 @@
             android:text="val"
             android:gravity="center_horizontal|center_vertical"
             />
-
+        <!-- U - V -->
         <TextView
-            android:id="@+id/U-V"
+            android:id="@+id/tv_UV"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="1"
@@ -216,16 +222,17 @@
             />
 
         <SeekBar
-            android:id="@+id/seekBa6"
+            android:id="@+id/sb_UV"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="4"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="1dp"
             android:max="255"
+            android:progress="255"
             />
         <TextView
-            android:id="@+id/UVval"
+            android:id="@+id/tv_UVval"
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_weight="1"
