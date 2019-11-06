@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -56,6 +57,7 @@ public class Translation extends AppCompatActivity
 
     int lh, ls, lv, uh, us, uv;
     TextView tv_transResult;
+    TextView tv_hsvValue;
 
     private static final String TAG = "opencv";
     private Mat matInput;
@@ -103,6 +105,7 @@ public class Translation extends AppCompatActivity
         mOpenCvCameraView.setCameraIndex(cameraType); // front-camera(1),  back-camera(0)
 
         tv_transResult = (TextView) findViewById(R.id.transresult);
+        tv_hsvValue = (TextView) findViewById(R.id.tv_hsv_Value);
 
         Intent intent = getIntent();
         lh = intent.getExtras().getInt("LH");
@@ -112,16 +115,15 @@ public class Translation extends AppCompatActivity
         us = intent.getExtras().getInt("US");
         uv = intent.getExtras().getInt("UV");
 
-        tv_transResult.setText("HSV 값\nLH - " + lh + "  LS - " + ls + "  LV - " + lv + "\nUH - "+uh+"   US - " + us + "   UV - " + uv);
-     //   recognise();
+        tv_hsvValue.setText("HSV 값\nLH - " + lh + "  LS - " + ls + "  LV - " + lv + "\nUH - "+uh+"   US - " + us + "   UV - " + uv);
     }
     //딥러닝
-    public void recognise(){
+    public void recognise() {
         String img_name = "1.png";
-     //   Mat save_img;
+        //   Mat save_img;
         Size sz = new Size(64, 64);
 
-        if ( matHSV == null )
+        if (matHSV == null)
             matHSV = new Mat(matResult.rows(), matResult.cols(), matResult.type());
 
         //Convert to HSV
@@ -131,7 +133,7 @@ public class Translation extends AppCompatActivity
         Core.inRange(matHSV, lower, upper, matHSV);
         Imgproc.resize(matHSV, matHSV, sz);
         //mat to bitmap
-        Bitmap bmp = Bitmap.createBitmap(64,64,Bitmap.Config.ARGB_8888);
+        Bitmap bmp = Bitmap.createBitmap(64, 64, Bitmap.Config.ARGB_8888);
         Utils.matToBitmap(matHSV, bmp);
 
         //input: 텐서플로 모델의 placeholder에 전달할 데이터
@@ -151,47 +153,18 @@ public class Translation extends AppCompatActivity
         //인터프리터 생성
         Interpreter tflite = getTfliteInterpreter("Trained_model.tflite");
 
-        float[][] output = new float[1][16];
+        float[][] output = new float[1][60];
         tflite.run(input, output);
 
         Log.d("predict", Arrays.toString(output[0]));
 
-        String[] list = {"춥다", "컴퓨터", "고객", "건빵", "히읗", "가렵다", "남자", "고기", "약", "발표", "읽다", "갈비", "떡", "학교", "선생님", "여자"};
-        if (Math.round(output[0][0]) == 1)
-            tv_transResult.setText("춥다");
-        else if (Math.round(output[0][1]) == 1)
-            tv_transResult.setText("컴퓨터");
-        else if (Math.round(output[0][2]) == 1)
-            tv_transResult.setText("고객");
-        else if (Math.round(output[0][3]) == 1)
-            tv_transResult.setText("건빵");
-        else if (Math.round(output[0][4]) == 1)
-            tv_transResult.setText("히읗");
-        else if (Math.round(output[0][5]) == 1)
-            tv_transResult.setText("가렵다");
-        else if (Math.round(output[0][6]) == 1)
-            tv_transResult.setText("남자");
-        else if (Math.round(output[0][7]) == 1)
-            tv_transResult.setText("고기");
-        else if (Math.round(output[0][8]) == 1)
-            tv_transResult.setText("약");
-        else if (Math.round(output[0][9]) == 1)
-            tv_transResult.setText("발표");
-        else if (Math.round(output[0][10]) == 1)
-            tv_transResult.setText("읽다");
-        else if (Math.round(output[0][11]) == 1)
-            tv_transResult.setText("갈비");
-        else if (Math.round(output[0][12]) == 1)
-            tv_transResult.setText("떡");
-        else if (Math.round(output[0][13]) == 1)
-            tv_transResult.setText("학교");
-        else if (Math.round(output[0][14]) == 1)
-            tv_transResult.setText("선생님");
-        else if (Math.round(output[0][15]) == 1)
-            tv_transResult.setText("여자");
-        else
-            tv_transResult.setText("없음");
+        String[] list = {"ㅐ","비읍","치읓","춥다", "컴퓨터", "고객","디귿","상의하다","ㅔ","8","ㅓ","ㅡ","5","4","과일","기역", "건빵", "히읗", "집","ㅣ","가렵다","지읒","키읔", "남자", "고기", "약", "미음","니은","9","북쪽","ㅗ","ㅚ","1","피읖","가루","발표", "읽다", "갈비", "떡", "리을","학교", "7","시옷","남쪽", "선생님","10","3","티읕","2","ㅜ","ㅢ","ㅟ", "여자","ㅑ","ㅒ","ㅖ","ㅕ","ㅛ","ㅠ","0"};
+        for(int i=0; i<60; i++) {
+            if (Math.round(output[0][i]) == 1)
+                tv_transResult.setText(list[i]);
+        }
     }
+
     //모델 파일 인터프리터를 생성하는 함수
     private Interpreter getTfliteInterpreter(String modelPath) {
         try{
