@@ -6,8 +6,14 @@
 6
 7    <uses-sdk
 8        android:minSdkVersion="21"
+<<<<<<< HEAD
 8-->C:\Users\User\AndroidStudioProjects\Capstone\Signlanguage\opencv\java\AndroidManifest.xml
 9        android:targetSdkVersion="26" />
 9-->C:\Users\User\AndroidStudioProjects\Capstone\Signlanguage\opencv\java\AndroidManifest.xml
+=======
+8-->C:\Users\tkddm\Desktop\Capstone\Signlanguage\opencv\java\AndroidManifest.xml
+9        android:targetSdkVersion="26" />
+9-->C:\Users\tkddm\Desktop\Capstone\Signlanguage\opencv\java\AndroidManifest.xml
+>>>>>>> upstream/master
 10
 11</manifest>

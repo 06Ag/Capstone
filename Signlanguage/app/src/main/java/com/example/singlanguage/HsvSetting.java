@@ -26,6 +26,8 @@ import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
 
 import java.util.Collections;
 import java.util.List;
@@ -34,6 +36,10 @@ import static android.Manifest.permission.CAMERA;
 
 public class HsvSetting extends AppCompatActivity
         implements CameraBridgeViewBase.CvCameraViewListener2{
+
+    int lh, ls, lv, uh, us, uv;
+    SeekBar sb_LH, sb_LS, sb_LV, sb_UH, sb_US, sb_UV;
+    TextView tv_LH, tv_LS, tv_LV, tv_UH, tv_US, tv_UV;
 
     private static final String TAG = "opencv";
     private Mat matInput;
@@ -73,51 +79,106 @@ public class HsvSetting extends AppCompatActivity
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         setContentView(R.layout.activity_hsv_setting);
-
+        //카메라 설정
         mOpenCvCameraView = (CameraBridgeViewBase)findViewById(R.id.activity_surface_view);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
         mOpenCvCameraView.setCameraIndex(cameraType); // front-camera(1),  back-camera(0)
 
-        int devalue = 50;
-        SeekBar seekBar;
+        //SeekBar
+        sb_LH = (SeekBar)findViewById(R.id.sb_LH);
+        sb_LS = (SeekBar)findViewById(R.id.sb_LS);
+        sb_LV = (SeekBar)findViewById(R.id.sb_LV);
+        sb_UH = (SeekBar)findViewById(R.id.sb_UH);
+        sb_US = (SeekBar)findViewById(R.id.sb_US);
+        sb_UV = (SeekBar)findViewById(R.id.sb_UV);
+        tv_LH=(TextView)findViewById(R.id.tv_LHval);
+        tv_LS=(TextView)findViewById(R.id.tv_LSval);
+        tv_LV=(TextView)findViewById(R.id.tv_LVval);
+        tv_UH=(TextView)findViewById(R.id.tv_UHval);
+        tv_US=(TextView)findViewById(R.id.tv_USval);
+        tv_UV=(TextView)findViewById(R.id.tv_UVval);
+        //seekBar에서 값 받아오기
+        lh = sb_LH.getProgress();
+        ls = sb_LS.getProgress();
+        lv = sb_LV.getProgress();
+        uh = sb_UH.getProgress();
+        us = sb_US.getProgress();
+        uv = sb_UV.getProgress();
+        //각 textview에 text 설정
+        tv_LH.setText(Integer.toString(lh));
+        tv_LS.setText(Integer.toString(ls));
+        tv_LV.setText(Integer.toString(lv));
+        tv_UH.setText(Integer.toString(uh));
+        tv_US.setText(Integer.toString(us));
+        tv_UV.setText(Integer.toString(uv));
 
-        seekBar = (SeekBar)findViewById(R.id.seekBar);
-        final TextView tv=(TextView)findViewById(R.id.LHval);
-
-        seekBar.setProgress(devalue); //초기값을 50으로 설정
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                // 메소드 이름대로 사용자가 SeekBar를 터치했을때 실행됩니다
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-// 메소드 이름대로 사용자가 SeekBar를 손에서 땠을때 실행됩니다
-// TODO Auto-generated method stub
-            }
-
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress,boolean fromUser) {
-// 메소드 이름대로 사용자가 SeekBar를 움직일때 실행됩니다
-// 주로 사용되는 메소드 입니다
-                tv.setText(""+progress);
-            }
-        });
-
+        sb_LH.setOnSeekBarChangeListener(HSVcolor);
+        sb_LS.setOnSeekBarChangeListener(HSVcolor);
+        sb_LV.setOnSeekBarChangeListener(HSVcolor);
+        sb_UH.setOnSeekBarChangeListener(HSVcolor);
+        sb_US.setOnSeekBarChangeListener(HSVcolor);
+        sb_UV.setOnSeekBarChangeListener(HSVcolor);
 
         Button bt_st= (Button)findViewById(R.id.finish);
         bt_st.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Intent intent = new Intent(getApplicationContext(), Translation.class);
+                //다음 화면으로 이동시 hsv 설정 값 전달
+                intent.putExtra("LH", lh);
+                intent.putExtra("LS", ls);
+                intent.putExtra("LV", lv);
+                intent.putExtra("UH", uh);
+                intent.putExtra("US", us);
+                intent.putExtra("UV", uv);
                 startActivity(intent);
             }
         });
     }
+
+    SeekBar.OnSeekBarChangeListener HSVcolor = new SeekBar.OnSeekBarChangeListener() {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            //움직임이 느껴지면 여기서 반응
+            //어느 seekBar / 변경된 수치값 / 초기 false, 사용자가 움직이면 true
+            if (seekBar == sb_LH) {
+                lh = seekBar.getProgress();
+                tv_LH.setText(Integer.toString(lh));
+            }
+            else if(seekBar == sb_LS){
+                ls = seekBar.getProgress();
+                tv_LS.setText(Integer.toString(ls));
+            }
+            else if(seekBar == sb_LV){
+                lv = seekBar.getProgress();
+                tv_LV.setText(Integer.toString(lv));
+            }
+            else if(seekBar == sb_UH){
+                uh = seekBar.getProgress();
+                tv_UH.setText(Integer.toString(uh));
+            }
+            else if(seekBar == sb_US){
+                us = seekBar.getProgress();
+                tv_US.setText(Integer.toString(us));
+            }
+            else if(seekBar == sb_UV){
+                uv = seekBar.getProgress();
+                tv_UV.setText(Integer.toString(uv));
+            }
+            //카메라 조정은 onCameraFrame() 함수에서 자동으로 됨
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+            //seekBar를 이동하기 위하여 선택하였을 때
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+            //SeekBar를 이동하다가 멈췄을 때
+        }
+    };
 
     @Override
     public void onPause()
@@ -164,13 +225,16 @@ public class HsvSetting extends AppCompatActivity
         matInput = inputFrame.rgba();
 
         if ( matResult == null )
-
             matResult = new Mat(matInput.rows(), matInput.cols(), matInput.type());
 
+        //Convert to HSV
+        Imgproc.cvtColor(matInput, matResult, Imgproc.COLOR_RGB2HSV);
+        Scalar lower = new Scalar(lh, ls, lv);
+        Scalar upper = new Scalar(uh, us, uv);
+        Core.inRange(matResult, lower, upper, matResult);
 
-        //  Core.transpose(matResult,matResult);
-        Core.flip(matInput,matInput, 1);    //수평-양수, 수직-0, 모두-음수
-        return matInput;
+        Core.flip(matResult,matResult, 1);    //수평-양수, 수직-0, 모두-음수
+        return matResult;
     }
 
 
