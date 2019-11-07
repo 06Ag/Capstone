@@ -25,20 +25,45 @@ public class TodayLearning extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_today_learning);
-
+        final DBToday dbToday = DBToday.getInstance(getApplicationContext()); //DB가져오기 progressbar를 위헤
+        final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext()); //db가져오기 지금까지 배운 총 단어 갯수 위해
         Button bt_start = findViewById(R.id.bt_start);
         Button bt_review = findViewById(R.id.bt_review);
         tv_UserName = findViewById(R.id.tv_userName);
         tv_Ncnt = findViewById(R.id.tv_Ncnt);
         tv_progress = findViewById(R.id.tv_progress);
         pb_progress = findViewById(R.id.pb_progress);
+        tv_Nday = findViewById(R.id.tv_Nday);
 
-        //오늘의 학습페이지(TodayStart)에서 가져온 학습한 단어 수
-        Intent intent = getIntent();
-        int today_cnt = intent.getIntExtra("count", 0);
+        //db에서 가져온 학습 일자
+        final int day = dbToday.getDay();
+        //db에서 가져온 학습 단어 수
+        final int countword = dbToday.getCount();
+        System.out.println("가져온 day:::"+ day) ;
+        System.out.println("가져온 count:::"+ countword) ;
+
+        String temp = String.valueOf(day);
+        tv_Nday.setText(temp); //학습 일자 update해주기
+
+        final int wholeword = dbHelper.getchlearn();
+        System.out.println("지금까지 배운 단어:::"+ wholeword) ;
+        temp = String.valueOf(wholeword);
+        tv_Ncnt.setText(temp);
+
+
+        //바 부분을 DBTODAY에다가 pos 컬럼을 만들어서 구현해야함
         //학습한 단어 수 progress bar에 적용
-        pb_progress.setProgress(today_cnt*10);
-        tv_progress.setText(Integer.toString(today_cnt*10) + " %");
+        float today_cnt = 0;
+        today_cnt = dbToday.getPos(); //오늘 학습한 단어 가지고 오기
+        System.out.println("오늘 학습한 단어수? "+today_cnt);
+        System.out.println("오늘 학습해야 했을 단어수? "+countword);
+        today_cnt /= countword;
+        System.out.println("진행 값:"+today_cnt);
+        today_cnt *= 100;
+        int t = (int)today_cnt;
+        pb_progress.setProgress(t);
+        tv_progress.setText(Integer.toString(t) + " %");
+
 
         //오늘의 학습 페이지로 이동 TodayStart
         bt_start.setOnClickListener(new View.OnClickListener(){
@@ -46,6 +71,8 @@ public class TodayLearning extends AppCompatActivity {
             public void onClick(View v){
                 final Intent intent = new Intent(getApplicationContext(), TodayStart.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                intent.putExtra("day",day) ; //오늘의 학습 페이지로 학습 날짜 넘기기
+                intent.putExtra("countword",countword); //오늘의 학습 페이지로 학습할 단어 수 넘기기
                 startActivity(intent);
             }
         });

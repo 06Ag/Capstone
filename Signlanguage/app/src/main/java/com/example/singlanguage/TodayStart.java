@@ -28,6 +28,8 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,8 +40,18 @@ public class TodayStart extends AppCompatActivity
         implements CameraBridgeViewBase.CvCameraViewListener2{
 
     Button bt_stop;
-    TextView tv_imageNum;
-    int pos = 1;
+    Button bt_previous;
+    Button bt_next;
+    TextView tv_imageNum; // 수어 이름 표시하는 textview
+
+    int pos = 1; //학습한 단어 수
+    int countword =0; //학습할 단어 수
+    int firstword =0; //처음으로 학습할 단어의 _id
+    int lastword =0; //마지막으로 학습할 단어의 _id
+    int day = 0; //학습 일 수
+    int dbcount =0; //db안에 있는 수어 수
+
+
 
     private static final String TAG = "opencv";
     private Mat matInput;
@@ -78,6 +90,111 @@ public class TodayStart extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_today_start);
+
+        final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext()); //db가져오기
+        final DBToday dbToday = DBToday.getInstance(getApplicationContext());
+
+
+        bt_stop = findViewById(R.id.bt_stop);
+        bt_next = findViewById(R.id.bt_next);
+        bt_previous = findViewById(R.id.bt_previous);
+        tv_imageNum = findViewById(R.id.tv_image);
+
+        //learning.java로부터 며칠째 학습인지, 몇개를 학습해야하는지 받아옴
+        Intent intent = getIntent();
+        countword = intent.getIntExtra("countword", 0);
+        day = intent.getIntExtra("day",0);
+
+
+        dbcount = dbHelper.getCount();//db안에 있는 수어 수
+        System.out.println("db안에 있는 단어수 : "+ dbcount);
+        firstword = (day - 1)*countword + 1; //처음으로 배울 단어
+        lastword = day * countword; //마지막으로 배울 단어
+        System.out.println("첫번째로 배울 단어 index- "+firstword);
+        System.out.println("마지막으로 배울 단어 index- "+lastword);
+
+        //db에서 더이상 배울 단어가 없을 경우
+        if(firstword > dbcount){
+            Toast.makeText(getApplicationContext(), "더이상 배울 단어가 없습니다.", Toast.LENGTH_SHORT).show();
+            Intent intent2 = new Intent(getApplicationContext(), TodayLearning.class);
+            intent2.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent2);
+        }
+
+        //첫번째로 배울 단어
+        String name = dbHelper.getName(firstword);
+        tv_imageNum.setText("수화 #" + Integer.toString(pos) + "\n"+name);
+        dbHelper.setLearn(firstword); //학습 여부 참으로 바꿔놓기
+        dbToday.updatepos(countword,pos); // 오늘의 학습 단어중에서 배운 단어 수 update
+
+        //stop시 일일학습페이지로 넘어가며 현 학습한 단어 개수(임의로 pos) 반환
+        bt_stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(getApplicationContext(), TodayLearning.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                startActivity(intent);
+            }
+        });
+
+
+        bt_previous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pos > 1) {
+                    pos = pos - 1;
+                    int temp = 0; //db의 _id를 구하기 위한 임시변수
+                    temp = (day - 1 )* countword + pos;
+                    String name = dbHelper.getName(temp); // 여기서는 dbHelper.setLearn()함수 호출할 필요없음
+                    tv_imageNum.setText("수화 #" + Integer.toString(pos) + "\n"+name);
+                }
+                else{
+                    Toast toast = Toast.makeText(TodayStart.this, "처음 단어 입니다.", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+
+        bt_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(pos < countword) {
+                    pos = pos + 1;
+                    int temp = 0; //db의 _id를 구하기 위한 임시변수
+                    temp = (day - 1)* countword + pos;
+
+                    //다음 단어가 db에 없을경우
+                    if(temp > dbcount){
+                        Toast toast = Toast.makeText(TodayStart.this, "마지막 단어 입니다.", Toast.LENGTH_SHORT);
+                        toast.show();
+                        final Intent intent = new Intent(getApplicationContext(), TodayLearning.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(intent);
+
+                    }
+
+                    //새로운 단어를 배움
+                    String name = dbHelper.getName(temp);
+                    tv_imageNum.setText("수화 #" + Integer.toString(pos) + "\n"+name);
+                    dbHelper.setLearn(temp); //학습 여부 참으로 바꿔놓기
+                    dbToday.updatepos(countword,pos); //학습 단어 수 update
+                }
+                else{
+                    Toast toast = Toast.makeText(TodayStart.this, "마지막 단어 입니다.", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+            }
+        });
+
+
+
+
+
+
+
+
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -96,42 +213,7 @@ public class TodayStart extends AppCompatActivity
 
     }
 
-    //stop시 일일학습페이지로 넘어가며 현 학습한 단어 개수(임의로 pos) 반환
-    public void mStop(View v){
-        if(v.getId() == R.id.bt_stop){
-            final Intent intent = new Intent(getApplicationContext(), TodayLearning.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            intent.putExtra("count", pos);
-            startActivity(intent);
-        }
-    }
 
-    //onclick속성이 지정된 view를 클릭시 자동으로 호출됨
-    //10개로 단어개수 지정함
-    //previous button, next button
-    public void mOnClick(View v){
-        if(v.getId() == R.id.bt_previous){
-            if(pos > 1) {
-                pos = pos - 1;
-                tv_imageNum.setText("수화 #" + Integer.toString(pos));
-            }
-            else{
-                Toast toast = Toast.makeText(TodayStart.this, "처음 단어 입니다.", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        }
-        else{
-            if(pos <10) {
-                pos = pos + 1;
-                tv_imageNum.setText("수화 #" + Integer.toString(pos));
-            }
-            else{
-                Toast toast = Toast.makeText(TodayStart.this, "마지막 단어 입니다.", Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        }
-
-    }
 
 
     @Override
