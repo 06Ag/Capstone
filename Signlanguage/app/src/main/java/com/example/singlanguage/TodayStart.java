@@ -95,6 +95,7 @@ public class TodayStart extends AppCompatActivity
         final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext()); //db가져오기
         final DBToday dbToday = DBToday.getInstance(getApplicationContext());
 
+
         bt_stop = findViewById(R.id.bt_stop);
         bt_next = findViewById(R.id.bt_next);
         bt_previous = findViewById(R.id.bt_previous);
@@ -195,16 +196,15 @@ public class TodayStart extends AppCompatActivity
 
 
 
-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        //세로모드고정
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
 
         setContentView(R.layout.activity_today_start);
+
+        bt_stop = findViewById(R.id.bt_stop);
+        tv_imageNum = findViewById(R.id.tv_image);
 
         mOpenCvCameraView = (CameraBridgeViewBase)findViewById(R.id.activity_surface_view);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);

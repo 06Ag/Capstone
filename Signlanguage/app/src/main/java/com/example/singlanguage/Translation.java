@@ -1,15 +1,23 @@
 package com.example.singlanguage;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetFileDescriptor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -21,20 +29,40 @@ import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.JavaCameraView;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
+import org.opencv.android.Utils;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.Scalar;
+import org.opencv.core.Size;
+import org.opencv.imgproc.Imgproc;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+//tensorflow
+import org.tensorflow.lite.Interpreter;
+
 import static android.Manifest.permission.CAMERA;
+import static org.opencv.imgcodecs.Imgcodecs.imread;
+import static org.opencv.imgcodecs.Imgcodecs.imwrite;
 
 public class Translation extends AppCompatActivity
         implements CameraBridgeViewBase.CvCameraViewListener2 {
 
+    int lh, ls, lv, uh, us, uv;
+    TextView tv_transResult;
+    TextView tv_hsvValue;
+
     private static final String TAG = "opencv";
     private Mat matInput;
     private Mat matResult;
+    private Mat matHSV;
 
     private CameraBridgeViewBase mOpenCvCameraView;
     private int cameraType = 1; //초기 전면카메라
@@ -63,14 +91,11 @@ public class Translation extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //화면 켜진 상태 유지
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        //세로모드고정
-        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
 
         setContentView(R.layout.activity_translation);
 
@@ -79,6 +104,87 @@ public class Translation extends AppCompatActivity
         mOpenCvCameraView.setCvCameraViewListener(this);
         mOpenCvCameraView.setCameraIndex(cameraType); // front-camera(1),  back-camera(0)
 
+        tv_transResult = (TextView) findViewById(R.id.transresult);
+        tv_hsvValue = (TextView) findViewById(R.id.tv_hsv_Value);
+
+        Intent intent = getIntent();
+        lh = intent.getExtras().getInt("LH");
+        ls = intent.getExtras().getInt("LS");
+        lv = intent.getExtras().getInt("LV");
+        uh = intent.getExtras().getInt("UH");
+        us = intent.getExtras().getInt("US");
+        uv = intent.getExtras().getInt("UV");
+
+        tv_hsvValue.setText("HSV 값\nLH - " + lh + "  LS - " + ls + "  LV - " + lv + "\nUH - "+uh+"   US - " + us + "   UV - " + uv);
+    }
+    //딥러닝
+    public void recognise() {
+        String img_name = "1.png";
+        //   Mat save_img;
+        Size sz = new Size(64, 64);
+
+        if (matHSV == null)
+            matHSV = new Mat(matResult.rows(), matResult.cols(), matResult.type());
+
+        //Convert to HSV
+        Imgproc.cvtColor(matResult, matHSV, Imgproc.COLOR_RGB2HSV);
+        Scalar lower = new Scalar(lh, ls, lv);
+        Scalar upper = new Scalar(uh, us, uv);
+        Core.inRange(matHSV, lower, upper, matHSV);
+        Imgproc.resize(matHSV, matHSV, sz);
+        //mat to bitmap
+        Bitmap bmp = Bitmap.createBitmap(64, 64, Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(matHSV, bmp);
+
+        //input: 텐서플로 모델의 placeholder에 전달할 데이터
+        //output: 텐서플로 모델로부터 결과를 넘겨받을 배열 덮어쓰기 때문에 초기값은 의미가 없다.
+        float[][][][] input = new float[1][64][64][3];
+        for (int x = 0; x < 64; x++) {
+            for (int y = 0; y < 64; y++) {
+                int pixel = bmp.getPixel(x, y);
+                // Normalize channel values to [-1.0, 1.0]. This requirement varies by
+                // model. For example, some models might require values to be normalized
+                // to the range [0.0, 1.0] instead.
+                input[0][x][y][0] = (Color.red(pixel) - 127) / 128.0f;
+                input[0][x][y][1] = (Color.green(pixel) - 127) / 128.0f;
+                input[0][x][y][2] = (Color.blue(pixel) - 127) / 128.0f;
+            }
+        }
+        //인터프리터 생성
+        Interpreter tflite = getTfliteInterpreter("Trained_model.tflite");
+
+        float[][] output = new float[1][60];
+        tflite.run(input, output);
+
+        Log.d("predict", Arrays.toString(output[0]));
+
+        String[] list = {"ㅐ","비읍","치읓","춥다", "컴퓨터", "고객","디귿","상의하다","ㅔ","8","ㅓ","ㅡ","5","4","과일","기역", "건빵", "히읗", "집","ㅣ","가렵다","지읒","키읔", "남자", "고기", "약", "미음","니은","9","북쪽","ㅗ","ㅚ","1","피읖","가루","발표", "읽다", "갈비", "떡", "리을","학교", "7","시옷","남쪽", "선생님","10","3","티읕","2","ㅜ","ㅢ","ㅟ", "여자","ㅑ","ㅒ","ㅖ","ㅕ","ㅛ","ㅠ","0"};
+        for(int i=0; i<60; i++) {
+            if (Math.round(output[0][i]) == 1)
+                tv_transResult.setText(list[i]);
+        }
+    }
+
+    //모델 파일 인터프리터를 생성하는 함수
+    private Interpreter getTfliteInterpreter(String modelPath) {
+        try{
+            return new Interpreter(loadModelFile(Translation.this, modelPath));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    // 모델을 읽어오는 함수로, 텐서플로 라이트 홈페이지에 있다.
+    // MappedByteBuffer 바이트 버퍼를 Interpreter 객체에 전달하면 모델 해석을 할 수 있다.
+    private MappedByteBuffer loadModelFile(Activity activity, String modelPath) throws IOException {
+        AssetFileDescriptor fileDescriptor = activity.getAssets().openFd(modelPath);
+        FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
+        FileChannel fileChannel = inputStream.getChannel();
+        long startOffset = fileDescriptor.getStartOffset();
+        long declaredLength = fileDescriptor.getDeclaredLength();
+        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
     }
 
     @Override
@@ -127,13 +233,18 @@ public class Translation extends AppCompatActivity
         matInput = inputFrame.rgba();
 
         if ( matResult == null )
-
             matResult = new Mat(matInput.rows(), matInput.cols(), matInput.type());
-
-
-        //  Core.transpose(matResult,matResult);
-        Core.flip(matInput,matInput, 1);    //수평-양수, 수직-0, 모두-음수
-        return matInput;
+        /*
+        //Convert to HSV
+        Imgproc.cvtColor(matInput, matResult, Imgproc.COLOR_RGB2HSV);
+        Scalar lower = new Scalar(lh, ls, lv);
+        Scalar upper = new Scalar(uh, us, uv);
+        Core.inRange(matResult, lower, upper, matResult);
+*/
+        Core.flip(matInput,matResult, 1);    //수평-양수, 수직-0, 모두-음수
+        //번역기능
+        recognise();
+        return matResult;
     }
 
 
