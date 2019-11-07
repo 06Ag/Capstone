@@ -44,8 +44,10 @@ public class TodayLearning extends AppCompatActivity {
         bt_start.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                final Intent intent = new Intent(getApplicationContext(), TodayStart.class);
+                final Intent intent = new Intent(getApplicationContext(), HsvSetting.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                //hsv setting 페이지로 넘길 때 이전페이지가 뭐였는지에 대한 정보 보내기
+                intent.putExtra("page", 1);
                 startActivity(intent);
             }
         });

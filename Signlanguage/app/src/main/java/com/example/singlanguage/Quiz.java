@@ -39,7 +39,7 @@ public class Quiz extends AppCompatActivity
     /*ViewPager pager;
     Button bt_stop;*/
     TextView tv_imageNum;
-    int pos = 1;    //수화 순서
+    int num, pos = 1;    //학습할 단어 수, 수화 순서
 
     private static final String TAG = "opencv";
     private Mat matInput;
@@ -106,7 +106,9 @@ public class Quiz extends AppCompatActivity
     //넘겨받은 단어 수만큼 수화 퀴즈 출제
     public void mOnClick(View v) {
         Intent intent = getIntent();
-        int num = intent.getExtras().getInt("num");    //학습할 단어 수 받기
+        int intent_value = intent.getExtras().getInt("num", -1);    //학습할 단어 수 받기
+        if(intent_value != -1)
+            num = intent_value;
 
         if (v.getId() == R.id.bt_previous) {
             if (pos > 1) {
@@ -166,17 +168,12 @@ public class Quiz extends AppCompatActivity
     public void onCameraViewStopped() {
 
     }
-
+    //카메라 작동은 여기에서 모두 수행됨
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
 
         matInput = inputFrame.rgba();
 
-      //  if ( matResult == null)
-        //        matResult = new Mat(matInput.rows(), matInput.cols(), matInput.type());
-
-        //   ConvertRGBtoGray(matInput.getNativeObjAddr(), matResult.getNativeObjAddr());
-        //  Core.transpose(matResult,matResult);
         Core.flip(matInput,matInput, 1);    //수평-양수, 수직-0, 모두-음수
         return matInput;
     }
