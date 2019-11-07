@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context=".LearningStart">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:background="@color/mistyrose"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/firstday"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="처음 시작 날짜 : "
+            android:textSize="18sp"
+            android:layout_weight="1"
+            ></TextView>
+        <TextView
+            android:id="@+id/start_day"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal|center_vertical"
+            android:textSize="18sp"
+            android:layout_weight="1"
+            >
+        </TextView>
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/wordcount"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="매일 학습할 단어 수를 고르세요."
+        android:textSize="18sp" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup1"
+        android:layout_width="match_parent"
+        android:layout_height="149dp">
+
+        <RadioButton
+            android:id="@+id/rb1"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="5dp"
+            android:text="3" />
+
+        <RadioButton
+            android:id="@+id/rb2"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="5dp"
+            android:text="5" />
+
+        <RadioButton
+            android:id="@+id/rb3"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginLeft="5dp"
+            android:text="7" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/learnstart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="학습 시작" />
+
+
+
+
+</LinearLayout>
