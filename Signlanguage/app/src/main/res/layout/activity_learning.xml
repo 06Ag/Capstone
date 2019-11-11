@@ -35,7 +35,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-
+            android:hint="검색내용을 입력하세요"
             android:gravity="left|center_vertical"
             android:textColor="#000000"
             android:textSize="20dp"

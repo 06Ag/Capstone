@@ -4,7 +4,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.content.pm.PackageManager;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -169,7 +168,6 @@ public class DBHelper extends SQLiteOpenHelper {
         String result = "";
         Cursor cursor = db.rawQuery("SELECT name FROM SIGN_BOOK WHERE _id = '"+i+"';", null);
         while (cursor.moveToNext()) {
-
              result += cursor.getString(0); //수화이름
         }
         return result;
@@ -190,4 +188,14 @@ public class DBHelper extends SQLiteOpenHelper {
         cnt = cursor.getCount();
         return cnt;
     }
+    public int checkchlearn(int i){
+        int cnt =0;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT chlearn FROM SIGN_BOOK WHERE _id = '"+i+"';", null);
+        while (cursor.moveToNext()) {
+            cnt = cursor.getInt(0);
+        }
+        return cnt;
+    }
+
 }

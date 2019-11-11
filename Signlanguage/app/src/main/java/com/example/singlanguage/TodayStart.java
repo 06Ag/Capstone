@@ -17,24 +17,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.android.JavaCameraView;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
 import static android.Manifest.permission.CAMERA;
-import static com.example.singlanguage.MainActivity.PERMISSIONS_REQUEST_CODE;
 
 public class TodayStart extends AppCompatActivity
         implements CameraBridgeViewBase.CvCameraViewListener2{
@@ -44,7 +38,8 @@ public class TodayStart extends AppCompatActivity
     Button bt_next;
     TextView tv_imageNum; // 수어 이름 표시하는 textview
 
-    int pos = 1; //학습한 단어 수
+    int pos =0; //학습한 단어 수
+    int dbpos =0; //db에 저장할 pos값
     int countword =0; //학습할 단어 수
     int firstword =0; //처음으로 학습할 단어의 _id
     int lastword =0; //마지막으로 학습할 단어의 _id
@@ -101,11 +96,10 @@ public class TodayStart extends AppCompatActivity
         bt_previous = findViewById(R.id.bt_previous);
         tv_imageNum = findViewById(R.id.tv_image);
 
-        //learning.java로부터 며칠째 학습인지, 몇개를 학습해야하는지 받아옴
-        Intent intent = getIntent();
-        countword = intent.getIntExtra("countword", 0);
-        day = intent.getIntExtra("day",0);
-
+        pos = 1; //학습한 단어 수
+        dbpos = dbToday.getPos();
+        countword = dbToday.getCount(); //하루 당 학습해야하는 단어 가져옴
+        day = dbToday.getDay(); //며칠째인지 가져옴
 
         dbcount = dbHelper.getCount();//db안에 있는 수어 수
         System.out.println("db안에 있는 단어수 : "+ dbcount);
@@ -126,7 +120,11 @@ public class TodayStart extends AppCompatActivity
         String name = dbHelper.getName(firstword);
         tv_imageNum.setText("수화 #" + Integer.toString(pos) + "\n"+name);
         dbHelper.setLearn(firstword); //학습 여부 참으로 바꿔놓기
-        dbToday.updatepos(countword,pos); // 오늘의 학습 단어중에서 배운 단어 수 update
+        if(dbpos<pos){
+            dbpos +=1;
+            dbToday.updatepos(countword,pos); // 오늘의 학습 단어중에서 배운 단어 수 update
+        }
+
 
         //stop시 일일학습페이지로 넘어가며 현 학습한 단어 개수(임의로 pos) 반환
         bt_stop.setOnClickListener(new View.OnClickListener() {
@@ -162,6 +160,7 @@ public class TodayStart extends AppCompatActivity
             public void onClick(View v) {
                 if(pos < countword) {
                     pos = pos + 1;
+
                     int temp = 0; //db의 _id를 구하기 위한 임시변수
                     temp = (day - 1)* countword + pos;
 
@@ -179,7 +178,11 @@ public class TodayStart extends AppCompatActivity
                     String name = dbHelper.getName(temp);
                     tv_imageNum.setText("수화 #" + Integer.toString(pos) + "\n"+name);
                     dbHelper.setLearn(temp); //학습 여부 참으로 바꿔놓기
-                    dbToday.updatepos(countword,pos); //학습 단어 수 update
+                    if(dbpos<pos){
+                        dbpos +=1;
+                        dbToday.updatepos(countword,pos); // 오늘의 학습 단어중에서 배운 단어 수 update
+                    }
+
                 }
                 else{
                     Toast toast = Toast.makeText(TodayStart.this, "마지막 단어 입니다.", Toast.LENGTH_SHORT);
@@ -190,21 +193,11 @@ public class TodayStart extends AppCompatActivity
 
 
 
-
-
-
-
-
-
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        setContentView(R.layout.activity_today_start);
-
-        bt_stop = findViewById(R.id.bt_stop);
-        tv_imageNum = findViewById(R.id.tv_image);
 
         mOpenCvCameraView = (CameraBridgeViewBase)findViewById(R.id.activity_surface_view);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
