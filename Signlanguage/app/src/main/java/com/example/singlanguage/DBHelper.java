@@ -82,12 +82,13 @@ public class DBHelper extends SQLiteOpenHelper {
                 String  cl1   = tokens[1];
                 String  cl2 = "";
                 String image = tokens[3];
+                String des = tokens[4];
                 if(tokens.length>=3 && tokens[2].length() >0) {
                     cl2 = tokens[2]; //아직 class2구분안해놓은게 있어서..
                 }
                 // DB에 입력한 값으로 행 추가
-                db.execSQL( "INSERT INTO SIGN_BOOK(_id,name,class1,class2,image) VALUES(null, " +
-                        "'" + name + "', '" + cl1 + "', '" + cl2 + "', '" + image + "');");
+                db.execSQL( "INSERT INTO SIGN_BOOK(_id,name,class1,class2,image,des) VALUES(null, " +
+                        "'" + name + "', '" + cl1 + "', '" + cl2 + "', '" + image + "', '" + des + "');");
             }
         }catch(IOException e){
             Log.wtf( "MyActivity","Error reading data file on line" + line, e);
@@ -137,14 +138,24 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return result;
     }
-    //이미지 파일 불러오기, 임시로 기역만 불러옴
-    public String getResult_img() {
+    //이름으로 이미지 파일 불러오기
+    public String getResult_img(String name) {
         SQLiteDatabase db = getReadableDatabase();
         String result = "";
-        Cursor cursor = db.rawQuery("SELECT * FROM SIGN_BOOK", null);
+        Cursor cursor = db.rawQuery("SELECT image FROM SIGN_BOOK WHERE name = '"+name+"';", null);
         while (cursor.moveToNext()) {
-            result += cursor.getString(4); //이미지
-            break;
+            result += cursor.getString(0); //수화 이름
+        }
+        return result;
+    }
+
+    //이름으로 설명 불러오기
+    public String getResult_des(String name) {
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+        Cursor cursor = db.rawQuery("SELECT des FROM SIGN_BOOK WHERE name = '"+name+"';", null);
+        while (cursor.moveToNext()) {
+            result += cursor.getString(0); //수화 설명
         }
         return result;
     }

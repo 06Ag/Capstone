@@ -2,11 +2,7 @@ package com.example.singlanguage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +33,7 @@ public class DBtest extends AppCompatActivity{
             public void onClick(View v) {
                 result.setText(dbHelper.getResult());
 
-                int id = getRawResIdByName(dbHelper.getResult_img());   //이미지 이름으로 아이디 받기
+                int id = getRawResIdByName(dbHelper.getResult_img("1"));   //이미지 이름으로 아이디 받기
                 Uri uri_img = Uri.parse("android.resource://" + getPackageName() + "/" + id);   //uri에 이미지 주소 저장
                 imgview.setImageURI(uri_img);   //이미지뷰에 이미지 출력
 
