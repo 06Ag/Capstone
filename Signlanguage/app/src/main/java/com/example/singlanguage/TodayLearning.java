@@ -1,13 +1,17 @@
 package com.example.singlanguage;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
-import android.widget.Button;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TodayLearning extends AppCompatActivity {
 
@@ -25,20 +29,73 @@ public class TodayLearning extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_today_learning);
+        final DBToday dbToday = DBToday.getInstance(getApplicationContext()); //DB가져오기 progressbar를 위헤
+        final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext()); //db가져오기 지금까지 배운 총 단어 갯수 위해
 
         Button bt_start = findViewById(R.id.bt_start);
         Button bt_review = findViewById(R.id.bt_review);
+
         tv_UserName = findViewById(R.id.tv_userName);
         tv_Ncnt = findViewById(R.id.tv_Ncnt);
         tv_progress = findViewById(R.id.tv_progress);
         pb_progress = findViewById(R.id.pb_progress);
+        tv_Nday = findViewById(R.id.tv_Nday);
 
-        //오늘의 학습페이지(TodayStart)에서 가져온 학습한 단어 수
-        Intent intent = getIntent();
-        int today_cnt = intent.getIntExtra("count", 0);
+        String firstdate = dbToday.getDate(); //db에 저장되있는 처음 학습 날짜 불러옴
+        int countword = dbToday.getCount(); //db에 저장되어있는 오늘의 학습 단어 수
+        int day = 0; //학습한지 며칠째
+
+        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        final String date = simpleDateFormat.format(new Date());//오늘날짜 가져오기
+
+        String na = dbToday.getName();
+
+        tv_UserName.setText(na);// db에 저장되어있는 사람이름
+        System.out.println("최초 학습 시작일 : " +firstdate);
+        System.out.println("현재 학습일 : " +date);
+        System.out.println("학습할 단어 수: " +dbToday.getCount());
+        Date beginDate = null;
+        Date endDate = null;
+        try {
+            beginDate = simpleDateFormat.parse(firstdate);
+            endDate = simpleDateFormat.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        // 시간차이를 시간,분,초를 곱한 값으로 나누면 하루 단위가 나옴
+        long diff = endDate.getTime() - beginDate.getTime();
+        long diffDays = diff / (24 * 60 * 60 * 1000);
+        day = (int)diffDays;
+        day += 1; //0일째면 1일째라고 하기 위해서 더해줌
+        System.out.println("학습 일수 : "+ day);
+        if(day!=dbToday.getDay()){
+            dbToday.updatepos(countword,0);
+            dbToday.updateday(countword,day);
+        }
+
+        String temp = String.valueOf(day);
+        tv_Nday.setText(temp); //학습 일자 update해주기
+
+        final int wholeword = dbHelper.getchlearn();
+        System.out.println("지금까지 배운 단어:::"+ wholeword) ;
+        temp = String.valueOf(wholeword);
+        tv_Ncnt.setText(temp);
+
+
+        //바 부분을 DBTODAY에다가 pos 컬럼을 만들어서 구현해야함
         //학습한 단어 수 progress bar에 적용
-        pb_progress.setProgress(today_cnt*10);
-        tv_progress.setText(Integer.toString(today_cnt*10) + " %");
+        float today_cnt = 0;
+        today_cnt = dbToday.getPos(); //오늘 학습한 단어 가지고 오기
+        System.out.println("오늘 학습한 단어수? "+today_cnt);
+        System.out.println("오늘 학습해야 했을 단어수? "+countword);
+        today_cnt /= countword;
+        System.out.println("진행 값:"+today_cnt);
+        today_cnt *= 100;
+        int t = (int)today_cnt;
+        pb_progress.setProgress(t);
+        tv_progress.setText(Integer.toString(t) + " %");
+
 
         //오늘의 학습 페이지로 이동 TodayStart
         bt_start.setOnClickListener(new View.OnClickListener(){

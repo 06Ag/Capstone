@@ -1,14 +1,13 @@
 package com.example.singlanguage;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class learning extends AppCompatActivity {
 
@@ -16,6 +15,11 @@ public class learning extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learning);
+
+        final DBToday dbToday = DBToday.getInstance(getApplicationContext());
+
+        final String temp = dbToday.getDate();
+        System.out.println("DB저장 날짜: "+temp);
 
         //sign 검색 결과 페이지로 이동 SignSearch.java
         final EditText Name = (EditText) findViewById(R.id.searchtext);
@@ -37,11 +41,22 @@ public class learning extends AppCompatActivity {
         bt_today.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                final Intent intent = new Intent(getApplicationContext(), TodayLearning.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
+
+                //처음 학습 시작한 날 저장
+                if(temp == ""){
+                    Intent intent = new Intent(getApplicationContext(), LearningStart.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+
+                }else{
+                    final Intent intent = new Intent(getApplicationContext(), TodayLearning.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                }
+
             }
         });
+
 
         //카테고리학습 페이지로 이동 CategoryLearning.java
         Button bt_category = findViewById(R.id.button2);

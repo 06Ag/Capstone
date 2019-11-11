@@ -15,7 +15,7 @@
         android:layout_weight="1"
         android:text="학습 중단"
         android:textSize="12sp"
-        android:onClick="mStop"/>
+    />
     <!-- 이전 / 다음 버튼 -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,16 +28,14 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="이전"
-            android:textSize="12sp"
-            android:onClick="mOnClick"/>
+            android:textSize="12sp" />
 
         <Button android:id="@+id/bt_next"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="다음"
-            android:textSize="12sp"
-            android:onClick="mOnClick"/>
+            android:textSize="12sp" />
 
     </LinearLayout>
     <!-- 수화 이미지 -->

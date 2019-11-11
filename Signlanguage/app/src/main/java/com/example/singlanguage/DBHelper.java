@@ -5,14 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.content.pm.PackageManager;
-import android.graphics.BitmapFactory;
 import android.util.Log;
-import android.graphics.Bitmap;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -138,6 +133,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return result;
     }
+
     //이름으로 이미지 파일 불러오기
     public String getResult_img(String name) {
         SQLiteDatabase db = getReadableDatabase();
@@ -160,6 +156,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    //수어 검색 기능을 위한 함수
     public String selectResult(String sel) {
         // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getReadableDatabase();
@@ -184,4 +181,48 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return result;
     }
+     //db내에 있는 단어 수를 반환해주는 함수 -> TodayStart.java에서 필요
+    public int getCount(){
+        int cnt =0;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM SIGN_BOOK", null);
+        cnt = cursor.getCount();
+        return cnt;
+    }
+    //TodayStart.java에서 배울 단어의 이름의 반환해주는 함수
+    public String getName(Integer i){
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+        Cursor cursor = db.rawQuery("SELECT name FROM SIGN_BOOK WHERE _id = '"+i+"';", null);
+        while (cursor.moveToNext()) {
+             result += cursor.getString(0); //수화이름
+        }
+        return result;
+    }
+    // TodayStart.java에서 학습을 한 후 db 컬럼의 chlearn 값을 1로 바꿔주는 함수
+    public void setLearn(Integer i){
+        SQLiteDatabase db = getWritableDatabase();
+        // DB에 입력한 값으로 행 추가
+        db.execSQL( "UPDATE SIGN_BOOK SET chlearn = 1 WHERE _id = '"+i+"';");
+        db.close();
+
+    }
+    //TodayLearning.java에서 지금까지 외운 총 단어수를 나타내기 위한 함수
+    public int getchlearn(){
+        int cnt =0;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM SIGN_BOOK WHERE chlearn = 1", null);
+        cnt = cursor.getCount();
+        return cnt;
+    }
+    public int checkchlearn(int i){
+        int cnt =0;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT chlearn FROM SIGN_BOOK WHERE _id = '"+i+"';", null);
+        while (cursor.moveToNext()) {
+            cnt = cursor.getInt(0);
+        }
+        return cnt;
+    }
+
 }
