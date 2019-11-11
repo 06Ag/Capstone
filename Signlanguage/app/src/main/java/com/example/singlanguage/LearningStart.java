@@ -1,7 +1,5 @@
 package com.example.singlanguage;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +7,8 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,9 +39,10 @@ public class LearningStart extends AppCompatActivity {
                 //getCheckedRadioButtonId() 의 리턴값은 선택된 RadioButton 의 id 값.
                 RadioButton rb = (RadioButton) findViewById(id);
                 countword = Integer.parseInt(rb.getText().toString());
-                dbToday.insert(date,countword,0,0); //db에 현재 날짜와 학습 단어 수 삽입
-                Intent intent = new Intent(getApplicationContext(), learning.class);
-                startActivity(intent); //learning activity로 다시 돌아가기
+                String name= dbToday.getName();
+                dbToday.insert(name,date,countword,0,0); //db에 현재 날짜와 학습 단어 수 삽입
+                Intent intent = new Intent(getApplicationContext(), TodayLearning.class);
+                startActivity(intent); //todaylearning activity로 가기
             } // end onClick()
         });  // end Listener
 

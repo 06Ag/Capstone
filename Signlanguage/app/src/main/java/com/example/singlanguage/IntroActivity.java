@@ -1,10 +1,11 @@
 package com.example.singlanguage;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class IntroActivity extends AppCompatActivity {
 
@@ -12,6 +13,7 @@ public class IntroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
+
         IntroThread introThread = new IntroThread(handler);
         introThread.start();
     }
@@ -19,7 +21,15 @@ public class IntroActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             if (msg.what == 1) {
-                Intent intent = new Intent(IntroActivity.this, MainActivity.class);
+                final DBToday dbToday = DBToday.getInstance(getApplicationContext()); //DB가져오기
+                String na = dbToday.getName();
+                Intent intent;
+                //이름이 비워있다면
+                if(na == ""){
+                    intent = new Intent(IntroActivity.this, IntroName.class);
+                }else{
+                    intent = new Intent(IntroActivity.this, MainActivity.class);
+                }
                 startActivity(intent);
             }
         }
