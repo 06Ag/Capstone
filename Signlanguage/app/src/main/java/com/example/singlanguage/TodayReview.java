@@ -62,7 +62,7 @@ public class TodayReview extends AppCompatActivity {
 
         //listview에 LIST_NAME , LIST_LEARN내용 넣기
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
-        ListView listName = (ListView) findViewById(R.id.listview);
+        ListView listName = (ListView) findViewById(R.id.listname);
         listName.setAdapter(adapter);
 
 
