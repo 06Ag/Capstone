@@ -34,9 +34,10 @@ public class QuizStart extends AppCompatActivity {
                 else if(rb == R.id.radioButton2){ num = 10;}
                 else if(rb == R.id.radioButton3){ num = 15;}
 
-                final Intent intent = new Intent(getApplicationContext(), Quiz.class);
+                final Intent intent = new Intent(getApplicationContext(), HsvSetting.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
+                //hsv setting 페이지로 넘길 때 이전페이지가 뭐였는지에 대한 정보 보내기
+                intent.putExtra("page", 3);
                 //학습할 단어 수 넘기기
                 intent.putExtra("num", num);
 

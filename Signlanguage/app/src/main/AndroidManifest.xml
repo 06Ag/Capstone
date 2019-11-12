@@ -34,6 +34,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <activity android:name=".QuizResult"></activity>
         <activity android:name=".IntroName"></activity>
         <activity android:name=".LearningStart" />
         <activity android:name=".SignSearch" />
