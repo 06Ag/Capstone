@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,14 @@ import java.util.Date;
 public class LearningStart extends AppCompatActivity {
     String date; //오늘의 날짜
     int countword; //초기 학습 단어수
+    @Override
+    public void onBackPressed() {
+        // 기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
+        // super.onBackPressed();
+        Toast toast;
+        toast = Toast.makeText(this, "뒤로 가기 버튼을 사용할 수 없습니다.\'값을 선택해주세요", Toast.LENGTH_SHORT);
+        toast.show();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

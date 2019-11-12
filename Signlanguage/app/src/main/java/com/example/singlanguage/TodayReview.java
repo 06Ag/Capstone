@@ -1,5 +1,6 @@
 package com.example.singlanguage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class TodayReview extends AppCompatActivity {
+    @Override
+    public void onBackPressed() {
+        // 기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
+        // super.onBackPressed();
+        final Intent intent = new Intent(TodayReview.this , TodayLearning.class);
+        startActivity(intent);
+    }
 
 
     @Override

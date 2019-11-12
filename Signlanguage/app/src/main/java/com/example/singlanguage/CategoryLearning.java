@@ -1,20 +1,22 @@
 package com.example.singlanguage;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
-
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
-public class CategoryLearning extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
+
+public class CategoryLearning extends AppCompatActivity {
+    @Override
+    public void onBackPressed() {
+        // 기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
+        // super.onBackPressed();
+        final Intent intent = new Intent(CategoryLearning.this , learning.class);
+        startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,4 +39,14 @@ public class CategoryLearning extends AppCompatActivity {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
 
     }
+    public void mOnClick(View v) {
+        Intent intent = new Intent(getApplicationContext(), CategoryLearning_study_info.class);
+
+        if (v.getId() == R.id.button_one)   intent.putExtra("name", "1");
+        else if(v.getId() == R.id.button_two)   intent.putExtra("name", "2");
+        else if(v.getId() == R.id.button_three)   intent.putExtra("name", "3");
+
+        startActivity(intent);
+    }
+
 }

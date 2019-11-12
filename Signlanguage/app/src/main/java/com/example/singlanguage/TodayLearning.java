@@ -24,6 +24,13 @@ public class TodayLearning extends AppCompatActivity {
     TextView tv_Ncnt;   //#
     TextView tv_proTitle;   //오늘의 성취도
     ProgressBar pb_progress;
+    @Override
+    public void onBackPressed() {
+        // 기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
+        // super.onBackPressed();
+        final Intent intent = new Intent(TodayLearning.this , learning.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +58,7 @@ public class TodayLearning extends AppCompatActivity {
         String na = dbToday.getName();
 
         tv_UserName.setText(na);// db에 저장되어있는 사람이름
-        System.out.println("최초 학습 시작일 : " +firstdate);
-        System.out.println("현재 학습일 : " +date);
-        System.out.println("학습할 단어 수: " +dbToday.getCount());
+
         Date beginDate = null;
         Date endDate = null;
         try {
@@ -78,7 +83,6 @@ public class TodayLearning extends AppCompatActivity {
         tv_Nday.setText(temp); //학습 일자 update해주기
 
         final int wholeword = dbHelper.getchlearn();
-        System.out.println("지금까지 배운 단어:::"+ wholeword) ;
         temp = String.valueOf(wholeword);
         tv_Ncnt.setText(temp);
 
@@ -87,10 +91,7 @@ public class TodayLearning extends AppCompatActivity {
         //학습한 단어 수 progress bar에 적용
         float today_cnt = 0;
         today_cnt = dbToday.getPos(); //오늘 학습한 단어 가지고 오기
-        System.out.println("오늘 학습한 단어수? "+today_cnt);
-        System.out.println("오늘 학습해야 했을 단어수? "+countword);
         today_cnt /= countword;
-        System.out.println("진행 값:"+today_cnt);
         today_cnt *= 100;
         int t = (int)today_cnt;
         pb_progress.setProgress(t);

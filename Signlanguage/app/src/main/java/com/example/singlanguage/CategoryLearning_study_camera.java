@@ -1,10 +1,10 @@
 package com.example.singlanguage;
 
-
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,8 +12,8 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,23 +30,11 @@ import java.util.List;
 
 import static android.Manifest.permission.CAMERA;
 
-public class TodayStart extends AppCompatActivity
+//카테고리학습 메뉴의 카메라 학습 페이지
+public class CategoryLearning_study_camera extends AppCompatActivity
         implements CameraBridgeViewBase.CvCameraViewListener2{
 
-    Button bt_stop;
-    Button bt_previous;
-    Button bt_next;
-    TextView tv_imageNum; // 수어 이름 표시하는 textview
-
-    int pos =0; //학습한 단어 수
-    int dbpos =0; //db에 저장할 pos값
-    int countword =0; //학습할 단어 수
-    int firstword =0; //처음으로 학습할 단어의 _id
-    int lastword =0; //마지막으로 학습할 단어의 _id
-    int day = 0; //학습 일 수
-    int dbcount =0; //db안에 있는 수어 수
-
-
+    TextView tv_imageNum;
 
     private static final String TAG = "opencv";
     private Mat matInput;
@@ -55,16 +43,10 @@ public class TodayStart extends AppCompatActivity
     private CameraBridgeViewBase mOpenCvCameraView;
     private int cameraType = 1; //초기 전면카메라
 
-
- //   public native void ConvertRGBtoGray(long matAddrInput, long matAddrResult);
-
-
     static {
         System.loadLibrary("opencv_java4");
         System.loadLibrary("native-lib");
     }
-
-
 
     private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
@@ -85,137 +67,60 @@ public class TodayStart extends AppCompatActivity
     public void onBackPressed() {
         // 기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
         // super.onBackPressed();
-        Toast toast;
-        toast = Toast.makeText(this, "뒤로 가기 버튼을 사용할 수 없습니다.\n학습 중단을 눌러주세요", Toast.LENGTH_SHORT);
-        toast.show();
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_today_start);
-
-        final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext()); //db가져오기
-        final DBToday dbToday = DBToday.getInstance(getApplicationContext());
-
-
-        bt_stop = findViewById(R.id.bt_stop);
-        bt_next = findViewById(R.id.bt_next);
-        bt_previous = findViewById(R.id.bt_previous);
-        tv_imageNum = findViewById(R.id.tv_image);
-
-        pos = 1; //학습한 단어 수
-        dbpos = dbToday.getPos();
-        countword = dbToday.getCount(); //하루 당 학습해야하는 단어 가져옴
-        day = dbToday.getDay(); //며칠째인지 가져옴
-
-        dbcount = dbHelper.getCount();//db안에 있는 수어 수
-        System.out.println("db안에 있는 단어수 : "+ dbcount);
-        firstword = (day - 1)*countword + 1; //처음으로 배울 단어
-        lastword = day * countword; //마지막으로 배울 단어
-        System.out.println("첫번째로 배울 단어 index- "+firstword);
-        System.out.println("마지막으로 배울 단어 index- "+lastword);
-
-        //db에서 더이상 배울 단어가 없을 경우
-        if(firstword > dbcount){
-            Toast.makeText(getApplicationContext(), "더이상 배울 단어가 없습니다.", Toast.LENGTH_SHORT).show();
-            Intent intent2 = new Intent(getApplicationContext(), TodayLearning.class);
-            intent2.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            startActivity(intent2);
-        }
-
-        //첫번째로 배울 단어
-        String name = dbHelper.getName(firstword);
-        tv_imageNum.setText("수화 #" + Integer.toString(pos) + "\n"+name);
-        dbHelper.setLearn(firstword); //학습 여부 참으로 바꿔놓기
-        if(dbpos<pos){
-            dbpos +=1;
-            dbToday.updatepos(countword,pos); // 오늘의 학습 단어중에서 배운 단어 수 update
-        }
-
-
-        //stop시 일일학습페이지로 넘어가며 현 학습한 단어 개수(임의로 pos) 반환
-        bt_stop.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Intent intent = new Intent(getApplicationContext(), TodayLearning.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-            }
-        });
-
-
-        bt_previous.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(pos > 1) {
-                    pos = pos - 1;
-                    int temp = 0; //db의 _id를 구하기 위한 임시변수
-                    temp = (day - 1 )* countword + pos;
-                    String name = dbHelper.getName(temp); // 여기서는 dbHelper.setLearn()함수 호출할 필요없음
-                    tv_imageNum.setText("수화 #" + Integer.toString(pos) + "\n"+name);
-                }
-                else{
-                    Toast toast = Toast.makeText(TodayStart.this, "처음 단어 입니다.", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            }
-        });
-
-
-        bt_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(pos < countword) {
-                    pos = pos + 1;
-
-                    int temp = 0; //db의 _id를 구하기 위한 임시변수
-                    temp = (day - 1)* countword + pos;
-
-                    //다음 단어가 db에 없을경우
-                    if(temp > dbcount){
-                        Toast toast = Toast.makeText(TodayStart.this, "마지막 단어 입니다.", Toast.LENGTH_SHORT);
-                        toast.show();
-                        final Intent intent = new Intent(getApplicationContext(), TodayLearning.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(intent);
-
-                    }
-
-                    //새로운 단어를 배움
-                    String name = dbHelper.getName(temp);
-                    tv_imageNum.setText("수화 #" + Integer.toString(pos) + "\n"+name);
-                    dbHelper.setLearn(temp); //학습 여부 참으로 바꿔놓기
-                    if(dbpos<pos){
-                        dbpos +=1;
-                        dbToday.updatepos(countword,pos); // 오늘의 학습 단어중에서 배운 단어 수 update
-                    }
-
-                }
-                else{
-                    Toast toast = Toast.makeText(TodayStart.this, "마지막 단어 입니다.", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-            }
-        });
-
-
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+        setContentView(R.layout.activity_category_learning_camera);
+
+        final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
+
+        Button stop = (Button) findViewById(R.id.bt_stop);
+        final ImageView imgview = (ImageView) findViewById(R.id.imageView); //수화 이미지
+        tv_imageNum = findViewById(R.id.tv_image);
 
         mOpenCvCameraView = (CameraBridgeViewBase)findViewById(R.id.activity_surface_view);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
         mOpenCvCameraView.setCameraIndex(cameraType); // front-camera(1),  back-camera(0)
 
+        Intent intent = getIntent();    //넘겨 받은 값
+        int id = getRawResIdByName(dbHelper.getResult_img(intent.getExtras().getString("name")));   //이미지 이름으로 아이디 받기
+        Uri uri_img = Uri.parse("android.resource://" + getPackageName() + "/" + id);   //uri에 이미지 주소 저장
+        imgview.setImageURI(uri_img);   //이미지뷰에 이미지 출력
+
+        String name = intent.getExtras().getString("name");
+        tv_imageNum.setText(name);
+
+        //임시로 stop시 전페이지로
+        stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();    //전페이지
+            }
+        });
     }
 
+    //onclick속성이 지정된 view를 클릭시 자동으로 호출됨
+    public void mOnClick(View v) {
+        Intent intent = getIntent();
+        //int num = intent.getExtras().getInt("num");    //학습할 단어 수 받기
+    }
 
-
+    //raw폴더의 이미지 아이디 불러오기
+    public int getRawResIdByName(String resName) {
+        String pkgName = this.getPackageName();
+        // Return 0 if not found.
+        int resID = this.getResources().getIdentifier(resName, "raw", pkgName);
+        Log.i("AndroidVideoView", "Res Name: " + resName + "==> Res ID = " + resID);
+        return resID;
+    }
 
     @Override
     public void onPause()
@@ -262,11 +167,10 @@ public class TodayStart extends AppCompatActivity
 
         matInput = inputFrame.rgba();
 
-        if ( matResult == null )
+        //  if ( matResult == null)
+        //        matResult = new Mat(matInput.rows(), matInput.cols(), matInput.type());
 
-    //        matResult = new Mat(matInput.rows(), matInput.cols(), matInput.type());
-
-     //   ConvertRGBtoGray(matInput.getNativeObjAddr(), matResult.getNativeObjAddr());
+        //   ConvertRGBtoGray(matInput.getNativeObjAddr(), matResult.getNativeObjAddr());
         //  Core.transpose(matResult,matResult);
         Core.flip(matInput,matInput, 1);    //수평-양수, 수직-0, 모두-음수
         return matInput;
@@ -325,7 +229,7 @@ public class TodayStart extends AppCompatActivity
     @TargetApi(Build.VERSION_CODES.M)
     private void showDialogForPermission(String msg) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder( TodayStart.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder( CategoryLearning_study_camera.this);
         builder.setTitle("알림");
         builder.setMessage(msg);
         builder.setCancelable(false);
@@ -341,6 +245,4 @@ public class TodayStart extends AppCompatActivity
         });
         builder.create().show();
     }
-
-
 }

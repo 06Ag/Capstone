@@ -66,6 +66,29 @@
             android:layout_height="42dp"
             android:text="품사별" />
 
+        <RadioGroup
+            android:id="@+id/RadioGrp3"
+            android:layout_width="match_parent"
+            android:layout_height="146dp">
+
+            <RadioButton
+                android:id="@+id/noun"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:text="명사" />
+            <RadioButton
+                android:id="@+id/"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:text="동사" />
+            <RadioButton
+                android:id="@+id/noun"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:text="형용사" />
+
+        </RadioGroup>
+
         <RadioButton
             android:id="@+id/radioButton6"
             android:layout_width="match_parent"
