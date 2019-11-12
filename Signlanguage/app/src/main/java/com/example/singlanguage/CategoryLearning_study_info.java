@@ -54,8 +54,10 @@ public class CategoryLearning_study_info extends AppCompatActivity{
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Intent intent = new Intent(getApplicationContext(), CategoryLearning_study_camera.class);
+                final Intent intent = new Intent(getApplicationContext(), HsvSetting.class);
                 intent.putExtra("name", name);
+                //HSVSetting 페이지로 보낼 때 현재 페이지에 대한 정보 보내기 (여기 페이지는 2번이다)
+                intent.putExtra("page", 2);
                 startActivity(intent);
             }
         });

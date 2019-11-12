@@ -134,16 +134,20 @@ public class HsvSetting extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 final Intent intent_page;
-                if(page == 1)
+                //변수 page 값에 맞는 페이지로 이동하게 된다.
+                if(page == 1) //일일학습 - 1
                     intent_page = new Intent(getApplicationContext(), TodayStart.class);
-                else if(page == 2)
-                    intent_page = new Intent(getApplicationContext(), TodayStart.class);
-                else if(page == 3) {
+                else if(page == 2) { //카테고리 - 2
+                    intent_page = new Intent(getApplicationContext(), CategoryLearning_study_camera.class);
+                    String name = intent.getStringExtra("name");
+                    intent_page.putExtra("name", name);
+                }
+                else if(page == 3) {    // 퀴즈 - 3
                     intent_page = new Intent(getApplicationContext(), Quiz.class);
                     int num = intent.getIntExtra("num", -1);
                     intent_page.putExtra("num", num);
                 }
-                else if(page == 4)
+                else if(page == 4)  // 번역 - 4
                     intent_page = new Intent(getApplicationContext(), Translation.class);
                 else
                     intent_page = new Intent();

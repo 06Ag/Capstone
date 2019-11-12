@@ -17,22 +17,14 @@
         android:background="#BC8F8F"
         android:textSize="12sp" />
     <!-- 이전 / 다음 버튼 -->
-    <LinearLayout
+    <Button android:id="@+id/bt_next"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal">
-
-        <Button android:id="@+id/bt_next"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:layout_marginTop="5dp"
-            android:text="PASS"
-            android:textSize="12sp"
-            android:background="#FA8072"
-            android:onClick="mOnClick"/>
-    </LinearLayout>
+        android:layout_marginTop="5dp"
+        android:text="PASS"
+        android:textSize="12sp"
+        android:background="#FA8072"/>
     <!-- 10초 카운트 타이머 프로그레스 바 -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -47,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="9"
             android:progress="100"
+            android:progressTint="@color/red"
             android:layout_marginRight="10dp"   />
         <TextView
             android:id="@+id/tv_progress"
@@ -88,12 +81,4 @@
         opencv:camera_id="any"
         android:visibility="gone"
         android:id="@+id/activity_surface_view" />
-
-    <!--
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vp_pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </android.support.v4.view.ViewPager>
-    -->
 </LinearLayout>
