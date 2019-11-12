@@ -27,14 +27,16 @@
         android:smallScreens="true" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity android:name=".QuizResult"></activity>
+        <activity android:name=".IntroName"></activity>
         <activity android:name=".LearningStart" />
         <activity android:name=".SignSearch" />
         <activity android:name=".DBtest" />
@@ -59,6 +61,8 @@
         <activity android:name=".CategoryLearning" />
         <activity android:name=".Quiz" />
         <activity android:name=".QuizStart" />
+        <activity android:name=".CategoryLearning_study_info" />
+        <activity android:name=".CategoryLearning_study_camera" />
     </application>
 
 </manifest>

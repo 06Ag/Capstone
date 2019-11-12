@@ -1,15 +1,12 @@
 package com.example.singlanguage;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 public class learning extends AppCompatActivity {
@@ -39,9 +36,6 @@ public class learning extends AppCompatActivity {
             }
         });
 
-        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        final String date = simpleDateFormat.format(new Date());//오늘날짜 가져오기
-
         //일일학습 페이지로 이동 TodayLearning.java
         Button bt_today = findViewById(R.id.button);
         bt_today.setOnClickListener(new View.OnClickListener(){
@@ -55,30 +49,6 @@ public class learning extends AppCompatActivity {
                     startActivity(intent);
 
                 }else{
-                    String firstdate = dbToday.getDate(); //db에 저장되있는 처음 학습 날짜 불러옴
-                    int countword = dbToday.getCount(); //db에 저장되어있는 오늘의 학습 단어 수
-                    int day = 0; //학습한지 며칠째
-
-                    System.out.println("최초 학습 시작일 : " +firstdate);
-                    System.out.println("현재 학습일 : " +date);
-                    System.out.println("학습할 단어 수: " +dbToday.getCount());
-                    Date beginDate = null;
-                    Date endDate = null;
-                    try {
-                        beginDate = simpleDateFormat.parse(firstdate);
-                        endDate = simpleDateFormat.parse(date);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-
-                    // 시간차이를 시간,분,초를 곱한 값으로 나누면 하루 단위가 나옴
-                    long diff = endDate.getTime() - beginDate.getTime();
-                    long diffDays = diff / (24 * 60 * 60 * 1000);
-                    day = (int)diffDays;
-                    day += 1; //0일째면 1일째라고 하기 위해서 더해줌
-                    System.out.println("학습 일수 : "+ day);
-                    dbToday.updateday(countword,day);
-
                     final Intent intent = new Intent(getApplicationContext(), TodayLearning.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);

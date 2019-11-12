@@ -34,18 +34,25 @@ public class DBToday extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("DROP TABLE IF EXISTS TODAY");
-        //date -> 처음 학습 시작한 날짜, count -> 학습하기로 한 단어 갯수, day -> 학습한지 며칠째, pos -> 오늘 학습한 단어수(진행사항 바를 위해)
-        db.execSQL( "CREATE TABLE TODAY (date TEXT DEFAULT '', count INTEGER DEFAULT 0, day INTEGER DEFAULT 0,pos INTEGER DEFAULT 0);");
+        //name -> 사용자이름, date -> 처음 학습 시작한 날짜, count -> 학습하기로 한 단어 갯수, day -> 학습한지 며칠째, pos -> 오늘 학습한 단어수(진행사항 바를 위해)
+        db.execSQL( "CREATE TABLE TODAY (name TEXT DEFAULT '', date TEXT DEFAULT '', count INTEGER DEFAULT 0, day INTEGER DEFAULT 0,pos INTEGER DEFAULT 0);");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
-    //LearningStart.java 에서 날짜와 학습할 단어수를 저장하기 위한 함수
-    public void insert(String date, int count,int day,int pos) {
+
+    public void insertname(String name){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL( "INSERT INTO TODAY VALUES('" + date + "', '" + count + "', '" + day + "', '"+ pos + "');");
+        db.execSQL( "INSERT INTO TODAY(name) VALUES('" + name+ "');");
+        db.close();
+    }
+
+    //LearningStart.java 에서 날짜와 학습할 단어수를 저장하기 위한 함수
+    public void insert(String name, String date, int count,int day,int pos) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL( "UPDATE TODAY SET date = '"+date+"',count = '"+count+"',day = '"+day+"',pos = '"+pos+"' WHERE name = '"+name+"';");
         db.close();
     }
 
@@ -64,6 +71,17 @@ public class DBToday extends SQLiteOpenHelper {
         db.execSQL( "UPDATE TODAY SET pos = '"+pos+"' WHERE count = '"+count+"';");
         db.close();
     }
+
+    public  String getName(){
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+        Cursor cursor = db.rawQuery("SELECT name FROM TODAY", null);
+        while (cursor.moveToNext()) {
+            result += cursor.getString(0); //사용자이름
+        }
+        return result;
+    }
+
 
     public String getDate() {
         SQLiteDatabase db = getReadableDatabase();

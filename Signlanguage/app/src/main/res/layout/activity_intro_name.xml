@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".IntroName"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
+    android:gravity="center_horizontal|center_vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="사용하고 싶은 닉네임을 입력하세요"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_gravity="center"
+        />
+
+    <EditText
+        android:id="@+id/nametext"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:hint="이름을 입력하세요"
+        android:gravity="left|center_vertical"
+        android:textColor="#000000"
+        android:textSize="15dp"
+        android:layout_gravity="center"
+        android:background="@drawable/back" />
+
+    <Button
+        android:id="@+id/name"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="입력"/>
+
+
+</LinearLayout>

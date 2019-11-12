@@ -8,27 +8,30 @@
     tools:context=".Fragment1_1">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_one"
         android:layout_width="95dp"
         android:layout_height="95dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
-        android:background="@drawable/btn_clk_one" />
+        android:background="@drawable/btn_clk_one"
+        android:onClick="mOnClick"/>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button_two"
         android:layout_width="95dp"
         android:layout_height="95dp"
         android:background="@drawable/btn_clk_two"
         android:layout_marginLeft="130dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        android:onClick="mOnClick"/>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button_three"
         android:layout_width="95dp"
         android:layout_height="95dp"
         android:layout_marginLeft="240dp"
         android:layout_marginTop="30dp"
-        android:background="@drawable/btn_clk_three" />
+        android:background="@drawable/btn_clk_three"
+        android:onClick="mOnClick"/>
 
 </RelativeLayout>
