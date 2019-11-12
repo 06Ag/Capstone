@@ -34,7 +34,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".LearningStart"></activity>
+        <activity android:name=".QuizResult"></activity>
+        <activity android:name=".LearningStart" />
         <activity android:name=".SignSearch" />
         <activity android:name=".DBtest" />
         <activity android:name=".HsvSetting" />
