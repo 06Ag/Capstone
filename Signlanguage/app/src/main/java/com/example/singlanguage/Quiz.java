@@ -182,6 +182,8 @@ public class Quiz extends AppCompatActivity
                 quizCorrect.cancel();
                 quizCount.cancel();
                 countSet = correctSet = 0;
+                pb_count.setProgress(100);
+                tv_progress.setText("10");
                 //다음 버튼 - 타이머 설정
                 if (pos < num) {
                     pos = pos + 1;
@@ -192,8 +194,6 @@ public class Quiz extends AppCompatActivity
                 else if(pos == num){
                     pos++;
                     tv_correct.setText("");
-                    pb_count.setProgress(100);
-                    tv_progress.setText("10");
                     tv_imageNum.setText("Finish!!");
                     //모든 단어 끝나면 다음 PASS 버튼이 결과보기 버튼을 바뀌도록
                     bt_next.setText("결과 확인");
@@ -231,8 +231,10 @@ public class Quiz extends AppCompatActivity
         quizCount = new CountDownTimer(11000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                pb_count.setProgress((int)(millisUntilFinished/1000L) * 10);
-                tv_progress.setText(""+millisUntilFinished/1000L);
+                int sec = (int)(millisUntilFinished/1000L);
+                if(sec > 10) sec = 10;  //간혹 11이 출력되는 경우가 있어서 10부터 값이 나오도록 지정
+                pb_count.setProgress(sec * 10);
+                tv_progress.setText(""+ sec);
             }
 
             @Override
