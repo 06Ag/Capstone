@@ -81,6 +81,14 @@ public class TodayStart extends AppCompatActivity
             }
         }
     };
+    @Override
+    public void onBackPressed() {
+        // 기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
+        // super.onBackPressed();
+        Toast toast;
+        toast = Toast.makeText(this, "뒤로 가기 버튼을 사용할 수 없습니다.\n학습 중단을 눌러주세요", Toast.LENGTH_SHORT);
+        toast.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

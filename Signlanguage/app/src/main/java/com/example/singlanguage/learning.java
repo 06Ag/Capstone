@@ -10,6 +10,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class learning extends AppCompatActivity {
+    @Override
+    public void onBackPressed() {
+        // 기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
+        // super.onBackPressed();
+        final Intent intent = new Intent(learning.this , MainActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

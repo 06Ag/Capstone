@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
-
 //카테고리학습 메뉴의 정보학습 페이지
 public class CategoryLearning_study_info extends AppCompatActivity{
 
