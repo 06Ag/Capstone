@@ -10,14 +10,17 @@
     <TextView
         android:id="@+id/word_cnt"
         android:layout_width="match_parent"
-        android:layout_height="39dp"
+        android:gravity="left|center_vertical"
+        android:layout_height="20dp"
         android:text="학습할 단어 수"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:layout_weight="1"/>
 
     <RadioGroup
         android:id="@+id/RadioGrp1"
         android:layout_width="match_parent"
-        android:layout_height="149dp">
+        android:layout_height="60dp"
+        android:layout_weight="2">
 
         <RadioButton
             android:id="@+id/radioButton1"
@@ -45,14 +48,17 @@
     <TextView
         android:id="@+id/range"
         android:layout_width="match_parent"
-        android:layout_height="39dp"
+        android:layout_height="20dp"
         android:text="출제 범위"
-        android:textSize="18sp" />
+        android:gravity="left|center_vertical"
+        android:textSize="18sp"
+        android:layout_weight="1"/>
 
     <RadioGroup
         android:id="@+id/RadioGrp2"
         android:layout_width="match_parent"
-        android:layout_height="146dp">
+        android:layout_height="60dp"
+        android:layout_weight="5">
 
         <RadioButton
             android:id="@+id/radioButton4"
@@ -69,7 +75,10 @@
         <RadioGroup
             android:id="@+id/RadioGrp3"
             android:layout_width="match_parent"
-            android:layout_height="146dp">
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginLeft="25dp"
+            android:layout_weight="1">
 
             <RadioButton
                 android:id="@+id/noun"
@@ -77,12 +86,12 @@
                 android:layout_height="42dp"
                 android:text="명사" />
             <RadioButton
-                android:id="@+id/"
+                android:id="@+id/verb"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:text="동사" />
             <RadioButton
-                android:id="@+id/noun"
+                android:id="@+id/adverse"
                 android:layout_width="match_parent"
                 android:layout_height="42dp"
                 android:text="형용사" />
@@ -101,6 +110,7 @@
         android:id="@+id/start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="퀴즈 시작" />
+        android:text="퀴즈 시작"
+        android:layout_weight="1"/>
 
 </LinearLayout>

@@ -21,6 +21,12 @@ public class TodayReview extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public static String getRPad(String str, int size, String strFillText) {
+        for(int i = (str.getBytes()).length; i < size; i++) {
+            str += strFillText;
+        }
+        return str;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,10 +68,7 @@ public class TodayReview extends AppCompatActivity {
             }else{
                 temp = "x";
             }
-            //여기 나중에 간격조절해야할듯
-            //temp가 너무 뒤죽박죽
-            list.add("#"+LIST_NAME[t]+"                                        "+temp);
-
+            list.add(String.format("#%s %s",getRPad(LIST_NAME[t],40," "),temp));
         }
 
         //listview에 LIST_NAME , LIST_LEARN내용 넣기
