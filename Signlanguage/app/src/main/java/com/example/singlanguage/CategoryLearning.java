@@ -41,9 +41,9 @@ public class CategoryLearning extends AppCompatActivity {
     public void mOnClick(View v) {
         Intent intent = new Intent(getApplicationContext(), CategoryLearning_study_info.class);
 
-        if (v.getId() == R.id.button_one)   intent.putExtra("name", "1");
-        else if(v.getId() == R.id.button_two)   intent.putExtra("name", "2");
-        else if(v.getId() == R.id.button_three)   intent.putExtra("name", "3");
+        if (v.getId() == R.id.image_one)   intent.putExtra("name", "1");
+        else if(v.getId() == R.id.image_two)   intent.putExtra("name", "2");
+        //else if(v.getId() == R.id.button_three)   intent.putExtra("name", "3");
 
         startActivity(intent);
     }
