@@ -55,7 +55,7 @@ public class Quiz extends AppCompatActivity
     int num, pos = 1;    //학습할 단어 수, 수화 순서
     int lh, ls, lv, uh, us, uv;
 
-    final String[] list = {"ㅐ","비읍","치읓","춥다", "컴퓨터", "고객","디귿","상의하다","ㅔ","8","ㅓ","ㅡ","5","4","과일","기역", "건빵", "히읗", "집","ㅣ","가렵다","지읒","키읔", "남자", "고기", "약", "미음","니은","9","북쪽","ㅗ","ㅚ","1","피읖","가루","발표", "읽다", "갈비", "떡", "리을","학교", "7","시옷","남쪽", "선생님","10","3","티읕","2","ㅜ","ㅢ","ㅟ", "여자","ㅑ","ㅒ","ㅖ","ㅕ","ㅛ","ㅠ","0"};
+    final String[] list = {"애","비읍","치읓","춥다", "컴퓨터", "손님","디귿","상의하다","에","8","어","으","5","4","열매","기역", "건빵", "히읗", "집","이","간지럽다","지읒","키읔", "남자", "고기", "약", "미음","니은","9","북쪽","오","외","1","피읖","가루","발표하다", "읽다", "갈비", "떡", "리을","학교", "7","시옷","남쪽", "선생님","10","3","티읕","2","우","의","위", "여자","야","얘","예","여","요","유","0"};
     String[] quiz_list;
     String[] quiz_result = {"X","X","X","X","X","X","X","X","X","X","X","X","X","X","X"};
 
@@ -428,7 +428,6 @@ public class Quiz extends AppCompatActivity
                 }
             }
         };
-
         quizStart.start();
     }
 
@@ -476,32 +475,33 @@ public class Quiz extends AppCompatActivity
         Scalar green = new Scalar(0, 255, 0, 3);
         Scalar red = new Scalar(255, 0, 0, 3);
         for(int i=0; i<60; i++) {
-            if (Math.round(output[0][i]) == 1)
+            if (Math.round(output[0][i]) == 1) {
                 //현재 단어와 동작 일치할 경우 - 초록색
-                if(list[i] == quiz_list[pos-1]){
-                    if(correctSet == 0) { //quizCorrect 타이머 작동안할때만 시작시키기
+                if (quiz_list[pos - 1].equals(list[i])) {
+                    if (correctSet == 0) { //quizCorrect 타이머 작동안할때만 시작시키기
                         quizCorrect.start();  //일치할경우 3초 세기 시작
                         correctSet = 1;
                     }
-                    Imgproc.rectangle(matResult, new Point(15,10), new Point(matResult.cols()-15, matResult.rows()-10), green, 30);
+                    Imgproc.rectangle(matResult, new Point(15, 10), new Point(matResult.cols() - 15, matResult.rows() - 10), green, 30);
                 }
                 //현재 단어와 동작 불일치 경우 - 빨간색
-                else{
-                    if(correctSet == 1) { //quizCorrect 타이머 작동중에만 중단
+                else {
+                    if (correctSet == 1) { //quizCorrect 타이머 작동중에만 중단
                         quizCorrect.cancel();  //틀릴경우 타이머 중단
-                        if(countSet == 2){
+                        if (countSet == 2) {
                             correctSet = -1;    //10초 카운트가 끝나고 마지막 기회에서 단어 틀리면 더이상 퀴즈 맞추기 불가
                             tv_imageNum.setText("WRONG");
                             //다음 단어로 넘어가는 타이머 시작
                             quizFinish.start();
-                        }
-                        else
+                        } else
                             correctSet = 0;
                         tv_correct.setText("");
                     }
-                    Imgproc.rectangle(matResult, new Point(15,10), new Point(matResult.cols()-15, matResult.rows()-10),red, 30);
-                 //   Imgproc.circle(matResult, new Point(mOpenCvCameraView.getHeight()/2, mOpenCvCameraView.getWidth()/2), 200, red, 20,0);
+                    Imgproc.rectangle(matResult, new Point(15, 10), new Point(matResult.cols() - 15, matResult.rows() - 10), red, 30);
+                    //   Imgproc.circle(matResult, new Point(mOpenCvCameraView.getHeight()/2, mOpenCvCameraView.getWidth()/2), 200, red, 20,0);
                 }
+                break;
+            }
         }
     }
 
