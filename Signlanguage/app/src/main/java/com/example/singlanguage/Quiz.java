@@ -320,6 +320,10 @@ public class Quiz extends AppCompatActivity
                     quizStart.start();
                 }
                 else if(pos == num){
+                    pos++;
+                    tv_correct.setText("");
+                    pb_count.setProgress(100);
+                    tv_progress.setText("10");
                     tv_imageNum.setText("Finish!!");
                     //모든 단어 끝나면 다음 PASS 버튼이 결과보기 버튼을 바뀌도록
                     bt_next.setText("결과 확인");
@@ -405,12 +409,16 @@ public class Quiz extends AppCompatActivity
 
             @Override
             public void onFinish() {
+                //모든 타이머를 중지시킨다.
+                quizCount.cancel();
                 //progress bar 10초 시작 단계로 세팅
                 pb_count.setProgress(100);
                 tv_progress.setText("10");
                 if (pos < num) {
+                    countSet = correctSet = 0;
                     pos = pos + 1;
                     tv_imageNum.setText("#" + Integer.toString(pos) + "      " + quiz_list[pos-1]);
+                    quizStart.start();
                 } else {
                     tv_imageNum.setText("Finish!!");
                     //모든 단어 끝나면 다음 PASS 버튼이 결과보기 버튼을 바뀌도록
@@ -643,7 +651,7 @@ public class Quiz extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
         //이전에 퀴즈를 중단하시겠습니까? 물어보는 창 보여주기
         builder.create().show();
     }

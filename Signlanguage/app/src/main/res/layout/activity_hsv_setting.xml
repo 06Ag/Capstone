@@ -184,7 +184,7 @@
             android:layout_height="20dp"
             android:layout_weight="1"
             android:layout_marginTop="15dp"
-            android:text="L-S"
+            android:text="L-V"
             android:background="@color/honeydew"
             android:gravity="center_horizontal|center_vertical"
             />
@@ -216,7 +216,7 @@
             android:layout_weight="1"
             android:layout_marginTop="15dp"
             android:layout_marginLeft="4dp"
-            android:text="U-S"
+            android:text="U-V"
             android:background="@color/honeydew"
             android:gravity="center_horizontal|center_vertical"
             />
