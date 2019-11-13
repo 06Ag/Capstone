@@ -1,14 +1,20 @@
 package com.example.singlanguage;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class SignSearch extends AppCompatActivity {
+    @Override
+    public void onBackPressed() {
+        // 기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
+        // super.onBackPressed();
+        final Intent intent = new Intent(SignSearch.this , learning.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

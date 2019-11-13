@@ -11,8 +11,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
@@ -20,16 +18,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.ViewPager;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.android.JavaCameraView;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
@@ -48,9 +42,9 @@ import java.nio.channels.FileChannel;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 import static android.Manifest.permission.CAMERA;
-import static com.example.singlanguage.MainActivity.PERMISSIONS_REQUEST_CODE;
 
 public class Quiz extends AppCompatActivity
         implements CameraBridgeViewBase.CvCameraViewListener2{
@@ -62,8 +56,13 @@ public class Quiz extends AppCompatActivity
     int lh, ls, lv, uh, us, uv;
 
     final String[] list = {"ㅐ","비읍","치읓","춥다", "컴퓨터", "고객","디귿","상의하다","ㅔ","8","ㅓ","ㅡ","5","4","과일","기역", "건빵", "히읗", "집","ㅣ","가렵다","지읒","키읔", "남자", "고기", "약", "미음","니은","9","북쪽","ㅗ","ㅚ","1","피읖","가루","발표", "읽다", "갈비", "떡", "리을","학교", "7","시옷","남쪽", "선생님","10","3","티읕","2","ㅜ","ㅢ","ㅟ", "여자","ㅑ","ㅒ","ㅖ","ㅕ","ㅛ","ㅠ","0"};
-    String[] quiz_list = {"기역", "니은", "1", "2", "3", "건빵", "컴퓨터", "과일", "히읗", "치읓", "지읒", "4", "고기", "남자", "9"}; //임시 퀴즈 내용 15개 생성
+    String[] quiz_list;
     String[] quiz_result = {"X","X","X","X","X","X","X","X","X","X","X","X","X","X","X"};
+
+    int lastword =0; //마지막으로 학습할 단어의 _id
+    int day = 0; //학습 일 수
+    int countword =0; //학습할 단어 수
+    int dbcount =0; //db안에 있는 수어 수
     //타이머 설정
     CountDownTimer quizStart;   //퀴즈 단어 보여주고 생각할 시간주기 4초
     CountDownTimer quizCount;   //맞추는 제한시간 10초
@@ -134,8 +133,139 @@ public class Quiz extends AppCompatActivity
         us = intent.getExtras().getInt("US");
         uv = intent.getExtras().getInt("UV");
         int intent_value = intent.getExtras().getInt("num", -1);    //학습할 단어 수 받기
+        String range = intent.getExtras().getString("range"); //학습 범위 받기
         if(intent_value != -1)
             num = intent_value;
+
+        final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext()); //db가져오기
+        final DBToday dbToday = DBToday.getInstance(getApplicationContext());
+
+
+        //오늘의 학습 범위
+        if(range.equals("오늘")) {
+            System.out.println("range:" + "오늘의 학습");
+            int a[] = new int[num];
+            Random r = new Random(); //객체생성
+            countword = dbToday.getCount(); //하루 당 학습해야하는 단어 가져옴
+            day = dbToday.getDay(); //며칠째인지 가져옴
+            lastword = day * countword; //마지막으로 배울 단어
+            for (int i = 0; i < num; i++)    //숫자 num개를 뽑기위한 for문
+            {
+                //만약 학습하려는 단어 수보다 지금까지 오늘의 학습을 통해 학습한 총 개수가 적은경우
+                if(i+1 > lastword){
+                    num = i; //퀴즈갯수바꾸기
+                    break;
+                }
+                a[i] = r.nextInt(lastword) + 1; //1부터 지금까지 배운 단어id중에 랜덤으로 하나를 뽑아 a[0]~a[num-1]에 저장
+
+                for (int j = 0; j < i; j++) //중복제거를 위한 for문
+                {
+                    if (a[i] == a[j]) {
+                        i--;
+                    }
+                }
+            }
+            quiz_list = new String[num]; //db에서 가져올 수화내용저장
+            for (int i = 0; i < num; i++)   //뽑은 수화를 list에 넣어줌
+            {
+                quiz_list[i] = dbHelper.getName(a[i]);
+                System.out.println("퀴즈단어 "+quiz_list[i]);
+            }
+        }
+        else if(range.equals("명사")){ //품사중에 명사일때
+            System.out.println("range:" + "명사");
+            int a[] = new int[num];
+            Random r = new Random(); //객체생성
+            countword = dbHelper.getClassCount("명사"); //수어중에 명사인 갯수 구해오기
+            dbcount = dbHelper.getCount(); //db안에 저장된 수어 갯수 구해오기
+            for (int i = 0; i < num; i++)    //숫자 num개를 뽑기위한 for문
+            {
+                //만약 학습하려는 단어 수보다 명사 단어 총 개수가 적은경우
+                if(i+1 > countword){
+                    num = i; //퀴즈갯수바꾸기
+                    break;
+                }
+                a[i] = r.nextInt(dbcount) + 1; //db에서 랜덤으로 하나를 뽑아 a[0]~a[num-1]에 저장
+                for (int j = 0; j < i; j++) //중복제거를 위한 for문
+                {
+                    if (a[i] == a[j]) {
+                        i--;
+                    }else if(dbHelper.getClassName("명사",a[i]) == ""){
+                        i--;
+                    }
+                }
+            }
+            quiz_list = new String[num]; //db에서 가져올 수화내용저장
+            for (int i = 0; i < num; i++)   //뽑은 수화를 list에 넣어줌
+            {
+                quiz_list[i] = dbHelper.getName(a[i]);
+                System.out.println("퀴즈단어 "+quiz_list[i]);
+            }
+        }
+        else if(range.equals("동사")){ //품사중에 동사일때
+            int a[] = new int[num];
+            Random r = new Random(); //객체생성
+            countword = dbHelper.getClassCount("동사"); //수어중에 명사인 갯수 구해오기
+            dbcount = dbHelper.getCount(); //db안에 저장된 수어 갯수 구해오기
+            for (int i = 0; i < num; i++)    //숫자 num개를 뽑기위한 for문
+            {
+                //만약 학습하려는 단어 수보다 동사 단어 총 개수가 적은경우
+                if(i+1 > countword){
+                    num = i; //퀴즈갯수바꾸기
+                    break;
+                }
+                a[i] = r.nextInt(dbcount) + 1; //db에서 랜덤으로 하나를 뽑아 a[0]~a[num-1]에 저장
+                for (int j = 0; j < i; j++) //중복제거를 위한 for문
+                {
+                    if (a[i] == a[j]) {
+                        i--;
+                    }else if(dbHelper.getClassName("동사",a[i]) == ""){
+                        i--;
+                    }
+                }
+            }
+            quiz_list = new String[num]; //db에서 가져올 수화내용저장
+            for (int i = 0; i < num; i++)   //뽑은 수화를 list에 넣어줌
+            {
+                quiz_list[i] = dbHelper.getName(a[i]);
+                System.out.println("퀴즈단어 "+quiz_list[i]);
+            }
+        }
+        else if(range.equals("형용사")){ //품사중에 형용사일때
+            int a[] = new int[num];
+            Random r = new Random(); //객체생성
+            countword = dbHelper.getClassCount("형용사"); //수어중에 형용사 갯수 구해오기
+            dbcount = dbHelper.getCount(); //db안에 저장된 수어 갯수 구해오기
+            for (int i = 0; i < num; i++)    //숫자 num개를 뽑기위한 for문
+            {
+                //만약 학습하려는 단어 수보다 명사 단어 총 개수가 적은경우
+                if(i+1 > countword){
+                    num = i; //퀴즈갯수바꾸기
+                    break;
+                }
+                a[i] = r.nextInt(dbcount) + 1; //db에서 랜덤으로 하나를 뽑아 a[0]~a[num-1]에 저장
+                for (int j = 0; j < i; j++) //중복제거를 위한 for문
+                {
+                    if (a[i] == a[j]) {
+                        i--;
+                    }else if(dbHelper.getClassName("형용사",a[i]) == ""){
+                        i--;
+                    }
+                }
+            }
+            quiz_list = new String[num]; //db에서 가져올 수화내용저장
+            for (int i = 0; i < num; i++)   //뽑은 수화를 list에 넣어줌
+            {
+                quiz_list[i] = dbHelper.getName(a[i]);
+                System.out.println("퀴즈단어 "+quiz_list[i]);
+            }
+        }
+        //여기에다가 장르별 db 코드 작성 필요
+
+
+        //맨처음 퀴즈문제
+        tv_imageNum.setText("#" + Integer.toString(pos) + "      " + quiz_list[pos - 1]);
+
         //퀴즈 종료시 화면에 나타날 메세지 창 설정
         builder = new AlertDialog.Builder(Quiz.this);
         // 제목셋팅

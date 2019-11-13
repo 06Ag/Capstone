@@ -1,6 +1,5 @@
 package com.example.singlanguage;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -223,6 +222,24 @@ public class DBHelper extends SQLiteOpenHelper {
             cnt = cursor.getInt(0);
         }
         return cnt;
+    }
+    //퀴즈에서 품사별로 수어가 몇개있는지 확인하기 위한 함수
+    public int getClassCount(String class1){
+        int cnt =0;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM SIGN_BOOK WHERE class1 = '"+class1+"';", null);
+        cnt = cursor.getCount();
+        return cnt;
+    }
+    //퀴즈에서 품사별로 수어 뽑기위한 함수
+    public String getClassName(String class1, int i){
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+        Cursor cursor = db.rawQuery("SELECT name FROM SIGN_BOOK WHERE _id = '"+i+"' AND class1 = '"+class1+"';", null);
+        while (cursor.moveToNext()) {
+            result += cursor.getString(0); //수화이름
+        }
+        return result;
     }
 
 }
