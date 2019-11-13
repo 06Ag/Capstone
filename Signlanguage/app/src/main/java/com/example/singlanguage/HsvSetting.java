@@ -13,15 +13,12 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
-import org.opencv.android.JavaCameraView;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
@@ -37,6 +34,8 @@ import static android.Manifest.permission.CAMERA;
 public class HsvSetting extends AppCompatActivity
         implements CameraBridgeViewBase.CvCameraViewListener2{
 
+    int page =0;    //이전화면 정보가져오기 - finish button 클릭시 이동할 화면 설정시 사용
+                    //일일학습 - 1, 카테고리 - 2, 퀴즈 - 3, 번역 - 4
     int lh, ls, lv, uh, us, uv;
     SeekBar sb_LH, sb_LS, sb_LV, sb_UH, sb_US, sb_UV;
     TextView tv_LH, tv_LS, tv_LV, tv_UH, tv_US, tv_UV;
@@ -68,6 +67,10 @@ public class HsvSetting extends AppCompatActivity
             }
         }
     };
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,18 +124,43 @@ public class HsvSetting extends AppCompatActivity
         sb_UV.setOnSeekBarChangeListener(HSVcolor);
 
         Button bt_st= (Button)findViewById(R.id.finish);
+        final Intent intent = getIntent();
+        //이전페이지에서 intent값 받아옴
+        int intent_value = intent.getIntExtra("page", -1);
+        if(intent_value != -1)      //intent로 넘겨받은 값이 없을 경우 기존에 page값 유지
+            page = intent_value;
+
         bt_st.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Intent intent = new Intent(getApplicationContext(), Translation.class);
+                final Intent intent_page;
+                //변수 page 값에 맞는 페이지로 이동하게 된다.
+                if(page == 1) //일일학습 - 1
+                    intent_page = new Intent(getApplicationContext(), TodayStart.class);
+                else if(page == 2) { //카테고리 - 2
+                    intent_page = new Intent(getApplicationContext(), CategoryLearning_study_camera.class);
+                    String name = intent.getStringExtra("name");
+                    intent_page.putExtra("name", name);
+                }
+                else if(page == 3) {    // 퀴즈 - 3
+                    intent_page = new Intent(getApplicationContext(), Quiz.class);
+                    int num = intent.getIntExtra("num", -1);
+                    String range = intent.getStringExtra("range");
+                    intent_page.putExtra("num", num);
+                    intent_page.putExtra("range",range);
+                }
+                else if(page == 4)  // 번역 - 4
+                    intent_page = new Intent(getApplicationContext(), Translation.class);
+                else
+                    intent_page = new Intent();
                 //다음 화면으로 이동시 hsv 설정 값 전달
-                intent.putExtra("LH", lh);
-                intent.putExtra("LS", ls);
-                intent.putExtra("LV", lv);
-                intent.putExtra("UH", uh);
-                intent.putExtra("US", us);
-                intent.putExtra("UV", uv);
-                startActivity(intent);
+                intent_page.putExtra("LH", lh);
+                intent_page.putExtra("LS", ls);
+                intent_page.putExtra("LV", lv);
+                intent_page.putExtra("UH", uh);
+                intent_page.putExtra("US", us);
+                intent_page.putExtra("UV", uv);
+                startActivity(intent_page);
             }
         });
     }

@@ -14,6 +14,16 @@ import androidx.core.content.ContextCompat;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "opencv";
+
+    @Override
+    public void onBackPressed() {
+        // 기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
+        //super.onBackPressed();
+        final Intent intent = new Intent(MainActivity.this , IntroActivity.class);
+        startActivity(intent);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 requestPermissions(PERMISSIONS, PERMISSIONS_REQUEST_CODE);
             }
         }
+        //학습 페이지 이동
         Button b = (Button)findViewById(R.id.Learning);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,16 +50,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent); // 다음 화면으로 넘어간다
             }
         });
-
+        //번역페이지 이동
         Button bt_trans= (Button)findViewById(R.id.Translation);
         bt_trans.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final Intent intent = new Intent(getApplicationContext(), HsvSetting.class);
+                //hsv setting 페이지로 넘길 때 이전페이지가 뭐였는지에 대한 정보 보내기
+                intent.putExtra("page", 4);
                 startActivity(intent);
             }
         });
-
+        //db table 자료 보이는 페이지 이동
         Button bt_db= (Button)findViewById(R.id.DBtesting);
         bt_db.setOnClickListener(new View.OnClickListener() {
             @Override
