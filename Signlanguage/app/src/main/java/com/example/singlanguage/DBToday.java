@@ -72,6 +72,21 @@ public class DBToday extends SQLiteOpenHelper {
         db.close();
     }
 
+    //Setting.java에서 사용자의 이름을 변경하기 위한 함수
+    //name -> 기존닉네임, chname ->변경할 이름
+    public void updatename(String name, String chname){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL( "UPDATE TODAY SET name = '"+chname+"' WHERE name = '"+name+"';");
+        db.close();
+    }
+
+    //Setting.java에서 학습 단어수를 변경하기 위한 함수
+    public void updatecount(String name, int count){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL( "UPDATE TODAY SET count = '"+count+"' WHERE name = '"+name+"';");
+        db.close();
+    }
+
     public  String getName(){
         SQLiteDatabase db = getReadableDatabase();
         String result = "";

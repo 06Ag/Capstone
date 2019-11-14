@@ -167,7 +167,7 @@
             android:layout_margin="3dp"
             android:background="#BC8F8F"
             android:textSize="20sp"
-            android:text="오답노트 \n및\n총 배운 단어"    />
+            android:text="학습 현황"    />
 
     </LinearLayout>
 

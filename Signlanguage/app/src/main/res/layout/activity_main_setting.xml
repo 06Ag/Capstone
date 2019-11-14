@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tlinear"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginBottom="20dp"
+    tools:context=".MainSetting">
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/mistyrose"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:text="Setting"
+        android:textSize="30dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="1. 닉네임 바꾸기"
+            android:gravity="left|center_vertical"
+            android:layout_weight="3"
+            />
+        <Button
+            android:id="@+id/nickchange"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="변경하기"
+            android:onClick="onButtonClick"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp">
+
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="2. 매일 학습할 단어 수 바꾸기"
+            android:gravity="left|center_vertical"
+            android:layout_weight="3"
+            />
+        <Button
+            android:id="@+id/wordchange"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="변경하기"
+            android:onClick="onButtonClick"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+        <EditText
+            android:id="@+id/nickname"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:hint="이름입력"
+            android:gravity="left|center_vertical"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:layout_weight="3"
+            android:background="@drawable/back"
+            />
+
+        <Button
+            android:id="@+id/nachange"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="변경하기"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <RadioGroup
+            android:id="@+id/wordchGroup"
+            android:layout_width="match_parent"
+            android:layout_height="149dp">
+
+            <RadioButton
+                android:id="@+id/word1"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginLeft="5dp"
+                android:text="3" />
+
+            <RadioButton
+                android:id="@+id/word2"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginLeft="5dp"
+                android:text="5" />
+
+            <RadioButton
+                android:id="@+id/word3"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_marginLeft="5dp"
+                android:text="7" />
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/wochange"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:text="변경하기"
+            />
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>
+

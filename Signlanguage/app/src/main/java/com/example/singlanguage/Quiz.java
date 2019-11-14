@@ -231,7 +231,7 @@ public class Quiz extends AppCompatActivity
                 System.out.println("퀴즈단어 "+quiz_list[i]);
             }
         }
-        else if(range.equals("형용사")){ //품사중에 형용사일때
+        else if(range.equals("형용사")) { //품사중에 형용사일때
             int a[] = new int[num];
             Random r = new Random(); //객체생성
             countword = dbHelper.getClassCount("형용사"); //수어중에 형용사 갯수 구해오기
@@ -239,7 +239,7 @@ public class Quiz extends AppCompatActivity
             for (int i = 0; i < num; i++)    //숫자 num개를 뽑기위한 for문
             {
                 //만약 학습하려는 단어 수보다 명사 단어 총 개수가 적은경우
-                if(i+1 > countword){
+                if (i + 1 > countword) {
                     num = i; //퀴즈갯수바꾸기
                     break;
                 }
@@ -248,7 +248,7 @@ public class Quiz extends AppCompatActivity
                 {
                     if (a[i] == a[j]) {
                         i--;
-                    }else if(dbHelper.getClassName("형용사",a[i]) == ""){
+                    } else if (dbHelper.getClassName("형용사", a[i]) == "") {
                         i--;
                     }
                 }
@@ -257,10 +257,9 @@ public class Quiz extends AppCompatActivity
             for (int i = 0; i < num; i++)   //뽑은 수화를 list에 넣어줌
             {
                 quiz_list[i] = dbHelper.getName(a[i]);
-                System.out.println("퀴즈단어 "+quiz_list[i]);
+                System.out.println("퀴즈단어 " + quiz_list[i]);
             }
         }
-        //여기에다가 장르별 db 코드 작성 필요
 
 
         //맨처음 퀴즈문제
@@ -471,13 +470,22 @@ public class Quiz extends AppCompatActivity
 
         Log.d("predict", Arrays.toString(output[0]));
 
-        Point point = new Point(245,245);
+        Point point = new Point(245, 245);
         Scalar green = new Scalar(0, 255, 0, 3);
         Scalar red = new Scalar(255, 0, 0, 3);
+<<<<<<< HEAD
+        if(quiz_list[pos-1].length() == 3)
+            System.out.println("****output결과!!" + quiz_list[pos-1].charAt(0) +"!!" + quiz_list[pos-1].charAt(1) +"!!"+ quiz_list[pos-1].charAt(2) + "!!");
+        for (int i = 0; i < 60; i++) {
+            if (Math.round(output[0][i]) == 1) {
+                //현재 단어와 동작 일치할 경우 - 초록색
+                if (list[i].equals(quiz_list[pos - 1])) {
+=======
         for(int i=0; i<60; i++) {
             if (Math.round(output[0][i]) == 1) {
                 //현재 단어와 동작 일치할 경우 - 초록색
                 if (quiz_list[pos - 1].equals(list[i])) {
+>>>>>>> upstream/master
                     if (correctSet == 0) { //quizCorrect 타이머 작동안할때만 시작시키기
                         quizCorrect.start();  //일치할경우 3초 세기 시작
                         correctSet = 1;
@@ -502,6 +510,10 @@ public class Quiz extends AppCompatActivity
                 }
                 break;
             }
+<<<<<<< HEAD
+
+=======
+>>>>>>> upstream/master
         }
     }
 
