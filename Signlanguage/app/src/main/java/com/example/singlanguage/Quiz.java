@@ -55,7 +55,7 @@ public class Quiz extends AppCompatActivity
     int num, pos = 1;    //학습할 단어 수, 수화 순서
     int lh, ls, lv, uh, us, uv;
 
-    final String[] list = {"ㅐ","비읍","치읓","춥다", "컴퓨터", "고객","디귿","상의하다","ㅔ","8","ㅓ","ㅡ","5","4","과일","기역", "건빵", "히읗", "집","ㅣ","가렵다","지읒","키읔", "남자", "고기", "약", "미음","니은","9","북쪽","ㅗ","ㅚ","1","피읖","가루","발표", "읽다", "갈비", "떡", "리을","학교", "7","시옷","남쪽", "선생님","10","3","티읕","2","ㅜ","ㅢ","ㅟ", "여자","ㅑ","ㅒ","ㅖ","ㅕ","ㅛ","ㅠ","0"};
+    final String[] list = {"애","비읍","치읓","춥다", "컴퓨터", "손님","디귿","상의하다","에","8","어","으","5","4","열매","기역", "건빵", "히읗", "집","이","간지럽다","지읒","키읔", "남자", "고기", "약", "미음","니은","9","북쪽","오","외","1","피읖","가루","발표하다", "읽다", "갈비", "떡", "리을","학교", "7","시옷","남쪽", "선생님","10","3","티읕","2","우","의","위", "여자","야","얘","예","여","요","유","0"};
     String[] quiz_list;
     String[] quiz_result = {"X","X","X","X","X","X","X","X","X","X","X","X","X","X","X"};
 
@@ -311,6 +311,8 @@ public class Quiz extends AppCompatActivity
                 quizCorrect.cancel();
                 quizCount.cancel();
                 countSet = correctSet = 0;
+                pb_count.setProgress(100);
+                tv_progress.setText("10");
                 //다음 버튼 - 타이머 설정
                 if (pos < num) {
                     pos = pos + 1;
@@ -321,8 +323,6 @@ public class Quiz extends AppCompatActivity
                 else if(pos == num){
                     pos++;
                     tv_correct.setText("");
-                    pb_count.setProgress(100);
-                    tv_progress.setText("10");
                     tv_imageNum.setText("Finish!!");
                     //모든 단어 끝나면 다음 PASS 버튼이 결과보기 버튼을 바뀌도록
                     bt_next.setText("결과 확인");
@@ -360,8 +360,10 @@ public class Quiz extends AppCompatActivity
         quizCount = new CountDownTimer(11000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                pb_count.setProgress((int)(millisUntilFinished/1000L) * 10);
-                tv_progress.setText(""+millisUntilFinished/1000L);
+                int sec = (int)(millisUntilFinished/1000L);
+                if(sec > 10) sec = 10;  //간혹 11이 출력되는 경우가 있어서 10부터 값이 나오도록 지정
+                pb_count.setProgress(sec * 10);
+                tv_progress.setText(""+ sec);
             }
 
             @Override
@@ -425,7 +427,6 @@ public class Quiz extends AppCompatActivity
                 }
             }
         };
-
         quizStart.start();
     }
 
@@ -472,12 +473,19 @@ public class Quiz extends AppCompatActivity
         Point point = new Point(245, 245);
         Scalar green = new Scalar(0, 255, 0, 3);
         Scalar red = new Scalar(255, 0, 0, 3);
+<<<<<<< HEAD
         if(quiz_list[pos-1].length() == 3)
             System.out.println("****output결과!!" + quiz_list[pos-1].charAt(0) +"!!" + quiz_list[pos-1].charAt(1) +"!!"+ quiz_list[pos-1].charAt(2) + "!!");
         for (int i = 0; i < 60; i++) {
             if (Math.round(output[0][i]) == 1) {
                 //현재 단어와 동작 일치할 경우 - 초록색
                 if (list[i].equals(quiz_list[pos - 1])) {
+=======
+        for(int i=0; i<60; i++) {
+            if (Math.round(output[0][i]) == 1) {
+                //현재 단어와 동작 일치할 경우 - 초록색
+                if (quiz_list[pos - 1].equals(list[i])) {
+>>>>>>> upstream/master
                     if (correctSet == 0) { //quizCorrect 타이머 작동안할때만 시작시키기
                         quizCorrect.start();  //일치할경우 3초 세기 시작
                         correctSet = 1;
@@ -502,7 +510,10 @@ public class Quiz extends AppCompatActivity
                 }
                 break;
             }
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/master
         }
     }
 
