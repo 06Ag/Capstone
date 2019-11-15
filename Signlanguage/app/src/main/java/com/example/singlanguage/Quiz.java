@@ -57,7 +57,7 @@ public class Quiz extends AppCompatActivity
 
     final String[] list = {"애","비읍","치읓","춥다", "컴퓨터", "손님","디귿","상의하다","에","8","어","으","5","4","열매","기역", "건빵", "히읗", "집","이","간지럽다","지읒","키읔", "남자", "고기", "약", "미음","니은","9","북쪽","오","외","1","피읖","가루","발표하다", "읽다", "갈비", "떡", "리을","학교", "7","시옷","남쪽", "선생님","10","3","티읕","2","우","의","위", "여자","야","얘","예","여","요","유","0"};
     String[] quiz_list;
-    String[] quiz_result = {"X","X","X","X","X","X","X","X","X","X","X","X","X","X","X"};
+    String[] quiz_result;   //X, 0, PASS 로 뜨게 된다.
 
     int lastword =0; //마지막으로 학습할 단어의 _id
     int day = 0; //학습 일 수
@@ -140,7 +140,10 @@ public class Quiz extends AppCompatActivity
         final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext()); //db가져오기
         final DBToday dbToday = DBToday.getInstance(getApplicationContext());
 
-
+        //퀴즈 개수의 맞게 quiz_result 배열 크기 설정 및 초기 'X'로 값 지정
+        quiz_result = new String[num];
+        for(int i=0; i<num; i++)
+            quiz_result[i] = "X";
         //오늘의 학습 범위
         if(range.equals("오늘")) {
             System.out.println("range:" + "오늘의 학습");
@@ -315,17 +318,23 @@ public class Quiz extends AppCompatActivity
                 tv_progress.setText("10");
                 //다음 버튼 - 타이머 설정
                 if (pos < num) {
-                    pos = pos + 1;
-                    tv_imageNum.setText("#" + Integer.toString(pos) + "      " + quiz_list[pos - 1]);
-                    //타이머 다시 시작
-                    quizStart.start();
+                    if (correctSet != -1) {   // WRONG/CORRECT 결과 나온 뒤 PASS버튼 누를 경우 어떤기능도 수행안함
+                        quiz_result[pos - 1] = "PASS";    //pass버튼 누르면 result배열에 PASS로 표시되도록하기
+                        pos = pos + 1;
+                        tv_imageNum.setText("#" + Integer.toString(pos) + "      " + quiz_list[pos - 1]);
+                        //타이머 다시 시작
+                        quizStart.start();
+                    }
                 }
                 else if(pos == num){
-                    pos++;
-                    tv_correct.setText("");
-                    tv_imageNum.setText("Finish!!");
-                    //모든 단어 끝나면 다음 PASS 버튼이 결과보기 버튼을 바뀌도록
-                    bt_next.setText("결과 확인");
+                    if(correctSet != -1) {   // Wrong/Correct 결과 안나왔을 경우만 버튼 기능 수행
+                        quiz_result[pos - 1] = "PASS";    //pass버튼 누르면 result배열에 PASS로 표시되도록하기
+                        pos++;
+                        tv_correct.setText("");
+                        tv_imageNum.setText("Finish!!");
+                        //모든 단어 끝나면 다음 PASS 버튼이 결과보기 버튼을 바뀌도록
+                        bt_next.setText("결과 확인");
+                    }
                 } else {
                     //결과 보여주는 창으로 이동 - quizResult class
                     Intent intent = new Intent(getApplicationContext(), QuizResult.class);
@@ -421,6 +430,7 @@ public class Quiz extends AppCompatActivity
                     tv_imageNum.setText("#" + Integer.toString(pos) + "      " + quiz_list[pos-1]);
                     quizStart.start();
                 } else {
+                    pos++;
                     tv_imageNum.setText("Finish!!");
                     //모든 단어 끝나면 다음 PASS 버튼이 결과보기 버튼을 바뀌도록
                     bt_next.setText("결과 확인");
@@ -577,7 +587,7 @@ public class Quiz extends AppCompatActivity
 
         Core.flip(matInput,matResult, 1);    //수평-양수, 수직-0, 모두-음수
         //손모양 인식하여 맞는지 유무 검사
-        if(countSet != 0 && correctSet != -1)
+        if(countSet != 0 && correctSet != -1)   //countSet(0)=단어생각3초간시간 , correctSet(-1)=이미결과나와더이상안해도되는상태
             recognise();
         return matResult;
     }
