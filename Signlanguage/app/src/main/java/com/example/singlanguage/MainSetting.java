@@ -102,12 +102,12 @@ public class MainSetting extends AppCompatActivity {
                 if(rb == R.id.word1){ num = 3;}
                 else if(rb == R.id.word2){ num = 5;}
                 else if(rb == R.id.word3){ num = 7;}
-                dbToday.updatecount(name,num);
+                dbToday.chinsert(name,num); //바꿨음을 저장, 다음날부터 변경한 count를 적용하기 위한 함수
                 builder = new AlertDialog.Builder(MainSetting.this);
                 // 제목셋팅
                 builder.setTitle("*알림*");
                 // AlertDialog 셋팅
-                builder.setMessage("단어 수 변경이 완료되었습니다.\n메인화면으로 돌아갑니다.");
+                builder.setMessage("변경이 완료되었습니다.\n다음 날부터 단어 수 변경이 수행됩니다..\n메인화면으로 돌아갑니다.");
                 builder.setPositiveButton("예",
                         new DialogInterface.OnClickListener() {
                             public void onClick(

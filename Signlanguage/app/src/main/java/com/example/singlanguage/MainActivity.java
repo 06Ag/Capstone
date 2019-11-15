@@ -1,5 +1,6 @@
 package com.example.singlanguage;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -9,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private long backKeyPressedTime = 0;
     // 첫 번째 뒤로가기 버튼을 누를때 표시
     private Toast toast;
+    private Activity activity;
 
     @Override
     public void onBackPressed() {
@@ -39,8 +42,10 @@ public class MainActivity extends AppCompatActivity {
         // 마지막으로 뒤로가기 버튼을 눌렀던 시간이 2초가 지나지 않았으면 종료
         // 현재 표시된 Toast 취소
         if(System.currentTimeMillis() <= backKeyPressedTime + 2000) {
-            finish();
             toast.cancel();
+            finishAffinity();
+            System.runFinalization();
+            System.exit(0);
         }
     }
 

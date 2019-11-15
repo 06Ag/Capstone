@@ -473,19 +473,12 @@ public class Quiz extends AppCompatActivity
         Point point = new Point(245, 245);
         Scalar green = new Scalar(0, 255, 0, 3);
         Scalar red = new Scalar(255, 0, 0, 3);
-<<<<<<< HEAD
-        if(quiz_list[pos-1].length() == 3)
-            System.out.println("****output결과!!" + quiz_list[pos-1].charAt(0) +"!!" + quiz_list[pos-1].charAt(1) +"!!"+ quiz_list[pos-1].charAt(2) + "!!");
-        for (int i = 0; i < 60; i++) {
-            if (Math.round(output[0][i]) == 1) {
-                //현재 단어와 동작 일치할 경우 - 초록색
-                if (list[i].equals(quiz_list[pos - 1])) {
-=======
+
         for(int i=0; i<60; i++) {
             if (Math.round(output[0][i]) == 1) {
                 //현재 단어와 동작 일치할 경우 - 초록색
                 if (quiz_list[pos - 1].equals(list[i])) {
->>>>>>> upstream/master
+
                     if (correctSet == 0) { //quizCorrect 타이머 작동안할때만 시작시키기
                         quizCorrect.start();  //일치할경우 3초 세기 시작
                         correctSet = 1;
@@ -510,10 +503,6 @@ public class Quiz extends AppCompatActivity
                 }
                 break;
             }
-<<<<<<< HEAD
-
-=======
->>>>>>> upstream/master
         }
     }
 

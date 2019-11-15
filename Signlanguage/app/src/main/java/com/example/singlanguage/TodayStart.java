@@ -45,6 +45,7 @@ public class TodayStart extends AppCompatActivity
     int lastword =0; //마지막으로 학습할 단어의 _id
     int day = 0; //학습 일 수
     int dbcount =0; //db안에 있는 수어 수
+    int chlearn =0; //countword를 바꾸고나서 어디까지 단어를 학습했는지 알기위한 _id
 
 
 
@@ -110,11 +111,9 @@ public class TodayStart extends AppCompatActivity
         day = dbToday.getDay(); //며칠째인지 가져옴
 
         dbcount = dbHelper.getCount();//db안에 있는 수어 수
-        System.out.println("db안에 있는 단어수 : "+ dbcount);
-        firstword = (day - 1)*countword + 1; //처음으로 배울 단어
-        lastword = day * countword; //마지막으로 배울 단어
-        System.out.println("첫번째로 배울 단어 index- "+firstword);
-        System.out.println("마지막으로 배울 단어 index- "+lastword);
+
+        firstword = dbToday.getFirstword(); //처음으로 배울 단어
+        lastword = dbToday.getFirstword() + countword -1; //마지막으로 배울 단어
 
         //db에서 더이상 배울 단어가 없을 경우
         if(firstword > dbcount){
@@ -130,7 +129,7 @@ public class TodayStart extends AppCompatActivity
         dbHelper.setLearn(firstword); //학습 여부 참으로 바꿔놓기
         if(dbpos<pos){
             dbpos +=1;
-            dbToday.updatepos(countword,pos); // 오늘의 학습 단어중에서 배운 단어 수 update
+            dbToday.updatepos(day,pos); // 오늘의 학습 단어중에서 배운 단어 수 update
         }
 
 
@@ -151,7 +150,7 @@ public class TodayStart extends AppCompatActivity
                 if(pos > 1) {
                     pos = pos - 1;
                     int temp = 0; //db의 _id를 구하기 위한 임시변수
-                    temp = (day - 1 )* countword + pos;
+                    temp = firstword + pos -1;
                     String name = dbHelper.getName(temp); // 여기서는 dbHelper.setLearn()함수 호출할 필요없음
                     tv_imageNum.setText("수화 #" + Integer.toString(pos) + "\n"+name);
                 }
@@ -170,7 +169,7 @@ public class TodayStart extends AppCompatActivity
                     pos = pos + 1;
 
                     int temp = 0; //db의 _id를 구하기 위한 임시변수
-                    temp = (day - 1)* countword + pos;
+                    temp = firstword+ pos -1;
 
                     //다음 단어가 db에 없을경우
                     if(temp > dbcount){
@@ -188,7 +187,7 @@ public class TodayStart extends AppCompatActivity
                     dbHelper.setLearn(temp); //학습 여부 참으로 바꿔놓기
                     if(dbpos<pos){
                         dbpos +=1;
-                        dbToday.updatepos(countword,pos); // 오늘의 학습 단어중에서 배운 단어 수 update
+                        dbToday.updatepos(day,pos); // 오늘의 학습 단어중에서 배운 단어 수 update
                     }
 
                 }
