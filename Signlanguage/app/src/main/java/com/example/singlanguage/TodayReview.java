@@ -17,8 +17,7 @@ public class TodayReview extends AppCompatActivity {
     public void onBackPressed() {
         // 기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
         // super.onBackPressed();
-        final Intent intent = new Intent(TodayReview.this , TodayLearning.class);
-        startActivity(intent);
+        finish();
     }
 
     public static String getRPad(String str, int size, String strFillText) {
