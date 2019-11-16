@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ttlinear"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
@@ -15,35 +16,42 @@
         android:text="학습할 단어 수"
         android:textSize="18sp"
         android:layout_weight="1"/>
-
-    <RadioGroup
-        android:id="@+id/RadioGrp1"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_weight="2">
+        android:layout_height="20dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/sub"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="감소"
+            android:layout_weight="2"
+            />
 
-        <RadioButton
-            android:id="@+id/radioButton1"
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:layout_marginLeft="5dp"
-            android:text="5개" />
+        <EditText
+            android:id="@+id/wordnum"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:text="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/back"
+            android:inputType="number"
+            />
+        <Button
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="증가"
+            android:layout_weight="2"
+            />
 
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:layout_marginLeft="5dp"
-            android:text="10개" />
+    </LinearLayout>
 
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:layout_marginLeft="5dp"
-            android:text="15개" />
-
-    </RadioGroup>
 
     <TextView
         android:id="@+id/range"

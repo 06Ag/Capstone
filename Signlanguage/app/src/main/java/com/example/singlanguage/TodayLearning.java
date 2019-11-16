@@ -28,8 +28,8 @@ public class TodayLearning extends AppCompatActivity {
     public void onBackPressed() {
         // 기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
         // super.onBackPressed();
-        final Intent intent = new Intent(TodayLearning.this , learning.class);
-        startActivity(intent);
+            final Intent intent = new Intent(TodayLearning.this , learning.class);
+            startActivity(intent);
     }
 
     @Override
@@ -49,15 +49,16 @@ public class TodayLearning extends AppCompatActivity {
         tv_Nday = findViewById(R.id.tv_Nday);
 
         String firstdate = dbToday.getDate(); //db에 저장되있는 처음 학습 날짜 불러옴
-        int countword = dbToday.getCount(); //db에 저장되어있는 오늘의 학습 단어 수
+
         int day = 0; //학습한지 며칠째
+        int oday = 0; //기존의 일
 
         final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         final String date = simpleDateFormat.format(new Date());//오늘날짜 가져오기
 
-        String na = dbToday.getName();
+        String name = dbToday.getName();
 
-        tv_UserName.setText(na);// db에 저장되어있는 사람이름
+        tv_UserName.setText(name);// db에 저장되어있는 사람이름
 
         Date beginDate = null;
         Date endDate = null;
@@ -73,10 +74,20 @@ public class TodayLearning extends AppCompatActivity {
         long diffDays = diff / (24 * 60 * 60 * 1000);
         day = (int)diffDays;
         day += 1; //0일째면 1일째라고 하기 위해서 더해줌
-        System.out.println("학습 일수 : "+ day);
+
         if(day!=dbToday.getDay()){
-            dbToday.updatepos(countword,0);
-            dbToday.updateday(countword,day);
+            oday = dbToday.getDay(); //기존의 일수
+            int firstword = dbHelper.getchlearn()+1;
+            dbToday.updateday(oday,day); //새로운 일수로 update
+            dbToday.updatefirstword(day,firstword);
+            dbToday.updatepos(day,0);
+            int chchange = dbToday.getChchange();
+            //setting.java에서 count를 변경했을 경우
+            if(chchange == 1){
+                int ncount = dbToday.getNcount();
+                dbToday.updatecount(name,ncount); //count 변경해주기
+                dbToday.updatechchange(name); //변경했으니깐 chchange를 다시 0으로 만들어주기
+            }
         }
 
         String temp = String.valueOf(day);
@@ -86,11 +97,13 @@ public class TodayLearning extends AppCompatActivity {
         temp = String.valueOf(wholeword);
         tv_Ncnt.setText(temp);
 
+        int countword = dbToday.getCount(); //db에 저장되어있는 오늘의 학습 단어 수
 
         //바 부분을 DBTODAY에다가 pos 컬럼을 만들어서 구현해야함
         //학습한 단어 수 progress bar에 적용
         float today_cnt = 0;
         today_cnt = dbToday.getPos(); //오늘 학습한 단어 가지고 오기
+
         today_cnt /= countword;
         today_cnt *= 100;
         int t = (int)today_cnt;

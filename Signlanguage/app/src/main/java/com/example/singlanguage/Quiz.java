@@ -55,9 +55,9 @@ public class Quiz extends AppCompatActivity
     int num, pos = 1;    //학습할 단어 수, 수화 순서
     int lh, ls, lv, uh, us, uv;
 
-    final String[] list = {"ㅐ","비읍","치읓","춥다", "컴퓨터", "고객","디귿","상의하다","ㅔ","8","ㅓ","ㅡ","5","4","과일","기역", "건빵", "히읗", "집","ㅣ","가렵다","지읒","키읔", "남자", "고기", "약", "미음","니은","9","북쪽","ㅗ","ㅚ","1","피읖","가루","발표", "읽다", "갈비", "떡", "리을","학교", "7","시옷","남쪽", "선생님","10","3","티읕","2","ㅜ","ㅢ","ㅟ", "여자","ㅑ","ㅒ","ㅖ","ㅕ","ㅛ","ㅠ","0"};
+    final String[] list = {"애","비읍","치읓","춥다", "컴퓨터", "손님","디귿","상의하다","에","8","어","으","5","4","열매","기역", "건빵", "히읗", "집","이","간지럽다","지읒","키읔", "남자", "고기", "약", "미음","니은","9","북쪽","오","외","1","피읖","가루","발표하다", "읽다", "갈비", "떡", "리을","학교", "7","시옷","남쪽", "선생님","10","3","티읕","2","우","의","위", "여자","야","얘","예","여","요","유","0"};
     String[] quiz_list;
-    String[] quiz_result = {"X","X","X","X","X","X","X","X","X","X","X","X","X","X","X"};
+    String[] quiz_result;   //X, 0, PASS 로 뜨게 된다.
 
     int lastword =0; //마지막으로 학습할 단어의 _id
     int day = 0; //학습 일 수
@@ -140,7 +140,10 @@ public class Quiz extends AppCompatActivity
         final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext()); //db가져오기
         final DBToday dbToday = DBToday.getInstance(getApplicationContext());
 
-
+        //퀴즈 개수의 맞게 quiz_result 배열 크기 설정 및 초기 'X'로 값 지정
+        quiz_result = new String[num];
+        for(int i=0; i<num; i++)
+            quiz_result[i] = "X";
         //오늘의 학습 범위
         if(range.equals("오늘")) {
             System.out.println("range:" + "오늘의 학습");
@@ -231,7 +234,7 @@ public class Quiz extends AppCompatActivity
                 System.out.println("퀴즈단어 "+quiz_list[i]);
             }
         }
-        else if(range.equals("형용사")){ //품사중에 형용사일때
+        else if(range.equals("형용사")) { //품사중에 형용사일때
             int a[] = new int[num];
             Random r = new Random(); //객체생성
             countword = dbHelper.getClassCount("형용사"); //수어중에 형용사 갯수 구해오기
@@ -239,7 +242,7 @@ public class Quiz extends AppCompatActivity
             for (int i = 0; i < num; i++)    //숫자 num개를 뽑기위한 for문
             {
                 //만약 학습하려는 단어 수보다 명사 단어 총 개수가 적은경우
-                if(i+1 > countword){
+                if (i + 1 > countword) {
                     num = i; //퀴즈갯수바꾸기
                     break;
                 }
@@ -248,7 +251,7 @@ public class Quiz extends AppCompatActivity
                 {
                     if (a[i] == a[j]) {
                         i--;
-                    }else if(dbHelper.getClassName("형용사",a[i]) == ""){
+                    } else if (dbHelper.getClassName("형용사", a[i]) == "") {
                         i--;
                     }
                 }
@@ -257,10 +260,9 @@ public class Quiz extends AppCompatActivity
             for (int i = 0; i < num; i++)   //뽑은 수화를 list에 넣어줌
             {
                 quiz_list[i] = dbHelper.getName(a[i]);
-                System.out.println("퀴즈단어 "+quiz_list[i]);
+                System.out.println("퀴즈단어 " + quiz_list[i]);
             }
         }
-        //여기에다가 장르별 db 코드 작성 필요
 
 
         //맨처음 퀴즈문제
@@ -312,21 +314,27 @@ public class Quiz extends AppCompatActivity
                 quizCorrect.cancel();
                 quizCount.cancel();
                 countSet = correctSet = 0;
+                pb_count.setProgress(100);
+                tv_progress.setText("10");
                 //다음 버튼 - 타이머 설정
                 if (pos < num) {
-                    pos = pos + 1;
-                    tv_imageNum.setText("#" + Integer.toString(pos) + "      " + quiz_list[pos - 1]);
-                    //타이머 다시 시작
-                    quizStart.start();
+                    if (correctSet != -1) {   // WRONG/CORRECT 결과 나온 뒤 PASS버튼 누를 경우 어떤기능도 수행안함
+                        quiz_result[pos - 1] = "PASS";    //pass버튼 누르면 result배열에 PASS로 표시되도록하기
+                        pos = pos + 1;
+                        tv_imageNum.setText("#" + Integer.toString(pos) + "      " + quiz_list[pos - 1]);
+                        //타이머 다시 시작
+                        quizStart.start();
+                    }
                 }
                 else if(pos == num){
-                    pos++;
-                    tv_correct.setText("");
-                    pb_count.setProgress(100);
-                    tv_progress.setText("10");
-                    tv_imageNum.setText("Finish!!");
-                    //모든 단어 끝나면 다음 PASS 버튼이 결과보기 버튼을 바뀌도록
-                    bt_next.setText("결과 확인");
+                    if(correctSet != -1) {   // Wrong/Correct 결과 안나왔을 경우만 버튼 기능 수행
+                        quiz_result[pos - 1] = "PASS";    //pass버튼 누르면 result배열에 PASS로 표시되도록하기
+                        pos++;
+                        tv_correct.setText("");
+                        tv_imageNum.setText("Finish!!");
+                        //모든 단어 끝나면 다음 PASS 버튼이 결과보기 버튼을 바뀌도록
+                        bt_next.setText("결과 확인");
+                    }
                 } else {
                     //결과 보여주는 창으로 이동 - quizResult class
                     Intent intent = new Intent(getApplicationContext(), QuizResult.class);
@@ -361,8 +369,10 @@ public class Quiz extends AppCompatActivity
         quizCount = new CountDownTimer(11000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                pb_count.setProgress((int)(millisUntilFinished/1000L) * 10);
-                tv_progress.setText(""+millisUntilFinished/1000L);
+                int sec = (int)(millisUntilFinished/1000L);
+                if(sec > 10) sec = 10;  //간혹 11이 출력되는 경우가 있어서 10부터 값이 나오도록 지정
+                pb_count.setProgress(sec * 10);
+                tv_progress.setText(""+ sec);
             }
 
             @Override
@@ -420,13 +430,13 @@ public class Quiz extends AppCompatActivity
                     tv_imageNum.setText("#" + Integer.toString(pos) + "      " + quiz_list[pos-1]);
                     quizStart.start();
                 } else {
+                    pos++;
                     tv_imageNum.setText("Finish!!");
                     //모든 단어 끝나면 다음 PASS 버튼이 결과보기 버튼을 바뀌도록
                     bt_next.setText("결과 확인");
                 }
             }
         };
-
         quizStart.start();
     }
 
@@ -470,36 +480,39 @@ public class Quiz extends AppCompatActivity
 
         Log.d("predict", Arrays.toString(output[0]));
 
-        Point point = new Point(245,245);
+        Point point = new Point(245, 245);
         Scalar green = new Scalar(0, 255, 0, 3);
         Scalar red = new Scalar(255, 0, 0, 3);
+
         for(int i=0; i<60; i++) {
-            if (Math.round(output[0][i]) == 1)
+            if (Math.round(output[0][i]) == 1) {
                 //현재 단어와 동작 일치할 경우 - 초록색
-                if(list[i] == quiz_list[pos-1]){
-                    if(correctSet == 0) { //quizCorrect 타이머 작동안할때만 시작시키기
+                if (quiz_list[pos - 1].equals(list[i])) {
+
+                    if (correctSet == 0) { //quizCorrect 타이머 작동안할때만 시작시키기
                         quizCorrect.start();  //일치할경우 3초 세기 시작
                         correctSet = 1;
                     }
-                    Imgproc.rectangle(matResult, new Point(15,10), new Point(matResult.cols()-15, matResult.rows()-10), green, 30);
+                    Imgproc.rectangle(matResult, new Point(15, 10), new Point(matResult.cols() - 15, matResult.rows() - 10), green, 30);
                 }
                 //현재 단어와 동작 불일치 경우 - 빨간색
-                else{
-                    if(correctSet == 1) { //quizCorrect 타이머 작동중에만 중단
+                else {
+                    if (correctSet == 1) { //quizCorrect 타이머 작동중에만 중단
                         quizCorrect.cancel();  //틀릴경우 타이머 중단
-                        if(countSet == 2){
+                        if (countSet == 2) {
                             correctSet = -1;    //10초 카운트가 끝나고 마지막 기회에서 단어 틀리면 더이상 퀴즈 맞추기 불가
                             tv_imageNum.setText("WRONG");
                             //다음 단어로 넘어가는 타이머 시작
                             quizFinish.start();
-                        }
-                        else
+                        } else
                             correctSet = 0;
                         tv_correct.setText("");
                     }
-                    Imgproc.rectangle(matResult, new Point(15,10), new Point(matResult.cols()-15, matResult.rows()-10),red, 30);
-                 //   Imgproc.circle(matResult, new Point(mOpenCvCameraView.getHeight()/2, mOpenCvCameraView.getWidth()/2), 200, red, 20,0);
+                    Imgproc.rectangle(matResult, new Point(15, 10), new Point(matResult.cols() - 15, matResult.rows() - 10), red, 30);
+                    //   Imgproc.circle(matResult, new Point(mOpenCvCameraView.getHeight()/2, mOpenCvCameraView.getWidth()/2), 200, red, 20,0);
                 }
+                break;
+            }
         }
     }
 
@@ -574,7 +587,7 @@ public class Quiz extends AppCompatActivity
 
         Core.flip(matInput,matResult, 1);    //수평-양수, 수직-0, 모두-음수
         //손모양 인식하여 맞는지 유무 검사
-        if(countSet != 0 && correctSet != -1)
+        if(countSet != 0 && correctSet != -1)   //countSet(0)=단어생각3초간시간 , correctSet(-1)=이미결과나와더이상안해도되는상태
             recognise();
         return matResult;
     }

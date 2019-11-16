@@ -66,7 +66,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 new InputStreamReader(is, Charset.forName("UTF-8"))
         );
 
-        String line="";
+        String line;
         try {
             while((line = reader.readLine()) != null){
                 Log.d("My Activity","Line: "+ line);
@@ -87,7 +87,7 @@ public class DBHelper extends SQLiteOpenHelper {
                         "'" + name + "', '" + cl1 + "', '" + cl2 + "', '" + image + "', '" + des + "', '" + wordinfo + "');");
             }
         }catch(IOException e){
-            Log.wtf( "MyActivity","Error reading data file on line" + line, e);
+            Log.wtf( "MyActivity","Error reading data file on line" +  e);
             e.printStackTrace();;
         }
     }
@@ -116,7 +116,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String result = "";
         Cursor cursor = db.rawQuery("SELECT * FROM SIGN_BOOK", null);
         while (cursor.moveToNext()) {
-            result += cursor.getInt(0) //index번호
+            result +=   cursor.getInt(0) //index번호
                     + ". 수화 이름: "
                     + cursor.getString(1) //수화이름
                     + "  분류1: "
@@ -175,21 +175,16 @@ public class DBHelper extends SQLiteOpenHelper {
         String result = "";
         Cursor cursor = db.rawQuery("SELECT * FROM SIGN_BOOK WHERE TRIM(name) = '"+sel.trim()+"' ;", null);
         while (cursor.moveToNext()) {
-            result += cursor.getInt(0) //index번호
+            result +=  cursor.getInt(0) //index번호
                     + ". 수화 이름: "
                     + cursor.getString(1) //수화이름
+                    + "\n"
                     + "  분류1: "
                     + cursor.getString(2) //분류1
+                    + "\n"
                     + "  분류2: "
                     + cursor.getString(3) //분류2
-                    + "\n"
-                    + "    이미지: "
-                    + cursor.getString(4)//이미지
-                    + "  설명: "
-                    + cursor.getString(5) //설명
-                    + "  학습여부: "
-                    + cursor.getInt(6) //학습여부
-                    + "\n\n";
+                    + "\n";
         }
         return result;
     }
@@ -201,18 +196,18 @@ public class DBHelper extends SQLiteOpenHelper {
         cnt = cursor.getCount();
         return cnt;
     }
+    String result;
     //TodayStart.java에서 배울 단어의 이름의 반환해주는 함수
-    public String getName(Integer i){
+    public String getName(int i){
         SQLiteDatabase db = getReadableDatabase();
-        String result = "";
         Cursor cursor = db.rawQuery("SELECT name FROM SIGN_BOOK WHERE _id = '"+i+"';", null);
         while (cursor.moveToNext()) {
-             result += cursor.getString(0); //수화이름
+             result = cursor.getString(0); //수화이름
         }
         return result;
     }
     // TodayStart.java에서 학습을 한 후 db 컬럼의 chlearn 값을 1로 바꿔주는 함수
-    public void setLearn(Integer i){
+    public void setLearn(int i){
         SQLiteDatabase db = getWritableDatabase();
         // DB에 입력한 값으로 행 추가
         db.execSQL( "UPDATE SIGN_BOOK SET chlearn = 1 WHERE _id = '"+i+"';");
