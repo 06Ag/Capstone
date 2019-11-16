@@ -33,12 +33,13 @@ public class CategoryLearning_study_info extends AppCompatActivity{
         Intent intent = getIntent();    //넘겨 받은 값
         int id = getRawResIdByName(dbHelper.getResult_img(intent.getExtras().getString("name")));   //이미지 이름으로 아이디 받기
         String des = dbHelper.getResult_des(intent.getExtras().getString("name"));   //수화 설명
+        String wordinfo = dbHelper.getResult_wordinfo(intent.getExtras().getString("name"));    //한국어 정보
         Uri uri_img = Uri.parse("android.resource://" + getPackageName() + "/" + id);   //uri에 이미지 주소 저장
         imgview.setImageURI(uri_img);   //이미지뷰에 이미지 출력
 
         final String name = intent.getExtras().getString("name");
         tv_imageNum.setText(name);
-        explainview.setText('\n' + des);
+        explainview.setText('\n' + des + "\n\n한국어 정보\n" + wordinfo);
 
 
         //stop시 전페이지로

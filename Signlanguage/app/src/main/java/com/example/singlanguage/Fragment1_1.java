@@ -27,9 +27,15 @@ public class Fragment1_1 extends Fragment implements View.OnClickListener {
         LinearLayout image1 = (LinearLayout) view.findViewById(R.id.layout_one);
         LinearLayout image2 = (LinearLayout) view.findViewById(R.id.layout_two);
         LinearLayout image3 = (LinearLayout) view.findViewById(R.id.layout_three);
+        LinearLayout image4 = (LinearLayout) view.findViewById(R.id.layout_four);
+        LinearLayout image5 = (LinearLayout) view.findViewById(R.id.layout_five);
+        LinearLayout image6 = (LinearLayout) view.findViewById(R.id.layout_six);
         image1.setOnClickListener(this);
         image2.setOnClickListener(this);
         image3.setOnClickListener(this);
+        image4.setOnClickListener(this);
+        image5.setOnClickListener(this);
+        image6.setOnClickListener(this);
         //Button bt_one = (Button)view.findViewById(R.id.button_one);
         //bt_two = (Button)view.findViewById(R.id.button_two);
 
@@ -43,6 +49,9 @@ public class Fragment1_1 extends Fragment implements View.OnClickListener {
         if (v.getId() == R.id.layout_one)   intent.putExtra("name", "1");
         else if(v.getId() == R.id.layout_two)   intent.putExtra("name", "2");
         else if(v.getId() == R.id.layout_three)   intent.putExtra("name", "3");
+        else if(v.getId() == R.id.layout_four)   intent.putExtra("name", "4");
+        else if(v.getId() == R.id.layout_five)   intent.putExtra("name", "5");
+        else if(v.getId() == R.id.layout_six)   intent.putExtra("name", "6");
 
         startActivity(intent);
     }

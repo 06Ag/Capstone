@@ -8,49 +8,42 @@
     android:orientation="vertical"
     android:layout_margin="3dp">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:orientation="horizontal">
+        android:layout_height="300dp"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="centerInside"
+        opencv:srcCompat="@tools:sample/avatars" />
 
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="257dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            opencv:srcCompat="@tools:sample/avatars" />
-
-        <TextView
-            android:id="@+id/tv_image"
-            android:layout_width="221dp"
-            android:layout_height="282dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="2"
-            android:gravity="center"
-            android:text="수화 #1"
-            android:textSize="20sp" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="수화 #1"
+        android:textSize="23sp" />
 
     <TextView
         android:id="@+id/explain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:textSize="15sp"
         android:text="explain" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/bt_stop"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="학습 중단"
             android:textSize="12sp" />
@@ -58,7 +51,7 @@
         <Button
             android:id="@+id/bt_next"
             android:layout_width="match_parent"
-            android:layout_height="140dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="동작 배우기" />
     </LinearLayout>

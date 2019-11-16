@@ -55,8 +55,9 @@ public class DBHelper extends SQLiteOpenHelper {
         name 문자열 컬럼, class1 문자열 컬럼, class2 문자열 컬럼,
         image BLOB형, des 문자열 컬럼, chlearn int형 컬럼으로 구성된 테이블을 생성. */
         //초기값을 0(false)로 맞춰둘게
+        //wordinfo -> 한국어정보
         db.execSQL( "CREATE TABLE SIGN_BOOK (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "name TEXT, class1 TEXT, class2 TEXT, image TEXT, des TEXT, chlearn INTEGER DEFAULT 0);");
+                        "name TEXT, class1 TEXT, class2 TEXT, image TEXT, des TEXT, wordinfo TEXT, chlearn INTEGER DEFAULT 0);");
 
 
         //excel데이터 읽어와서 db에 넣을려는 코드(일단 컬럼 3개만 넣어봄)
@@ -77,12 +78,13 @@ public class DBHelper extends SQLiteOpenHelper {
                 String  cl2 = "";
                 String image = tokens[3];
                 String des = tokens[4];
+                String wordinfo = tokens[5];
                 if(tokens.length>=3 && tokens[2].length() >0) {
                     cl2 = tokens[2]; //아직 class2구분안해놓은게 있어서..
                 }
                 // DB에 입력한 값으로 행 추가
-                db.execSQL( "INSERT INTO SIGN_BOOK(_id,name,class1,class2,image,des) VALUES(null, " +
-                        "'" + name + "', '" + cl1 + "', '" + cl2 + "', '" + image + "', '" + des + "');");
+                db.execSQL( "INSERT INTO SIGN_BOOK(_id,name,class1,class2,image,des,wordinfo) VALUES(null, " +
+                        "'" + name + "', '" + cl1 + "', '" + cl2 + "', '" + image + "', '" + des + "', '" + wordinfo + "');");
             }
         }catch(IOException e){
             Log.wtf( "MyActivity","Error reading data file on line" + line, e);
@@ -151,6 +153,17 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT des FROM SIGN_BOOK WHERE name = '"+name+"';", null);
         while (cursor.moveToNext()) {
             result += cursor.getString(0); //수화 설명
+        }
+        return result;
+    }
+
+    //이름으로 한국어 정보 불러오기
+    public String getResult_wordinfo(String name) {
+        SQLiteDatabase db = getReadableDatabase();
+        String result = "";
+        Cursor cursor = db.rawQuery("SELECT wordinfo FROM SIGN_BOOK WHERE name = '"+name+"';", null);
+        while (cursor.moveToNext()) {
+            result += cursor.getString(0); //수화 한국어정보
         }
         return result;
     }

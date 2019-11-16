@@ -75,12 +75,16 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/btn_clk_three" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/txt_three"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="3" />
+                android:text="3" />-->
+            <TextView
+                android:id="@+id/txt_three"
+                style="@style/CustomTextView"
+                android:text="3"/>
 
         </LinearLayout>
 
@@ -88,49 +92,71 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="172dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-        <!--<com.example.singlanguage.CustomWordButton
-            android:id="@+id/layout_three_1"
-            style="@style/WordButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>-->
-    </LinearLayout>
-    <!--
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:id="@+id/layout_four"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-            <Button
-                android:id="@+id/button_one"
+            <ImageView
+                android:id="@+id/image_four"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/btn_clk_one"
-                android:onClick="mOnClick" />
+                android:scaleType="centerInside"
+                android:src="@drawable/four" />
 
-            <Button
-                android:id="@+id/button_two"
+        <TextView
+            android:id="@+id/txt_four"
+            style="@style/CustomTextView"
+            android:text="4"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layout_five"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <ImageView
+                android:id="@+id/image_five"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/btn_clk_two"
-                android:onClick="mOnClick"
-                android:text="2" />
+                android:scaleType="centerInside"
+                android:src="@drawable/five" />
 
-            <Button
-                android:id="@+id/button_three"
+            <TextView
+                android:id="@+id/txt_five"
+                style="@style/CustomTextView"
+                android:text="5"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/layout_six"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <ImageView
+                android:id="@+id/image_six"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/btn_clk_three"
-                android:onClick="mOnClick"
-                android:text="3" />
+                android:scaleType="centerInside"
+                android:src="@drawable/six" />
 
-
-        </LinearLayout>-->
-    <!--            android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"-->
+            <TextView
+                android:id="@+id/txt_six"
+                style="@style/CustomTextView"
+                android:text="6"/>
+        </LinearLayout>
+    </LinearLayout>
+    <!--<com.example.singlanguage.CustomWordButton
+             android:id="@+id/layout_three_1"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             app:img="@drawable/one"
+             app:text="3" />-->
 </LinearLayout>

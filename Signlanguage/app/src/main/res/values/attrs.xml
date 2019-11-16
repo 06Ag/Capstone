@@ -2,8 +2,7 @@
 <resources>
 
     <declare-styleable name="WordButton">
-        <attr name="img" format="reference|integer|string" />  //아이콘 이미지
-        <!--<attr name="img_press" format="reference|integer" />    //눌렀을 때 이미지-->
+        <attr name="img" format="reference|integer" />  //아이콘 이미지
         <attr name="text" format="reference|string" />  //수화 이름
     </declare-styleable>
 </resources>

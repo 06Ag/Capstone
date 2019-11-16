@@ -15,6 +15,33 @@ public class CustomWordButton extends LinearLayout {
     TextView text;
     LinearLayout llayout;
 
+    /*public CustomWordButton(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        inflateViews(context, attrs);
+    }
+
+    public CustomWordButton(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        inflateViews(context, attrs);
+    }
+
+    void inflateViews(Context context, AttributeSet attrs) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.fragment_fragment1_1, this);
+
+        if (attrs != null) {
+            TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.WordButton);
+            selectedId = array.getInteger(0, 0);
+
+            int img_resID = typedArray.getResourceId(R.styleable.WordButton_img, R.drawable.btn_clk_one);   //버튼 기본 이미지
+            img.setImageResource(img_resID);
+
+            String text_string = typedArray.getString(R.styleable.WordButton_text);    //수화 이름
+            text.setText(text_string);
+
+            array.recycle();
+        }
+    }*/
     public CustomWordButton(Context context){
         super(context);
         initView();
@@ -40,38 +67,36 @@ public class CustomWordButton extends LinearLayout {
 
         llayout = (LinearLayout)findViewById(R.id.layout_one);
         img = (ImageView) findViewById(R.id.image_one);
-        //img_press = (ImageView) findViewById(R.id.img_press);
-
-        text = (TextView) findViewById(R.id.text);
+        text = (TextView) findViewById(R.id.txt_one);
 
     }
     private void getAttrs(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.WordButton);
-
         setTypeArray(typedArray);
     }
-
 
     private void getAttrs(AttributeSet attrs, int defStyle) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.WordButton, defStyle, 0);
         setTypeArray(typedArray);
-
     }
-
 
     private void setTypeArray(TypedArray typedArray) {  //버튼 설정
 
         int img_resID = typedArray.getResourceId(R.styleable.WordButton_img, R.drawable.btn_clk_one);   //버튼 기본 이미지
         img.setImageResource(img_resID);
 
-        //int img_press_resID = typedArray.getResourceId(R.styleable.WordButton_img_press, R.drawable.btn_clk_one);   //버튼 눌렀을 때 이미지
-        //img_press.setImageResource(img_press_resID);
-
         String text_string = typedArray.getString(R.styleable.WordButton_text);    //수화 이름
         text.setText(text_string);
 
         typedArray.recycle();
 
+    }
+
+    void setImg(int img_resID){
+        img.setImageResource(img_resID);
+    }
+    void setText(String text_string){
+        text.setText(text_string);
     }
 
 }
