@@ -24,7 +24,8 @@
     android:id="@+id/signresult"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"/>
-    <TextView
+
+    <!--<TextView
         android:id="@+id/signimage"
         android:text="    이미지: "
         android:layout_width="wrap_content"
@@ -33,7 +34,7 @@
         android:id="@+id/signdes"
         android:text="    설명: "
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"/>-->
 
 </LinearLayout>
 

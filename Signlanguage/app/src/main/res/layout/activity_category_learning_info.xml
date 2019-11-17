@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="290dp"
         android:layout_gravity="center_horizontal"
         android:scaleType="centerInside"
         opencv:srcCompat="@tools:sample/avatars" />
@@ -23,16 +23,33 @@
         android:layout_gravity="center_vertical"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="수화 #1"
-        android:textSize="23sp" />
+        android:text="수화 이름"
+        android:textSize="22sp"
+        android:textColor="@android:color/black"/>
 
     <TextView
-        android:id="@+id/explain"
+        android:id="@+id/hand_explain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="15sp"
-        android:text="explain" />
+        android:text="hand_explain" />
+
+    <TextView
+        android:id="@+id/word_explain1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="단어 정보"
+        android:textColor="@android:color/black"
+        android:textSize="17sp" />
+    <TextView
+        android:id="@+id/word_explain2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="15sp"
+        android:text="word_explain" />
 
     <LinearLayout
         android:layout_width="match_parent"
