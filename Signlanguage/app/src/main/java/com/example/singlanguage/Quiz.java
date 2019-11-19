@@ -144,9 +144,20 @@ public class Quiz extends AppCompatActivity
         quiz_result = new String[num];
         for(int i=0; i<num; i++)
             quiz_result[i] = "X";
-        //오늘의 학습 범위
-        if(range.equals("오늘")) {
-            System.out.println("range:" + "오늘의 학습");
+        //오늘의 학습 범위 - 당일만
+        if(range.equals("오늘학습")){
+            countword = dbToday.getCount(); //하루 당 학습해야하는 단어 가져옴
+            day = dbToday.getDay(); //며칠째인지 가져옴
+            lastword = dbToday.getFirstword() + countword - 1; //마지막으로 배울 단어
+
+            quiz_list = new String[num];
+            for(int i=dbToday.getFirstword(), j=0; i<=lastword; i++, j++){   // i = DB에서 값 불러올때 사용, j = LIST_MENU 배열에 값 넣을 때 사용
+                quiz_list[j] = dbHelper.getName(i);
+            }
+        }
+        //오늘까지 총 학습 범위
+        else if(range.equals("오늘")) {
+            System.out.println("range:" + "오늘까지 총 학습");
             int a[] = new int[num];
             Random r = new Random(); //객체생성
             countword = dbToday.getCount(); //하루 당 학습해야하는 단어 가져옴

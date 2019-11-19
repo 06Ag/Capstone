@@ -43,6 +43,7 @@ public class CategoryLearning_study_camera extends AppCompatActivity
     private CameraBridgeViewBase mOpenCvCameraView;
     private int cameraType = 1; //초기 전면카메라
 
+
     static {
         System.loadLibrary("opencv_java4");
         System.loadLibrary("native-lib");
@@ -117,6 +118,8 @@ public class CategoryLearning_study_camera extends AppCompatActivity
         Log.i("AndroidVideoView", "Res Name: " + resName + "==> Res ID = " + resID);
         return resID;
     }
+
+
 
     @Override
     public void onPause()

@@ -1,84 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:opencv="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TodayStart"
     android:orientation="vertical"
     android:layout_margin="3dp">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:text="오늘 학습할 단어들의 목록입니다."
+        android:textSize="20sp"/>
+
+    <!-- 오늘 학습할 단어들의 목록 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="10dp"
+        android:background="#BC8F8F"/>
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:layout_marginTop="5dp"/>
+
     <Button
-        android:id="@+id/bt_stop"
+        android:id="@+id/bt_start"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="학습 중단"
-        android:textSize="12sp"
-    />
-    <!-- 이전 / 다음 버튼 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_marginTop="10dp"
+        android:background="#BC8F8F"
 
-        <Button android:id="@+id/bt_previous"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="이전"
-            android:textSize="12sp" />
-
-        <Button android:id="@+id/bt_next"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="다음"
-            android:textSize="12sp" />
-
-    </LinearLayout>
-    <!-- 수화 이미지 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:layout_marginTop="3dp"
-        android:layout_marginBottom="3dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/iv_test"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:scaleType="centerInside"
-            android:src="@drawable/testpicture" />
-        <TextView
-            android:id="@+id/tv_image"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_horizontal"
-            android:text="수화 #1"
-            android:textSize="20sp"/>
-
-    </LinearLayout>
-    <!-- 카메라의 영상이 출력되는 영역 -->
-    <org.opencv.android.JavaCameraView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="6"
-        opencv:camera_id="any"
-        android:visibility="gone"
-        android:id="@+id/activity_surface_view" />
-
-<!--
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </android.support.v4.view.ViewPager>
--->
+        android:text="학습 시작"/>
 </LinearLayout>
