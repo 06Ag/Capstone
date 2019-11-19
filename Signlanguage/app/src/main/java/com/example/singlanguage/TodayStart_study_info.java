@@ -163,13 +163,14 @@ public class TodayStart_study_info extends AppCompatActivity {
                     // 제목셋팅
                     builder.setTitle("퀴즈 시작");
                     // AlertDialog 셋팅
-                    builder.setMessage("오늘의 학습을 모두 수행하였습니다.\n퀴즈를 보시겠습니까?");
+                    builder.setMessage("오늘의 학습을 모두 수행하였습니다.\n퀴즈를 보시겠습니까?\n");
                     builder.setPositiveButton("예",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(
                                         DialogInterface dialog, int id) {
-                                    //퀴즈페이지로 이동 - quiz class
-                                    Intent intent = new Intent(getApplicationContext(), Quiz.class);
+                                    //hsv페이지로 이동 - 조절 후 퀴즈페이지감.
+                                    Intent intent = new Intent(getApplicationContext(), HsvSetting.class);
+                                    intent.putExtra("page", 3);
                                     intent.putExtra("num", countword);
                                     intent.putExtra("range", "오늘학습");
                                     startActivity(intent);
