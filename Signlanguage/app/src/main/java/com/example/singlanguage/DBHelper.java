@@ -57,7 +57,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //초기값을 0(false)로 맞춰둘게
         //wordinfo -> 한국어정보
         db.execSQL( "CREATE TABLE SIGN_BOOK (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "name TEXT, class1 TEXT, class2 TEXT, image TEXT, des TEXT, wordinfo TEXT, chlearn INTEGER DEFAULT 0);");
+                        "name TEXT, class1 TEXT, image TEXT, des TEXT, wordinfo TEXT, chlearn INTEGER DEFAULT 0);");
 
 
         //excel데이터 읽어와서 db에 넣을려는 코드(일단 컬럼 3개만 넣어봄)
@@ -75,16 +75,15 @@ public class DBHelper extends SQLiteOpenHelper {
                 //Read the data
                 String  name = tokens[0];
                 String  cl1   = tokens[1];
-                String  cl2 = "";
-                String image = tokens[3];
-                String des = tokens[4];
-                String wordinfo = tokens[5];
-                if(tokens.length>=3 && tokens[2].length() >0) {
+                String image = tokens[2];
+                String des = tokens[3];
+                String wordinfo = tokens[4];
+                /*if(tokens.length>=3 && tokens[2].length() >0) {
                     cl2 = tokens[2]; //아직 class2구분안해놓은게 있어서..
-                }
+                }*/
                 // DB에 입력한 값으로 행 추가
-                db.execSQL( "INSERT INTO SIGN_BOOK(_id,name,class1,class2,image,des,wordinfo) VALUES(null, " +
-                        "'" + name + "', '" + cl1 + "', '" + cl2 + "', '" + image + "', '" + des + "', '" + wordinfo + "');");
+                db.execSQL( "INSERT INTO SIGN_BOOK(_id,name,class1,image,des,wordinfo) VALUES(null, " +
+                        "'" + name + "', '" + cl1 + "', '" + image + "', '" + des + "', '" + wordinfo + "');");
             }
         }catch(IOException e){
             Log.wtf( "MyActivity","Error reading data file on line" +  e);
@@ -104,7 +103,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         // DB에 입력한 값으로 행 추가
         db.execSQL( "INSERT INTO SIGN_BOOK(_id,name,class1,class2,image) VALUES(null, " +
-                "'" + name + "', '" + class1 + "', '" + class2 + "', '" + image + "');");
+                "'" + name + "', '" + class1 + "', '" + image + "');");
         db.close();
     }
 
@@ -121,8 +120,8 @@ public class DBHelper extends SQLiteOpenHelper {
                     + cursor.getString(1) //수화이름
                     + "  분류1: "
                     + cursor.getString(2) //분류1
-                    + "  분류2: "
-                    + cursor.getString(3) //분류2
+                    //+ "  분류2: "
+                    //+ cursor.getString(3) //분류2
                     + "\n"
                     + "    이미지: "
                     + cursor.getString(4)//이미지
@@ -181,10 +180,10 @@ public class DBHelper extends SQLiteOpenHelper {
                     + "\n"
                     + "  분류1: "
                     + cursor.getString(2) //분류1
-                    + "\n"
-                    + "  분류2: "
-                    + cursor.getString(3) //분류2
                     + "\n";
+                    //+ "  분류2: "
+                    //+ cursor.getString(3) //분류2
+                    //+ "\n";
         }
         return result;
     }
