@@ -18,9 +18,9 @@ public class CategoryLearning extends AppCompatActivity {
 
         //TabLayout
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
-        tabs.addTab(tabs.newTab().setText("명사"));
-        tabs.addTab(tabs.newTab().setText("동사"));
-        tabs.addTab(tabs.newTab().setText("형용사"));
+        tabs.addTab(tabs.newTab().setText("숫자"));
+        tabs.addTab(tabs.newTab().setText("자/모음"));
+        tabs.addTab(tabs.newTab().setText("사물"));
         tabs.setTabGravity(tabs.GRAVITY_FILL);
 
         //어답터설정
