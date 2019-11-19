@@ -2,9 +2,7 @@
 <resources>
 
     <declare-styleable name="WordButton">
-        <attr name="bg" format="reference|integer" />
-        <attr name="symbol" format="reference|integer" />
-        <attr name="text" format="reference|string" />
-        <attr name="textColor" format="reference|integer" />
+        <attr name="img" format="reference|integer" />  //아이콘 이미지
+        <attr name="text" format="reference|string" />  //수화 이름
     </declare-styleable>
 </resources>
