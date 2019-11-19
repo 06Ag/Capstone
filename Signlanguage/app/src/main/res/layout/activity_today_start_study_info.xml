@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_margin="3dp">
+    android:layout_margin="5dp">
 
     <!-- 수화 이미지 -->
     <ImageView
         android:id="@+id/iv_img"
         android:layout_width="257dp"
         android:layout_height="0dp"
-        android:layout_weight="4"
+        android:layout_weight="5"
         android:layout_gravity="center"
         android:src="@drawable/testpicture" />
     <!-- 수화 이름 -->
@@ -19,17 +19,35 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center_vertical"
         android:text="수화 #1"
-        android:textSize="20sp"/>
+        android:gravity="center"
+        android:textSize="22sp"
+        android:textColor="@android:color/black"/>
     <!-- 수화 설명 -->
     <TextView
         android:id="@+id/tv_explain"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"
+        android:layout_weight="1"
         android:textSize="15sp"
         android:text="explain" />
+    <!-- 단어 정보 -->
+    <TextView
+        android:id="@+id/tv_word_explain1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:text="단어 정보"
+        android:gravity="center_vertical"
+        android:textColor="@android:color/black"
+        android:textSize="17sp" />
+    <TextView
+        android:id="@+id/tv_word_explain2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="15sp"
+        android:text="word_explain" />
 
     <!-- 이전 / 다음 버튼 -->
     <LinearLayout

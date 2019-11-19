@@ -21,8 +21,9 @@ public class TodayStart_study_info extends AppCompatActivity {
     Button bt_next;
     Button bt_camera;
     TextView tv_imageNum; // 수어 이름 표시하는 textview
-    TextView tv_explain;    // 수어 설명
+    TextView tv_explain;    // 수어 손동작 설명
     ImageView iv_img;   //수어 이미지
+    TextView word_explain;  //수어 단어에 대한 설명
 
     int pos = 0; //학습한 단어 수
     int dbpos = 0; //db에 저장할 pos값
@@ -58,6 +59,7 @@ public class TodayStart_study_info extends AppCompatActivity {
         tv_imageNum = findViewById(R.id.tv_image);
         tv_explain = findViewById(R.id.tv_explain);
         iv_img = findViewById(R.id.iv_img);
+        word_explain = (TextView)findViewById(R.id.tv_word_explain2);  //단어 설명
 
         pos = 1; //학습한 단어 수
         dbpos = dbToday.getPos();
@@ -82,8 +84,11 @@ public class TodayStart_study_info extends AppCompatActivity {
         tv_imageNum.setText("#" + Integer.toString(pos) + "      " + name);
         int id = getRawResIdByName(dbHelper.getResult_img(name));   //이미지 이름으로 아이디 받기
         String des = dbHelper.getResult_des(name);   //수화 설명
+        String wordinfo = dbHelper.getResult_wordinfo(name);    //한국어 정보
         Uri uri_img = Uri.parse("android.resource://" + getPackageName() + "/" + id);   //uri에 이미지 주소 저장
         iv_img.setImageURI(uri_img);   //이미지뷰에 이미지 출력
+        tv_explain.setText(des);    //수어 동작에 대한 설명
+        word_explain.setText(wordinfo); //단어에 대한 설명
         dbHelper.setLearn(firstword); //학습 여부 참으로 바꿔놓기
         if (dbpos < pos) {
             dbpos += 1;
@@ -113,8 +118,11 @@ public class TodayStart_study_info extends AppCompatActivity {
                     tv_imageNum.setText("#" + Integer.toString(pos) + "     " + name);
                     int id = getRawResIdByName(dbHelper.getResult_img(name));   //이미지 이름으로 아이디 받기
                     String des = dbHelper.getResult_des(name);   //수화 설명
+                    String wordinfo = dbHelper.getResult_wordinfo(name);    //한국어 정보
                     Uri uri_img = Uri.parse("android.resource://" + getPackageName() + "/" + id);   //uri에 이미지 주소 저장
                     iv_img.setImageURI(uri_img);   //이미지뷰에 이미지 출력
+                    tv_explain.setText(des);    //수어 동작에 대한 설명
+                    word_explain.setText(wordinfo); //단어에 대한 설명
                 } else {
                     Toast toast = Toast.makeText(TodayStart_study_info.this, "처음 단어 입니다.", Toast.LENGTH_SHORT);
                     toast.show();
@@ -147,8 +155,11 @@ public class TodayStart_study_info extends AppCompatActivity {
                     tv_imageNum.setText("#" + Integer.toString(pos) + "     " + name);
                     int id = getRawResIdByName(dbHelper.getResult_img(name));   //이미지 이름으로 아이디 받기
                     String des = dbHelper.getResult_des(name);   //수화 설명
+                    String wordinfo = dbHelper.getResult_wordinfo(name);    //한국어 정보
                     Uri uri_img = Uri.parse("android.resource://" + getPackageName() + "/" + id);   //uri에 이미지 주소 저장
                     iv_img.setImageURI(uri_img);   //이미지뷰에 이미지 출력
+                    tv_explain.setText(des);    //수어 동작에 대한 설명
+                    word_explain.setText(wordinfo); //단어에 대한 설명
                     dbHelper.setLearn(temp); //학습 여부 참으로 바꿔놓기
                     if (dbpos < pos) {
                         dbpos += 1;
