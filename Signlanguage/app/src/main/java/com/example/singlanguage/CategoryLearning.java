@@ -18,9 +18,9 @@ public class CategoryLearning extends AppCompatActivity {
 
         //TabLayout
         TabLayout tabs = (TabLayout) findViewById(R.id.tabs);
-        tabs.addTab(tabs.newTab().setText("명사"));
-        tabs.addTab(tabs.newTab().setText("동사"));
-        tabs.addTab(tabs.newTab().setText("형용사"));
+        tabs.addTab(tabs.newTab().setText("숫자"));
+        tabs.addTab(tabs.newTab().setText("자/모음"));
+        tabs.addTab(tabs.newTab().setText("사물"));
         tabs.setTabGravity(tabs.GRAVITY_FILL);
 
         //어답터설정
@@ -32,15 +32,6 @@ public class CategoryLearning extends AppCompatActivity {
         tabs.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabs));
 
-    }
-    public void mOnClick(View v) {
-        Intent intent = new Intent(getApplicationContext(), CategoryLearning_study_info.class);
-
-        if (v.getId() == R.id.button_one)   intent.putExtra("name", "1");
-        else if(v.getId() == R.id.button_two)   intent.putExtra("name", "2");
-        else if(v.getId() == R.id.button_three)   intent.putExtra("name", "3");
-
-        startActivity(intent);
     }
 
 }

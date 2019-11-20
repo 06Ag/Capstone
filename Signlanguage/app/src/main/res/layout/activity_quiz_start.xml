@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:gravity="left|center_vertical"
         android:layout_height="20dp"
-        android:text="학습할 단어 수"
+        android:text="퀴즈를 진행할 단어 수"
         android:textSize="18sp"
         android:layout_weight="1"/>
     <LinearLayout
