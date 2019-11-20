@@ -39,6 +39,7 @@ public class TodayStart extends AppCompatActivity {
         dbcount = dbHelper.getCount();//db안에 있는 수어 수
 
         firstword = dbToday.getFirstword(); //처음으로 배울 단어
+        System.out.println("fistword: "+firstword);
         lastword = dbToday.getFirstword() + countword - 1; //마지막으로 배울 단어
 
         //db에서 더이상 배울 단어가 없을 경우
