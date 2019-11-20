@@ -8,10 +8,11 @@
     <!-- 수화 이미지 -->
     <ImageView
         android:id="@+id/iv_img"
-        android:layout_width="257dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:scaleType="centerInside"
         android:src="@drawable/testpicture" />
     <!-- 수화 이름 -->
     <TextView
