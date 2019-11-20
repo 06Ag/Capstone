@@ -32,7 +32,6 @@ public class TodayStart_study_info extends AppCompatActivity {
     int lastword = 0; //마지막으로 학습할 단어의 _id
     int day = 0; //학습 일 수
     int dbcount = 0; //db안에 있는 수어 수
-    int chlearn = 0; //countword를 바꾸고나서 어디까지 단어를 학습했는지 알기위한 _id
 
     @Override
     public void onBackPressed() {
