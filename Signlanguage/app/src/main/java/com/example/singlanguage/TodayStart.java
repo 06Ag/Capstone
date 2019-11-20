@@ -45,9 +45,6 @@ public class TodayStart extends AppCompatActivity
     int lastword =0; //마지막으로 학습할 단어의 _id
     int day = 0; //학습 일 수
     int dbcount =0; //db안에 있는 수어 수
-    int chlearn =0; //countword를 바꾸고나서 어디까지 단어를 학습했는지 알기위한 _id
-
-
 
     private static final String TAG = "opencv";
     private Mat matInput;
@@ -109,7 +106,6 @@ public class TodayStart extends AppCompatActivity
         dbpos = dbToday.getPos();
         countword = dbToday.getCount(); //하루 당 학습해야하는 단어 가져옴
         day = dbToday.getDay(); //며칠째인지 가져옴
-
         dbcount = dbHelper.getCount();//db안에 있는 수어 수
 
         firstword = dbToday.getFirstword(); //처음으로 배울 단어
@@ -167,10 +163,8 @@ public class TodayStart extends AppCompatActivity
             public void onClick(View v) {
                 if(pos < countword) {
                     pos = pos + 1;
-
                     int temp = 0; //db의 _id를 구하기 위한 임시변수
                     temp = firstword+ pos -1;
-
                     //다음 단어가 db에 없을경우
                     if(temp > dbcount){
                         Toast toast = Toast.makeText(TodayStart.this, "마지막 단어 입니다.", Toast.LENGTH_SHORT);
