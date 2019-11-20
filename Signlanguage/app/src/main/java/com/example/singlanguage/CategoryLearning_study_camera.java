@@ -60,6 +60,7 @@ public class CategoryLearning_study_camera extends AppCompatActivity
     CountDownTimer toastCount;
     int correct_wrong=0;  //correct: 1, wrong: -1
     int timer=0;    //countdowntimer 작동시 1, 아닐 경우 0
+    String name;    //intent로 넘어온 수어 명칭 저장
 
     private static final String TAG = "opencv";
     private Mat matInput;
@@ -123,7 +124,7 @@ public class CategoryLearning_study_camera extends AppCompatActivity
         Uri uri_img = Uri.parse("android.resource://" + getPackageName() + "/" + id);   //uri에 이미지 주소 저장
         imgview.setImageURI(uri_img);   //이미지뷰에 이미지 출력
 
-        String name = intent.getExtras().getString("name");
+        name = intent.getExtras().getString("name");
         tv_imageNum.setText("동작을 따라해보세요.\n\n" + name);
 
         //임시로 stop시 전페이지로
@@ -219,7 +220,7 @@ public class CategoryLearning_study_camera extends AppCompatActivity
         for(int i=0; i<60; i++) {
             if (Math.round(output[0][i]) == 1) {
                 //현재 단어와 동작 일치할 경우 - 초록색
-                if (tv_imageNum.getText().equals(list[i])) {
+                if (name.equals(list[i])) {
                     Imgproc.rectangle(matResult, new Point(15, 10), new Point(matResult.cols() - 15, matResult.rows() - 10), green, 30);
                     if(timer == 1 && correct_wrong == -1){  //틀렸을 경우의 타이머가 작동 중이면 중단 후 다시 타이머 시작
                         toastCount.cancel();
