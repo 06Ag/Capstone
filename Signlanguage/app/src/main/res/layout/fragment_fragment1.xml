@@ -11,12 +11,12 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
-            <LinearLayout style="@style/CustomLinearLayout_hor">
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:layout_gravity="center_horizontal">
 
                 <LinearLayout
                     android:id="@+id/layout_zero"
@@ -25,6 +25,7 @@
                         android:id="@+id/image_zero"
                         style="@style/CustomImageView"
                         android:src="@drawable/zero" />
+
                     <TextView
                         android:id="@+id/txt_zero"
                         style="@style/CustomTextView"
@@ -69,10 +70,6 @@
                         style="@style/CustomTextView"
                         android:text="3" />
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout style="@style/CustomLinearLayout_hor">
 
                 <LinearLayout
                     android:id="@+id/layout_four"
@@ -129,10 +126,6 @@
                         android:text="7" />
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout style="@style/CustomLinearLayout_hor">
-
                 <LinearLayout
                     android:id="@+id/layout_eight"
                     style="@style/CustomLinearLayout_ver">
@@ -174,11 +167,7 @@
                         android:text="10" />
                 </LinearLayout>
 
-            </LinearLayout>
-
-        </LinearLayout>
+        </GridLayout>
     </ScrollView>
-
-
 
 </LinearLayout>

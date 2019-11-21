@@ -1,14 +1,8 @@
 package com.example.singlanguage;
 
-import android.content.Context;
-import android.view.View;
-
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class MyPagerAdapter1 extends FragmentPagerAdapter {
     int mNumOfTabs; //tab 갯수
@@ -23,13 +17,13 @@ public class MyPagerAdapter1 extends FragmentPagerAdapter {
 
         switch (position) {
             case 0:
-                    Fragment1_1 tab1 = new Fragment1_1();
+                    Fragment6 tab1 = new Fragment6();
                     return tab1;
             case 1:
-                Fragment1_2 tab2 = new Fragment1_2();
+                Fragment5 tab2 = new Fragment5();
                 return tab2;
             case 2:
-                Fragment1_3 tab3 = new Fragment1_3();
+                Fragment4 tab3 = new Fragment4();
                 return tab3;
             default:
                 return null;
