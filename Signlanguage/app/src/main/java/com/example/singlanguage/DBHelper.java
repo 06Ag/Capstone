@@ -195,10 +195,11 @@ public class DBHelper extends SQLiteOpenHelper {
         cnt = cursor.getCount();
         return cnt;
     }
-    String result;
+
     //TodayStart.java에서 배울 단어의 이름의 반환해주는 함수
     public String getName(int i){
         SQLiteDatabase db = getReadableDatabase();
+        String result="";
         Cursor cursor = db.rawQuery("SELECT name FROM SIGN_BOOK WHERE _id = '"+i+"';", null);
         while (cursor.moveToNext()) {
              result = cursor.getString(0); //수화이름

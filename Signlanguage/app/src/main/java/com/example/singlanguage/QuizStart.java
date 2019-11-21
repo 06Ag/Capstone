@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.IdRes;
@@ -23,6 +24,7 @@ public class QuizStart extends AppCompatActivity {
     private EditText wordnum;
     private RadioGroup rGroup2;
     private RadioGroup rGroup3;
+    private ScrollView jan;
     private AlertDialog.Builder builder;
     int num = 0;
     int temp =0;
@@ -35,10 +37,10 @@ public class QuizStart extends AppCompatActivity {
     RadioGroup.OnCheckedChangeListener radioGroupButtonChangeListener = new RadioGroup.OnCheckedChangeListener() {
         @Override public void onCheckedChanged(RadioGroup rGroup2, @IdRes int i) {
             if(i == R.id.radioButton5){
-                rGroup3.setVisibility(View.VISIBLE);
+                jan.setVisibility(View.VISIBLE);
             }
             else {
-                rGroup3.setVisibility(View.GONE);
+                jan.setVisibility(View.GONE);
             }
         }
     };
@@ -61,7 +63,8 @@ public class QuizStart extends AppCompatActivity {
         wordnum = (EditText) findViewById(R.id.wordnum); // 퀴즈 학습 단어 수;
         //라디오 그룹 설정
         rGroup2= (RadioGroup) findViewById(R.id.RadioGrp2); // 퀴즈 범위;
-        rGroup3= (RadioGroup) findViewById(R.id.RadioGrp3); // 품사
+        jan = (ScrollView)findViewById(R.id.jan);
+        rGroup3= (RadioGroup) findViewById(R.id.RadioGrp3); // 장르
         rGroup2.setOnCheckedChangeListener(radioGroupButtonChangeListener);
 
         countword = dbToday.getCount(); //하루 당 학습해야하는 단어 가져옴
@@ -128,28 +131,46 @@ public class QuizStart extends AppCompatActivity {
                 //오늘의 학습 범위
                 if(rb2 == R.id.radioButton4){
                     result = "오늘";
-                    lastword = day * countword; //마지막으로 배울 단어
+                    lastword = dbHelper.getchlearn();
                     temp = num - lastword;
                 }
-                //품사별
+                //장르별
                 else if(rb2 == R.id.radioButton5){
-                    if(rb3 == R.id.noun){
-                        result = "명사";
-                        lastword = dbHelper.getClassCount("명사"); //수어중에 명사인 갯수 구해오기
+                    if(rb3 == R.id.ja){
+                        result = "자음";
+                        lastword = dbHelper.getClassCount("자음");
                         temp = num - lastword;}
-                    else if(rb3 == R.id.verb){
-                        result = "동사";
-                        lastword = dbHelper.getClassCount("동사");
+                    else if(rb3 == R.id.mo){
+                        result = "모음";
+                        lastword = dbHelper.getClassCount("모음");
                         temp = num - lastword;}
-                    else if(rb3 == R.id.adverse){
-                        result = "형용사";
-                        lastword = dbHelper.getClassCount("형용사");
+                    else if(rb3 == R.id.number){
+                        result = "숫자";
+                        lastword = dbHelper.getClassCount("숫자");
                         temp = num - lastword;}
-                }
-                //장르별 아직 구현x
-                else if(rb2 == R.id.radioButton6){
+                    else if(rb3 == R.id.thing){
+                        result = "사물";
+                        lastword = dbHelper.getClassCount("사물");
+                        temp = num - lastword;}
+                    else if(rb3 == R.id.human){
+                        result = "사람";
+                        lastword = dbHelper.getClassCount("사람");
+                        temp = num - lastword;}
+                    else if(rb3 == R.id.food){
+                        result = "음식";
+                        lastword = dbHelper.getClassCount("음식");
+                        temp = num - lastword;}
+                    else if(rb3 == R.id.direc){
+                        result = "방향";
+                        lastword = dbHelper.getClassCount("방향");
+                        temp = num - lastword;}
+                    else if(rb3 == R.id.nothing){
+                        result = "기타";
+                        lastword = dbHelper.getClassCount("기타");
+                        temp = num - lastword;}
 
                 }
+
 
                 builder = new AlertDialog.Builder(QuizStart.this);
                 // 제목셋팅
