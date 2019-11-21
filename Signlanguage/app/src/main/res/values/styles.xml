@@ -10,17 +10,18 @@
     </style>
 
     <style name="CustomLinearLayout_hor">
+        <item name="android:orientation">horizontal</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_gravity">center_horizontal</item>
     </style>
 
     <style name="CustomLinearLayout_ver">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:paddingTop">15dp</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:padding">7dp</item>
         <item name="android:layout_gravity">center</item>
     </style>
 
@@ -34,6 +35,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center_horizontal</item>
+        <item name= "android:textColor">@android:color/black</item>
+        <item name="android:textSize">17dp</item>
+
     </style>
 
 

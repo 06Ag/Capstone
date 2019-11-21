@@ -21,11 +21,14 @@ public class CategoryLearning extends AppCompatActivity {
         tabs.addTab(tabs.newTab().setText("숫자"));
         tabs.addTab(tabs.newTab().setText("자/모음"));
         tabs.addTab(tabs.newTab().setText("사물"));
+        tabs.addTab(tabs.newTab().setText("사람"));
+        tabs.addTab(tabs.newTab().setText("음식"));
+        tabs.addTab(tabs.newTab().setText("기타"));
         tabs.setTabGravity(tabs.GRAVITY_FILL);
 
         //어답터설정
         final ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
-        final MyPagerAdapter myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), 3);
+        final MyPagerAdapter myPagerAdapter = new MyPagerAdapter(getSupportFragmentManager(), 6);
         viewPager.setAdapter(myPagerAdapter);
 
         //탭 클릭 -> 해당 프래그먼트로 변경, 싱크
