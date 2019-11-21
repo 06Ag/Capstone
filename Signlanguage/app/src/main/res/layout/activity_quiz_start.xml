@@ -78,39 +78,67 @@
             android:id="@+id/radioButton5"
             android:layout_width="match_parent"
             android:layout_height="42dp"
-            android:text="품사별" />
+            android:text="장르별" />
 
-        <RadioGroup
-            android:id="@+id/RadioGrp3"
+        <ScrollView
+            android:id="@+id/jan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:layout_marginLeft="25dp"
-            android:layout_weight="1">
+            android:visibility="gone">
 
-            <RadioButton
-                android:id="@+id/noun"
+            <RadioGroup
+                android:id="@+id/RadioGrp3"
                 android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:text="명사" />
-            <RadioButton
-                android:id="@+id/verb"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:text="동사" />
-            <RadioButton
-                android:id="@+id/adverse"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:text="형용사" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_weight="1">
 
-        </RadioGroup>
+                <RadioButton
+                    android:id="@+id/ja"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:text="자음" />
+                <RadioButton
+                    android:id="@+id/mo"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:text="모음" />
+                <RadioButton
+                    android:id="@+id/number"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:text="숫자" />
+                <RadioButton
+                    android:id="@+id/thing"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:text="사물" />
+                <RadioButton
+                    android:id="@+id/human"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:text="사람" />
+                <RadioButton
+                    android:id="@+id/food"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:text="음식" />
+                <RadioButton
+                    android:id="@+id/direc"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:text="방향" />
+                <RadioButton
+                    android:id="@+id/nothing"
+                    android:layout_width="match_parent"
+                    android:layout_height="42dp"
+                    android:text="기타" />
 
-        <RadioButton
-            android:id="@+id/radioButton6"
-            android:layout_width="match_parent"
-            android:layout_height="42dp"
-            android:text="장르별" />
+            </RadioGroup>
+
+        </ScrollView>
+
+
 
     </RadioGroup>
 
