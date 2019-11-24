@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".Fragment3">
 
+    <!-- 사물 -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,168 +20,64 @@
             android:layout_gravity="center_horizontal">
 
             <LinearLayout
-                android:id="@+id/layout_zero"
+                android:id="@+id/layout_computer"
                 style="@style/CustomLinearLayout_ver">
 
                 <ImageView
-                    android:id="@+id/image_zero"
+                    android:id="@+id/image_computer"
                     style="@style/CustomImageView"
-                    android:src="@drawable/zero" />
+                    android:src="@drawable/computer" />
 
                 <TextView
-                    android:id="@+id/txt_zero"
+                    android:id="@+id/txt_computer"
                     style="@style/CustomTextView"
-                    android:text="0" />
+                    android:text="컴퓨터" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout_one"
+                android:id="@+id/layout_school"
                 style="@style/CustomLinearLayout_ver">
 
                 <ImageView
-                    android:id="@+id/image_one"
+                    android:id="@+id/image_school"
                     style="@style/CustomImageView"
-                    android:src="@drawable/btn_clk_one" />
+                    android:src="@drawable/school" />
 
                 <TextView
-                    android:id="@+id/txt_one"
+                    android:id="@+id/txt_school"
                     style="@style/CustomTextView"
-                    android:text="1" />
+                    android:text="학교" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout_two"
+                android:id="@+id/layout_house"
                 style="@style/CustomLinearLayout_ver">
 
                 <ImageView
-                    android:id="@+id/image_two"
+                    android:id="@+id/image_house"
                     style="@style/CustomImageView"
-                    android:src="@drawable/btn_clk_two" />
+                    android:src="@drawable/house" />
 
                 <TextView
-                    android:id="@+id/txt_two"
+                    android:id="@+id/txt_house"
                     style="@style/CustomTextView"
-                    android:text="2" />
+                    android:text="집" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout_three"
+                android:id="@+id/layout_powder"
                 style="@style/CustomLinearLayout_ver">
                 <ImageView
-                    android:id="@+id/image_three"
+                    android:id="@+id/image_powder"
                     style="@style/CustomImageView"
-                    android:src="@drawable/three" />
+                    android:src="@drawable/powder" />
 
                 <TextView
-                    android:id="@+id/txt_three"
+                    android:id="@+id/txt_powder"
                     style="@style/CustomTextView"
-                    android:text="3" />
+                    android:text="가루" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/layout_four"
-                style="@style/CustomLinearLayout_ver">
-
-                <ImageView
-                    android:id="@+id/image_four"
-                    style="@style/CustomImageView"
-                    android:src="@drawable/four" />
-
-                <TextView
-                    android:id="@+id/txt_four"
-                    style="@style/CustomTextView"
-                    android:text="4" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_five"
-                style="@style/CustomLinearLayout_ver">
-
-                <ImageView
-                    android:id="@+id/image_five"
-                    style="@style/CustomImageView"
-                    android:src="@drawable/five" />
-
-                <TextView
-                    android:id="@+id/txt_five"
-                    style="@style/CustomTextView"
-                    android:text="5" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_six"
-                style="@style/CustomLinearLayout_ver">
-
-                <ImageView
-                    android:id="@+id/image_six"
-                    style="@style/CustomImageView"
-                    android:src="@drawable/six" />
-
-                <TextView
-                    android:id="@+id/txt_six"
-                    style="@style/CustomTextView"
-                    android:text="6" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_seven"
-                style="@style/CustomLinearLayout_ver">
-
-                <ImageView
-                    android:id="@+id/image_seven"
-                    style="@style/CustomImageView"
-                    android:src="@drawable/seven" />
-
-                <TextView
-                    android:id="@+id/txt_seven"
-                    style="@style/CustomTextView"
-                    android:text="7" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_eight"
-                style="@style/CustomLinearLayout_ver">
-
-                <ImageView
-                    android:id="@+id/image_eight"
-                    style="@style/CustomImageView"
-                    android:src="@drawable/eight" />
-
-                <TextView
-                    android:id="@+id/txt_eight"
-                    style="@style/CustomTextView"
-                    android:text="8" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_nine"
-                style="@style/CustomLinearLayout_ver">
-
-                <ImageView
-                    android:id="@+id/image_nine"
-                    style="@style/CustomImageView"
-                    android:src="@drawable/nine" />
-
-                <TextView
-                    android:id="@+id/txt_nine"
-                    style="@style/CustomTextView"
-                    android:text="9" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_ten"
-                style="@style/CustomLinearLayout_ver">
-
-                <ImageView
-                    android:id="@+id/image_ten"
-                    style="@style/CustomImageView"
-                    android:src="@drawable/ten" />
-
-                <TextView
-                    android:id="@+id/txt_ten"
-                    style="@style/CustomTextView"
-                    android:text="10" />
-            </LinearLayout>
         </GridLayout>
     </ScrollView>
 

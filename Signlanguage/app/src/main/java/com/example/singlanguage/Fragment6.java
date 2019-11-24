@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 
+//카테고리 - 기타
 public class Fragment6 extends Fragment implements View.OnClickListener {
 
     public Fragment6() {
@@ -20,29 +21,20 @@ public class Fragment6 extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_fragment5, container, false);
-        LinearLayout image0 = (LinearLayout) view.findViewById(R.id.layout_zero);
-        LinearLayout image1 = (LinearLayout) view.findViewById(R.id.layout_one);
-        LinearLayout image2 = (LinearLayout) view.findViewById(R.id.layout_two);
-        LinearLayout image3 = (LinearLayout) view.findViewById(R.id.layout_three);
-        LinearLayout image4 = (LinearLayout) view.findViewById(R.id.layout_four);
-        LinearLayout image5 = (LinearLayout) view.findViewById(R.id.layout_five);
-        LinearLayout image6 = (LinearLayout) view.findViewById(R.id.layout_six);
-        LinearLayout image7 = (LinearLayout) view.findViewById(R.id.layout_seven);
-        LinearLayout image8 = (LinearLayout) view.findViewById(R.id.layout_eight);
-        LinearLayout image9 = (LinearLayout) view.findViewById(R.id.layout_nine);
-        LinearLayout image10 = (LinearLayout) view.findViewById(R.id.layout_ten);
-        image0.setOnClickListener(this);
-        image1.setOnClickListener(this);
-        image2.setOnClickListener(this);
-        image3.setOnClickListener(this);
-        image4.setOnClickListener(this);
-        image5.setOnClickListener(this);
-        image6.setOnClickListener(this);
-        image7.setOnClickListener(this);
-        image8.setOnClickListener(this);
-        image9.setOnClickListener(this);
-        image10.setOnClickListener(this);
+        View view = inflater.inflate(R.layout.fragment_fragment6, container, false);
+        LinearLayout image_itch = (LinearLayout) view.findViewById(R.id.layout_itch);
+        LinearLayout image_presentation = (LinearLayout) view.findViewById(R.id.layout_presentation);
+        LinearLayout image_read = (LinearLayout) view.findViewById(R.id.layout_read);
+        LinearLayout image_discuss = (LinearLayout) view.findViewById(R.id.layout_discuss);
+        LinearLayout image_north = (LinearLayout) view.findViewById(R.id.layout_north);
+        LinearLayout image_south = (LinearLayout) view.findViewById(R.id.layout_south);
+
+        image_itch.setOnClickListener(this);
+        image_presentation.setOnClickListener(this);
+        image_read.setOnClickListener(this);
+        image_discuss.setOnClickListener(this);
+        image_north.setOnClickListener(this);
+        image_south.setOnClickListener(this);
 
         return view;
     }
@@ -51,17 +43,12 @@ public class Fragment6 extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         Intent intent = new Intent(getActivity(), CategoryLearning_study_info.class);
 
-        if (v.getId() == R.id.layout_zero)   intent.putExtra("name", "0");
-        else if(v.getId() == R.id.layout_one)   intent.putExtra("name", "1");
-        else if(v.getId() == R.id.layout_two)   intent.putExtra("name", "2");
-        else if(v.getId() == R.id.layout_three)   intent.putExtra("name", "3");
-        else if(v.getId() == R.id.layout_four)   intent.putExtra("name", "4");
-        else if(v.getId() == R.id.layout_five)   intent.putExtra("name", "5");
-        else if(v.getId() == R.id.layout_six)   intent.putExtra("name", "6");
-        else if(v.getId() == R.id.layout_seven)   intent.putExtra("name", "7");
-        else if(v.getId() == R.id.layout_eight)   intent.putExtra("name", "8");
-        else if(v.getId() == R.id.layout_nine)   intent.putExtra("name", "9");
-        else if(v.getId() == R.id.layout_ten)   intent.putExtra("name", "10");
+        if (v.getId() == R.id.layout_itch)   intent.putExtra("name", "가렵다");
+        else if(v.getId() == R.id.layout_presentation)   intent.putExtra("name", "발표하다");
+        else if(v.getId() == R.id.layout_read)   intent.putExtra("name", "읽다");
+        else if(v.getId() == R.id.layout_discuss)   intent.putExtra("name", "상의하다");
+        else if(v.getId() == R.id.layout_north)   intent.putExtra("name", "북쪽");
+        else if(v.getId() == R.id.layout_south)   intent.putExtra("name", "남쪽");
 
         startActivity(intent);
     }

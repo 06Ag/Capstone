@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#B2E2DD</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="red">#ffff0000</color>
@@ -13,7 +13,7 @@
 
     <color name="mistyrose">#FFE4E1</color>
     <color name="lightpink">#FFB6C1</color>
-    <color name="honeydew">#F0FFF0</color>
+    <color name="honeydew">#CAEDCA</color>
 
     <color name="black">#00ffffff</color>
     <color name="pressed1">#959ca4</color>

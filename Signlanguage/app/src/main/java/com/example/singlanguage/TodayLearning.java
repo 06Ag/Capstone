@@ -2,11 +2,15 @@ package com.example.singlanguage;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.ParseException;
@@ -38,6 +42,9 @@ public class TodayLearning extends AppCompatActivity {
         setContentView(R.layout.activity_today_learning);
         final DBToday dbToday = DBToday.getInstance(getApplicationContext()); //DB가져오기 progressbar를 위헤
         final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext()); //db가져오기 지금까지 배운 총 단어 갯수 위해
+
+        ActionBar ab = getSupportActionBar() ;
+        ab.setTitle("오늘의 학습") ;
 
         Button bt_start = findViewById(R.id.bt_start);
         Button bt_review = findViewById(R.id.bt_review);
@@ -130,5 +137,20 @@ public class TodayLearning extends AppCompatActivity {
             }
         });
 
+    }
+
+    //액션바에 환경설정 메뉴 추가
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+         final MenuItem item_setting = menu.add(0,0,0,"환경설정");
+        item_setting.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {    //환경설정으로 넘어감
+            public boolean onMenuItemClick (MenuItem item){
+                Intent intent = new Intent(getApplicationContext(), MainSetting.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        return true ;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.singlanguage;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,6 +47,9 @@ public class TodayStart_study_info extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_today_start_study_info);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("오늘의 학습");
 
         final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext()); //db가져오기
         final DBToday dbToday = DBToday.getInstance(getApplicationContext());
