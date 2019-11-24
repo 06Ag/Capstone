@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 
+//카테고리 - 자모음
 public class Fragment2 extends Fragment implements View.OnClickListener {
 
     public Fragment2() {

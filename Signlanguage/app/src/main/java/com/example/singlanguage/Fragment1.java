@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
+//카테고리 - 숫자
 public class Fragment1 extends Fragment implements View.OnClickListener {
 
     public Fragment1() {

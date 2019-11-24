@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class QuizResult extends AppCompatActivity {
@@ -23,6 +24,9 @@ public class QuizResult extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_result);
+
+        ActionBar ab = getSupportActionBar() ;
+        ab.setTitle("퀴즈 결과") ;
 
         tv_list_title = (TextView)findViewById(R.id.tv_list_title);
         tv_result = (TextView)findViewById(R.id.tv_result);

@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".Fragment2">
 
+    <!-- 자모음 -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

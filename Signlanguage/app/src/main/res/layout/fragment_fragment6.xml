@@ -1,472 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Fragment6">
 
+    <!-- 기타 -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:layout_gravity="center_horizontal">
 
-            <LinearLayout style="@style/CustomLinearLayout_hor">
+            <LinearLayout
+                android:id="@+id/layout_itch"
+                style="@style/CustomLinearLayout_ver">
 
-                <LinearLayout
-                    android:id="@+id/layout_giyeok"
-                    style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_itch"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/itch" />
 
-                    <ImageView
-                        android:id="@+id/image_giyeok"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/zero" />
-
-                    <TextView
-                        android:id="@+id/txt_giyeok"
-                        style="@style/CustomTextView"
-                        android:text="기역" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_nieun"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_nieun"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/btn_clk_one" />
-
-                    <TextView
-                        android:id="@+id/txt_nieun"
-                        style="@style/CustomTextView"
-                        android:text="니은" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_digeut"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_digeut"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/btn_clk_two" />
-
-                    <TextView
-                        android:id="@+id/txt_digeut"
-                        style="@style/CustomTextView"
-                        android:text="디귿" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_rieul"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_rieul"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/three" />
-
-                    <TextView
-                        android:id="@+id/txt_rieul"
-                        style="@style/CustomTextView"
-                        android:text="리을" />
-                </LinearLayout>
-
+                <TextView
+                    android:id="@+id/txt_itch"
+                    style="@style/CustomTextView"
+                    android:text="가렵다" />
             </LinearLayout>
 
-            <LinearLayout style="@style/CustomLinearLayout_hor">
+            <LinearLayout
+                android:id="@+id/layout_presentation"
+                style="@style/CustomLinearLayout_ver">
 
-                <LinearLayout
-                    android:id="@+id/layout_mieum"
-                    style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_presentation"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/presentation" />
 
-                    <ImageView
-                        android:id="@+id/image_mieum"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/four" />
-
-                    <TextView
-                        android:id="@+id/txt_mieum"
-                        style="@style/CustomTextView"
-                        android:text="미음" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_bieup"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_bieup"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/five" />
-
-                    <TextView
-                        android:id="@+id/txt_bieup"
-                        style="@style/CustomTextView"
-                        android:text="비읍" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_siot"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_siot"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/six" />
-
-                    <TextView
-                        android:id="@+id/txt_siot"
-                        style="@style/CustomTextView"
-                        android:text="시옷" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_ieung"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_ieung"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/seven" />
-
-                    <TextView
-                        android:id="@+id/txt_ieung"
-                        style="@style/CustomTextView"
-                        android:text="이응" />
-                </LinearLayout>
-
+                <TextView
+                    android:id="@+id/txt_presentation"
+                    style="@style/CustomTextView"
+                    android:text="발표하다" />
             </LinearLayout>
 
-            <LinearLayout style="@style/CustomLinearLayout_hor">
+            <LinearLayout
+                android:id="@+id/layout_read"
+                style="@style/CustomLinearLayout_ver">
 
-                <LinearLayout
-                    android:id="@+id/layout_jieut"
-                    style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_read"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/read" />
 
-                    <ImageView
-                        android:id="@+id/image_jieut"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/eight" />
-
-                    <TextView
-                        android:id="@+id/txt_jieut"
-                        style="@style/CustomTextView"
-                        android:text="지읒" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_chieut"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_chieut"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/nine" />
-
-                    <TextView
-                        android:id="@+id/txt_chieut"
-                        style="@style/CustomTextView"
-                        android:text="치읓" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_kieuk"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_kieuk"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/ten" />
-
-                    <TextView
-                        android:id="@+id/txt_kieuk"
-                        style="@style/CustomTextView"
-                        android:text="키읔" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_tieut"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_tieut"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/eight" />
-
-                    <TextView
-                        android:id="@+id/txt_tieut"
-                        style="@style/CustomTextView"
-                        android:text="티읕" />
-                </LinearLayout>
-
+                <TextView
+                    android:id="@+id/txt_read"
+                    style="@style/CustomTextView"
+                    android:text="읽다" />
             </LinearLayout>
 
-            <LinearLayout style="@style/CustomLinearLayout_hor">
+            <LinearLayout
+                android:id="@+id/layout_discuss"
+                style="@style/CustomLinearLayout_ver">
 
-                <LinearLayout
-                    android:id="@+id/layout_pieup"
-                    style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_discuss"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/discuss" />
 
-                    <ImageView
-                        android:id="@+id/image_pieup"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/nine" />
-
-                    <TextView
-                        android:id="@+id/txt_pieup"
-                        style="@style/CustomTextView"
-                        android:text="피읖" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_hieut"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_hieut"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/ten" />
-
-                    <TextView
-                        android:id="@+id/txt_hieut"
-                        style="@style/CustomTextView"
-                        android:text="히읗" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_a"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_a"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/one" />
-
-                    <TextView
-                        android:id="@+id/txt_a"
-                        style="@style/CustomTextView"
-                        android:text="ㅏ" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_ya"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_ya"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/one" />
-
-                    <TextView
-                        android:id="@+id/txt_ya"
-                        style="@style/CustomTextView"
-                        android:text="ㅑ" />
-                </LinearLayout>
-
+                <TextView
+                    android:id="@+id/txt_discuss"
+                    style="@style/CustomTextView"
+                    android:text="상의하다" />
             </LinearLayout>
 
-            <LinearLayout style="@style/CustomLinearLayout_hor">
+            <LinearLayout
+                android:id="@+id/layout_north"
+                style="@style/CustomLinearLayout_ver">
 
-                <LinearLayout
-                    android:id="@+id/layout_eo"
-                    style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_north"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/north" />
 
-                    <ImageView
-                        android:id="@+id/image_eo"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/nine" />
-
-                    <TextView
-                        android:id="@+id/txt_eo"
-                        style="@style/CustomTextView"
-                        android:text="ㅓ" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_yeo"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_yeo"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/ten" />
-
-                    <TextView
-                        android:id="@+id/txt_yeo"
-                        style="@style/CustomTextView"
-                        android:text="ㅕ" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_o"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_o"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/one" />
-
-                    <TextView
-                        android:id="@+id/txt_o"
-                        style="@style/CustomTextView"
-                        android:text="ㅗ" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_yo"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_yo"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/one" />
-
-                    <TextView
-                        android:id="@+id/txt_yo"
-                        style="@style/CustomTextView"
-                        android:text="ㅛ" />
-                </LinearLayout>
-
+                <TextView
+                    android:id="@+id/txt_north"
+                    style="@style/CustomTextView"
+                    android:text="북쪽" />
             </LinearLayout>
 
-            <LinearLayout style="@style/CustomLinearLayout_hor">
+            <LinearLayout
+                android:id="@+id/layout_south"
+                style="@style/CustomLinearLayout_ver">
 
-                <LinearLayout
-                    android:id="@+id/layout_u"
-                    style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_south"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/south" />
 
-                    <ImageView
-                        android:id="@+id/image_u"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/nine" />
-
-                    <TextView
-                        android:id="@+id/txt_u"
-                        style="@style/CustomTextView"
-                        android:text="ㅜ" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_yu"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_yu"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/ten" />
-
-                    <TextView
-                        android:id="@+id/txt_yu"
-                        style="@style/CustomTextView"
-                        android:text="ㅠ" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_eu"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_eu"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/one" />
-
-                    <TextView
-                        android:id="@+id/txt_eu"
-                        style="@style/CustomTextView"
-                        android:text="ㅡ" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_i"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_i"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/one" />
-
-                    <TextView
-                        android:id="@+id/txt_i"
-                        style="@style/CustomTextView"
-                        android:text="l" />
-                </LinearLayout>
-
+                <TextView
+                    android:id="@+id/txt_south"
+                    style="@style/CustomTextView"
+                    android:text="남쪽" />
             </LinearLayout>
 
-            <LinearLayout style="@style/CustomLinearLayout_hor">
-
-                <LinearLayout
-                    android:id="@+id/layout_ae"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_ae"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/nine" />
-
-                    <TextView
-                        android:id="@+id/txt_ae"
-                        style="@style/CustomTextView"
-                        android:text="ㅐ" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_yae"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_yae"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/ten" />
-
-                    <TextView
-                        android:id="@+id/txt_yae"
-                        style="@style/CustomTextView"
-                        android:text="ㅒ" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_e"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_e"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/one" />
-
-                    <TextView
-                        android:id="@+id/txt_e"
-                        style="@style/CustomTextView"
-                        android:text="ㅔ" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layout_ye"
-                    style="@style/CustomLinearLayout_ver">
-
-                    <ImageView
-                        android:id="@+id/image_ye"
-                        style="@style/CustomImageView"
-                        android:src="@drawable/one" />
-
-                    <TextView
-                        android:id="@+id/txt_ye"
-                        style="@style/CustomTextView"
-                        android:text="ㅖ" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </LinearLayout>
+        </GridLayout>
     </ScrollView>
-
 
 </LinearLayout>
