@@ -166,10 +166,6 @@ public class QuizStart extends AppCompatActivity {
                         result = "음식";
                         lastword = dbHelper.getClassCount("음식");
                         temp = num - lastword;}
-                    else if(rb3 == R.id.direc){
-                        result = "방향";
-                        lastword = dbHelper.getClassCount("방향");
-                        temp = num - lastword;}
                     else if(rb3 == R.id.nothing){
                         result = "기타";
                         lastword = dbHelper.getClassCount("기타");
