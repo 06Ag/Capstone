@@ -13,9 +13,9 @@
     <TextView
         android:id="@+id/set_title"
         android:layout_width="100dp"
-        android:layout_height="25dp"
+        android:layout_height="40dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/lightpink"
         android:gravity="center_horizontal|center_vertical"
         android:text="Setting"
@@ -26,7 +26,7 @@
     <org.opencv.android.JavaCameraView
         android:id="@+id/activity_surface_view"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
+        android:layout_height="350dp"
         android:visibility="gone"
         opencv:camera_id="any" />
 
@@ -43,7 +43,7 @@
             android:layout_weight="1"
             android:layout_marginTop="15dp"
             android:text="L-H"
-            android:background="@color/honeydew"
+            android:background="@color/mistyrose"
             android:gravity="center_horizontal|center_vertical"
             />
 
@@ -75,7 +75,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginLeft="4dp"
             android:text="U-H"
-            android:background="@color/honeydew"
+            android:background="@color/mistyrose"
             android:gravity="center_horizontal|center_vertical"
             />
 
@@ -114,7 +114,7 @@
             android:layout_weight="1"
             android:layout_marginTop="15dp"
             android:text="L-S"
-            android:background="@color/honeydew"
+            android:background="@color/mistyrose"
             android:gravity="center_horizontal|center_vertical"
             />
 
@@ -146,7 +146,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginLeft="4dp"
             android:text="U-S"
-            android:background="@color/honeydew"
+            android:background="@color/mistyrose"
             android:gravity="center_horizontal|center_vertical"
             />
 
@@ -185,7 +185,7 @@
             android:layout_weight="1"
             android:layout_marginTop="15dp"
             android:text="L-V"
-            android:background="@color/honeydew"
+            android:background="@color/mistyrose"
             android:gravity="center_horizontal|center_vertical"
             />
 
@@ -217,7 +217,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginLeft="4dp"
             android:text="U-V"
-            android:background="@color/honeydew"
+            android:background="#A1CDE1"
             android:gravity="center_horizontal|center_vertical"
             />
 

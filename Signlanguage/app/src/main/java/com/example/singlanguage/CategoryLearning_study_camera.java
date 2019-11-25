@@ -56,7 +56,7 @@ public class CategoryLearning_study_camera extends AppCompatActivity
 
     int lh, ls, lv, uh, us, uv; //hsv값 가져오기
     //수어 list
-    final String[] list = {"애","비읍","치읓","춥다", "컴퓨터", "손님","디귿","상의하다","에","8","어","으","5","4","열매","기역", "건빵", "히읗", "집","이","간지럽다","지읒","키읔", "남자", "고기", "약", "미음","니은","9","북쪽","오","외","1","피읖","가루","발표하다", "읽다", "갈비", "떡", "리을","학교", "7","시옷","남쪽", "선생님","10","3","티읕","2","우","의","위", "여자","야","얘","예","여","요","유","0"};
+    final String[][] list = new String[][] {{"애"},{"비읍"},{"지폐"},{"끓이다"},{"치읓"},{"다지다"},{"춥다"},{"기둥"},{"컴퓨터"},{"고객"},{"데이트"},{"디귿"},{"상의"},{"만두"},{"에"},{"8"},{"어"},{"으"},{"5"},{"4"},{"열매"},{"기역"}, {"건빵"}, {"히읗"}, {"집"},{"이"},{"가렵다"},{"지읒"},{"죽"},{"키읔"},{"사랑"},{"남자"},{"고기"},{"미음"},{"가장"},{"산"},{"버섯"},{"니은", "6"},{"9"},{"북쪽"},{"오"},{"외"},{"1", "아"},{"피읖"},{"가루"},{"발표하다"}, {"읽다"},{"녹음기"},{"관계"},{"갈비"},{"떡"},{"리을"},{"도로"},{"학교"},{"깨"},{"7"},{"시옷"},{"노예","심부름"},{"남쪽"},{"서다"},{"선생님"},{"10", "이응"},{"3"},{"티읕"},{"2"},{"우"},{"의"},{"산골"},{"위"},{"여자"},{"야"},{"얘"},{"예"},{"여"},{"요"},{"유"},{"0"}};
     //정확한 동작을 하는지에 대한 토스트 띄우기 카운트
     CountDownTimer toastCount;
     int correct_wrong=0;  //correct: 1, wrong: -1
@@ -222,34 +222,35 @@ public class CategoryLearning_study_camera extends AppCompatActivity
         Scalar green = new Scalar(0, 255, 0, 3);
         Scalar red = new Scalar(255, 0, 0, 3);
         //현재 사용자가 하는 동작과 현재 단어가 일치하는지 확인
-        for(int i=0; i<60; i++) {
+        for(int i=0; i<output[0].length; i++) {
             if (Math.round(output[0][i]) == 1) {
-                //현재 단어와 동작 일치할 경우 - 초록색
-                if (name.equals(list[i])) {
-                    Imgproc.rectangle(matResult, new Point(15, 10), new Point(matResult.cols() - 15, matResult.rows() - 10), green, 30);
-                    if(timer == 1 && correct_wrong == -1){  //틀렸을 경우의 타이머가 작동 중이면 중단 후 다시 타이머 시작
-                        toastCount.cancel();
-                        correct_wrong = 1;
-                        toastCount.start();
+                for(int j=0; j<list[i].length; j++) {   //수화 동작 같은 단어들 모두를 비교
+                    //현재 단어와 동작 일치할 경우 - 초록색
+                    if (name.equals(list[i][j])) {
+                        Imgproc.rectangle(matResult, new Point(15, 10), new Point(matResult.cols() - 15, matResult.rows() - 10), green, 30);
+                        if (timer == 1 && correct_wrong == -1) {  //틀렸을 경우의 타이머가 작동 중이면 중단 후 다시 타이머 시작
+                            toastCount.cancel();
+                            correct_wrong = 1;
+                            toastCount.start();
+                        } else if (timer == 0) {    //현재 타이머 작동중이 아니면 타이머 시작
+                            timer = 1;
+                            correct_wrong = 1;
+                            toastCount.start();
+                        }
+                        break;
                     }
-                    else if(timer == 0){    //현재 타이머 작동중이 아니면 타이머 시작
-                        timer = 1;
-                        correct_wrong = 1;
-                        toastCount.start();
-                    }
-                }
-                //현재 단어와 동작 불일치 경우 - 빨간색
-                else {
-                    Imgproc.rectangle(matResult, new Point(15, 10), new Point(matResult.cols() - 15, matResult.rows() - 10), red, 30);
-                    if(timer == 1 && correct_wrong == 1){  //맞았을 경우의 타이머가 작동 중이면 중단 후 다시 타이머 시작
-                        toastCount.cancel();
-                        correct_wrong = -1;
-                        toastCount.start();
-                    }
-                    else if(timer == 0){    //현재 타이머 작동중이 아니면 타이머 시작
-                        timer = 1;
-                        correct_wrong = -1;
-                        toastCount.start();
+                    //현재 단어와 동작 불일치 경우 - 빨간색
+                    else {
+                        Imgproc.rectangle(matResult, new Point(15, 10), new Point(matResult.cols() - 15, matResult.rows() - 10), red, 30);
+                        if (timer == 1 && correct_wrong == 1) {  //맞았을 경우의 타이머가 작동 중이면 중단 후 다시 타이머 시작
+                            toastCount.cancel();
+                            correct_wrong = -1;
+                            toastCount.start();
+                        } else if (timer == 0) {    //현재 타이머 작동중이 아니면 타이머 시작
+                            timer = 1;
+                            correct_wrong = -1;
+                            toastCount.start();
+                        }
                     }
                 }
                 break;

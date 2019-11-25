@@ -47,6 +47,9 @@ import static android.Manifest.permission.CAMERA;
 public class Translation extends AppCompatActivity
         implements CameraBridgeViewBase.CvCameraViewListener2 {
 
+    //단어 총 82개
+    final String[][] list = new String[][] {{"애"},{"비읍"},{"지폐"},{"끓이다"},{"치읓"},{"다지다"},{"춥다"},{"기둥"},{"컴퓨터"},{"고객"},{"데이트"},{"디귿"},{"상의"},{"만두"},{"에"},{"8"},{"어"},{"으"},{"5"},{"4"},{"열매"},{"기역"}, {"건빵"}, {"히읗"}, {"집"},{"이"},{"가렵다"},{"지읒"},{"죽"},{"키읔"},{"사랑"},{"남자"},{"고기"},{"미음"},{"가장"},{"산"},{"버섯"},{"니은", "6"},{"9"},{"북쪽"},{"오"},{"외"},{"1", "아"},{"피읖"},{"가루"},{"발표하다"}, {"읽다"},{"녹음기"},{"관계"},{"갈비"},{"떡"},{"리을"},{"도로"},{"학교"},{"깨"},{"7"},{"시옷"},{"노예","심부름"},{"남쪽"},{"서다"},{"선생님"},{"10", "이응"},{"3"},{"티읕"},{"2"},{"우"},{"의"},{"산골"},{"위"},{"여자"},{"야"},{"얘"},{"예"},{"여"},{"요"},{"유"},{"0"}};
+
     int lh, ls, lv, uh, us, uv;
     TextView tv_transResult;
     TextView tv_hsvValue;
@@ -149,14 +152,21 @@ public class Translation extends AppCompatActivity
         Interpreter tflite = getTfliteInterpreter("Trained_model.tflite");
 
         float[][] output = new float[1][60];
-        tflite.run(input, output);
+        tflite.run(input, output);  //딥러닝 - output 배열에 결과 출력된다.
 
         Log.d("predict", Arrays.toString(output[0]));
+        //카메라에 손 동작과 일치하는 단어 찾기
+        for(int i=0; i<output[0].length; i++) {
+            if (Math.round(output[0][i]) == 1){
+                String str = list[i][0];
+                for(int j=1; j<list[i].length; j++) //수화 동작 같은 단어들 찾아서 모두 출력
+                    str += "ㆍ" + list[i][j];
 
-        String[] list = {"ㅐ","비읍","치읓","춥다", "컴퓨터", "고객","디귿","상의하다","ㅔ","8","ㅓ","ㅡ","5","4","과일","기역", "건빵", "히읗", "집","ㅣ","가렵다","지읒","키읔", "남자", "고기", "약", "미음","니은","9","북쪽","ㅗ","ㅚ","1","피읖","가루","발표", "읽다", "갈비", "떡", "리을","학교", "7","시옷","남쪽", "선생님","10","3","티읕","2","ㅜ","ㅢ","ㅟ", "여자","ㅑ","ㅒ","ㅖ","ㅕ","ㅛ","ㅠ","0"};
-        for(int i=0; i<60; i++) {
-            if (Math.round(output[0][i]) == 1)
-                tv_transResult.setText(list[i]);
+                tv_transResult.setText(str);
+                break;  //원하는 단어 찾았으므로 for문 break
+            }
+            else
+                tv_transResult.setText("결과 없음");
         }
     }
 
