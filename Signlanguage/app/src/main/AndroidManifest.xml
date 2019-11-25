@@ -4,7 +4,6 @@
     package="com.example.singlanguage">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -45,10 +44,6 @@
         <activity android:name=".Translation" />
         <activity android:name=".TodayReview" />
         <activity android:name=".TodayStart" />
-        <!--
-      android:configChanges="keyboardHidden|orientation"  />
-            android:screenOrientation="landscape"
-        -->
         <activity android:name=".TodayLearning" />
         <activity android:name=".learning" />
         <activity android:name=".IntroActivity">
