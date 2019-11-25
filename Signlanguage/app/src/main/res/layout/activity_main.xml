@@ -8,42 +8,54 @@
     android:orientation="vertical"
     android:layout_marginLeft="1dp"
     android:layout_marginRight="1dp"
-    android:layout_marginBottom="20dp"
+    android:background="@drawable/main_background"
     tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="265dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
         android:layout_gravity="center"
         android:layout_weight="3"
-        android:src="@drawable/lovelanguage" />
+        android:src="@drawable/logo_plane" />
+
     <Button
         android:id="@+id/Learning"
-        android:layout_width="220dp"
+        android:layout_width="260dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
-        android:text="Learning"
         android:layout_gravity="center"
-        android:layout_weight="1" />
+        android:layout_marginBottom="10dp"
+        android:layout_weight="0.8"
+        android:background="#00ff0000"
+        android:text="Learning"
+        android:textColor="#D30A2D49"
+        android:textSize="17dp" />
+
     <Button
         android:id="@+id/Translation"
-        android:layout_width="220dp"
+        android:layout_width="260dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
-        android:text="Translation"
         android:layout_gravity="center"
-        android:layout_weight="1"/>
+        android:layout_marginBottom="10dp"
+        android:layout_weight="0.8"
+        android:background="#00ff0000"
+        android:text="Translation"
+        android:textColor="#D30A2D49"
+        android:textSize="17dp" />
 
     <Button
         android:id="@+id/Setting"
-        android:layout_width="220dp"
+        android:layout_width="260dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="140dp"
         android:text="Setting"
         android:layout_gravity="center"
-        android:layout_weight="1"
-        />
+        android:layout_weight="0.8"
+        android:background="#00ff0000"
+        android:textColor="#D30A2D49"
+        android:textSize="17dp"/>
 
 
 
