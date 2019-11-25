@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -147,6 +148,9 @@ public class Quiz extends AppCompatActivity
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         setContentView(R.layout.activity_quiz);
+
+        ActionBar ab = getSupportActionBar() ;
+        ab.setTitle("퀴즈") ;
 
         Button stop = (Button) findViewById(R.id.bt_stop);
         tv_imageNum = findViewById(R.id.tv_image);

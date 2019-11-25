@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,6 +36,9 @@ public class MainSetting extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_setting);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("환경설정");
 
         final DBToday dbToday = DBToday.getInstance(getApplicationContext());
         //이름 변경하기

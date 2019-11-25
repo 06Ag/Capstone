@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment5">
+
+    <!-- 음식 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:layout_gravity="center_horizontal">
+
+            <LinearLayout
+                android:id="@+id/layout_hardtack"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_hardtack"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/hardtack" />
+
+                <TextView
+                    android:id="@+id/txt_hardtack"
+                    style="@style/CustomTextView"
+                    android:text="건빵" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_meat"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_meat"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/meat" />
+
+                <TextView
+                    android:id="@+id/txt_meat"
+                    style="@style/CustomTextView"
+                    android:text="고기" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_ricedough"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_ricedough"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/ricedough" />
+
+                <TextView
+                    android:id="@+id/txt_ricedough"
+                    style="@style/CustomTextView"
+                    android:text="떡" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_fruit"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_fruit"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/fruit" />
+
+                <TextView
+                    android:id="@+id/txt_fruit"
+                    style="@style/CustomTextView"
+                    android:text="열매" />
+            </LinearLayout>
+
+        </GridLayout>
+    </ScrollView>
+
+</LinearLayout>

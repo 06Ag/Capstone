@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment6">
+
+    <!-- 기타 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:layout_gravity="center_horizontal">
+
+            <LinearLayout
+                android:id="@+id/layout_itch"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_itch"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/itch" />
+
+                <TextView
+                    android:id="@+id/txt_itch"
+                    style="@style/CustomTextView"
+                    android:text="가렵다" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_presentation"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_presentation"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/presentation" />
+
+                <TextView
+                    android:id="@+id/txt_presentation"
+                    style="@style/CustomTextView"
+                    android:text="발표하다" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_read"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_read"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/read" />
+
+                <TextView
+                    android:id="@+id/txt_read"
+                    style="@style/CustomTextView"
+                    android:text="읽다" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_discuss"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_discuss"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/discuss" />
+
+                <TextView
+                    android:id="@+id/txt_discuss"
+                    style="@style/CustomTextView"
+                    android:text="상의하다" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_north"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_north"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/north" />
+
+                <TextView
+                    android:id="@+id/txt_north"
+                    style="@style/CustomTextView"
+                    android:text="북쪽" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_south"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_south"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/south" />
+
+                <TextView
+                    android:id="@+id/txt_south"
+                    style="@style/CustomTextView"
+                    android:text="남쪽" />
+            </LinearLayout>
+
+        </GridLayout>
+    </ScrollView>
+
+</LinearLayout>

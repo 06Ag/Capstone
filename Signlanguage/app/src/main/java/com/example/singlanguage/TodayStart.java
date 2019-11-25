@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class TodayStart extends AppCompatActivity {
@@ -26,6 +27,9 @@ public class TodayStart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_today_start);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setTitle("오늘의 학습");
 
         listView = (ListView) findViewById(R.id.listview);
         bt_start = (Button) findViewById(R.id.bt_start);

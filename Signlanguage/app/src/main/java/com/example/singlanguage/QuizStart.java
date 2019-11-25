@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.IdRes;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -49,6 +52,9 @@ public class QuizStart extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_start);
+
+        ActionBar ab = getSupportActionBar() ;
+        ab.setTitle("퀴즈") ;
 
         final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext()); //db가져오기
         final DBToday dbToday = DBToday.getInstance(getApplicationContext());
@@ -244,5 +250,20 @@ public class QuizStart extends AppCompatActivity {
 
             }
         });
+    }
+
+    //액션바에 환경설정 메뉴 추가
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        final MenuItem item_setting = menu.add(0,0,0,"환경설정");
+        item_setting.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {    //환경설정으로 넘어감
+            public boolean onMenuItemClick (MenuItem item){
+                Intent intent = new Intent(getApplicationContext(), MainSetting.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        return true ;
     }
 }

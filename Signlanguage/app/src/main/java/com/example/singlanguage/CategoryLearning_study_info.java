@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 //카테고리학습 메뉴의 정보학습 페이지
@@ -40,9 +41,11 @@ public class CategoryLearning_study_info extends AppCompatActivity{
 
         final String name = intent.getExtras().getString("name");
         tv_imageNum.setText(name);
-        hand_explain.setText('\n' + des);
-        word_explain.setText(wordinfo);
+        hand_explain.setText("\n\t" + des);
+        word_explain.setText("\n\t" + wordinfo);
 
+        ActionBar ab = getSupportActionBar() ;
+        ab.setTitle("카테고리 학습") ;
 
         //stop시 전페이지로
         stop.setOnClickListener(new View.OnClickListener() {

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragment4">
+
+    <!-- 사람 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:layout_gravity="center_horizontal">
+
+            <LinearLayout
+                android:id="@+id/layout_customer"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_customer"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/customer" />
+
+                <TextView
+                    android:id="@+id/txt_customer"
+                    style="@style/CustomTextView"
+                    android:text="손님" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_woman"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_woman"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/woman" />
+
+                <TextView
+                    android:id="@+id/txt_woman"
+                    style="@style/CustomTextView"
+                    android:text="여자" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_man"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_man"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/man" />
+
+                <TextView
+                    android:id="@+id/txt_man"
+                    style="@style/CustomTextView"
+                    android:text="남자" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_teacher"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_teacher"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/teacher" />
+
+                <TextView
+                    android:id="@+id/txt_teacher"
+                    style="@style/CustomTextView"
+                    android:text="선생님" />
+            </LinearLayout>
+
+        </GridLayout>
+    </ScrollView>
+
+</LinearLayout>

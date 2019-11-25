@@ -8,16 +8,16 @@
     android:orientation="vertical"
     tools:context=".Fragment2">
 
+    <!-- 자모음 -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout style="@style/CustomLinearLayout_hor">
+            android:layout_height="wrap_content"
+            android:columnCount="4"
+            android:layout_gravity="center_horizontal">
 
                 <LinearLayout
                     android:id="@+id/layout_giyeok"
@@ -79,10 +79,6 @@
                         android:text="리을" />
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout style="@style/CustomLinearLayout_hor">
-
                 <LinearLayout
                     android:id="@+id/layout_mieum"
                     style="@style/CustomLinearLayout_ver">
@@ -142,10 +138,6 @@
                         style="@style/CustomTextView"
                         android:text="이응" />
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout style="@style/CustomLinearLayout_hor">
 
                 <LinearLayout
                     android:id="@+id/layout_jieut"
@@ -207,10 +199,6 @@
                         android:text="티읕" />
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout style="@style/CustomLinearLayout_hor">
-
                 <LinearLayout
                     android:id="@+id/layout_pieup"
                     style="@style/CustomLinearLayout_ver">
@@ -270,10 +258,6 @@
                         style="@style/CustomTextView"
                         android:text="ㅑ" />
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout style="@style/CustomLinearLayout_hor">
 
                 <LinearLayout
                     android:id="@+id/layout_eo"
@@ -335,10 +319,6 @@
                         android:text="ㅛ" />
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout style="@style/CustomLinearLayout_hor">
-
                 <LinearLayout
                     android:id="@+id/layout_u"
                     style="@style/CustomLinearLayout_ver">
@@ -398,10 +378,6 @@
                         style="@style/CustomTextView"
                         android:text="l" />
                 </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout style="@style/CustomLinearLayout_hor">
 
                 <LinearLayout
                     android:id="@+id/layout_ae"
@@ -463,10 +439,6 @@
                         android:text="ㅖ" />
                 </LinearLayout>
 
-            </LinearLayout>
-
-            <LinearLayout style="@style/CustomLinearLayout_hor">
-
                 <LinearLayout
                     android:id="@+id/layout_ui"
                     style="@style/CustomLinearLayout_ver">
@@ -512,10 +484,6 @@
                         android:text="ㅟ" />
                 </LinearLayout>
 
-            </LinearLayout>
-
-        </LinearLayout>
+        </GridLayout>
     </ScrollView>
-
-
 </LinearLayout>

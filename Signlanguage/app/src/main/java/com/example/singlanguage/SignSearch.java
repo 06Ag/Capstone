@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SignSearch extends AppCompatActivity {
@@ -22,6 +23,10 @@ public class SignSearch extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_search);
+
+        ActionBar ab = getSupportActionBar() ;
+        ab.setTitle("수화 검색") ;
+
         Intent intent = getIntent();
         String name = intent.getExtras().getString("name");
 
