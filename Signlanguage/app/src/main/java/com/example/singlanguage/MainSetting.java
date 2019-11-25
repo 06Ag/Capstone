@@ -23,11 +23,20 @@ public class MainSetting extends AppCompatActivity {
     private LinearLayout linear1;
     private LinearLayout linear2;
 
+    int pre;    //이전 페이지 없을 경우 -1이 저장됨 - mainActivity로 이동
     @Override
     public void onBackPressed() {
         // 기존 뒤로가기 버튼의 기능을 막기위해 주석처리 또는 삭제
-        // super.onBackPressed();
-        final Intent intent = new Intent(MainSetting.this , MainActivity.class);
+        //super.onBackPressed();
+        final Intent intent;
+        if(pre == 1)
+            intent = new Intent(getApplicationContext(), TodayLearning.class);
+        else if(pre == 2)
+            intent = new Intent(getApplicationContext(), CategoryLearning.class);
+        else if(pre == 3)
+            intent = new Intent(getApplicationContext(), QuizStart.class);
+        else
+            intent = new Intent(MainSetting.this , MainActivity.class);
         startActivity(intent);
     }
 
@@ -53,6 +62,9 @@ public class MainSetting extends AppCompatActivity {
         final EditText Name = (EditText) findViewById(R.id.nickname);
         final RadioGroup rGroup = (RadioGroup) findViewById(R.id.wordchGroup); //  단어 수
 
+        Intent intent_pre = getIntent();    //TodayLearning(1), CategoryLearning(2), QuizStart(3) 페이지에서 이동 가능
+        pre = intent_pre.getIntExtra("page", -1);   //이전 페이지 없을 경우 -1이 저장됨 - mainActivity로 이동
+
         // edittext말고 다른데 터치시 키보드 창 없앰
         tlinear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,14 +86,15 @@ public class MainSetting extends AppCompatActivity {
                 // 제목셋팅
                 builder.setTitle("*알림*");
                 // AlertDialog 셋팅
-                builder.setMessage("이름 변경이 완료되었습니다.\n메인화면으로 돌아갑니다.");
+                if(pre == -1)
+                    builder.setMessage("이름 변경이 완료되었습니다.\n메인화면으로 돌아갑니다.");
+                else
+                    builder.setMessage("이름 변경이 완료되었습니다.\n이전화면으로 돌아갑니다.");
                 builder.setPositiveButton("예",
                         new DialogInterface.OnClickListener() {
                             public void onClick(
                                     DialogInterface dialog, int id) {
-                                final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                startActivity(intent);
+                                onBackPressed();    //뒤로 가기 버튼과 동일 작업 수행
                             }
                         })
                         .setNegativeButton("아니요.",
@@ -111,14 +124,15 @@ public class MainSetting extends AppCompatActivity {
                 // 제목셋팅
                 builder.setTitle("*알림*");
                 // AlertDialog 셋팅
-                builder.setMessage("변경이 완료되었습니다.\n다음 날부터 단어 수 변경이 수행됩니다..\n메인화면으로 돌아갑니다.");
+                if(pre == -1)
+                    builder.setMessage("이름 변경이 완료되었습니다.\n다음 날부터 단어 수 변경이 수행됩니다.\n메인화면으로 돌아갑니다.");
+                else
+                    builder.setMessage("이름 변경이 완료되었습니다.\n다음 날부터 단어 수 변경이 수행됩니다.\n이전화면으로 돌아갑니다.");
                 builder.setPositiveButton("예",
                         new DialogInterface.OnClickListener() {
                             public void onClick(
                                     DialogInterface dialog, int id) {
-                                final Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                startActivity(intent);
+                                onBackPressed();
                             }
                         })
                         .setNegativeButton("아니요.",
