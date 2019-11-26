@@ -146,6 +146,7 @@ public class TodayLearning extends AppCompatActivity {
         item_setting.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {    //환경설정으로 넘어감
             public boolean onMenuItemClick (MenuItem item){
                 Intent intent = new Intent(getApplicationContext(), MainSetting.class);
+                intent.putExtra("page", 1); //환경설정페이지에 보낼 때 오늘의 학습에서 이동된 것을 알려줌
                 startActivity(intent);
                 return true;
             }

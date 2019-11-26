@@ -55,8 +55,8 @@ public class Quiz extends AppCompatActivity
     ProgressBar pb_count;
     int num, pos = 1;    //학습할 단어 수, 수화 순서
     int lh, ls, lv, uh, us, uv;
-
-    final String[] list = {"애","비읍","치읓","춥다", "컴퓨터", "손님","디귿","상의하다","에","8","어","으","5","4","열매","기역", "건빵", "히읗", "집","이","간지럽다","지읒","키읔", "남자", "고기", "약", "미음","니은","9","북쪽","오","외","1","피읖","가루","발표하다", "읽다", "갈비", "떡", "리을","학교", "7","시옷","남쪽", "선생님","10","3","티읕","2","우","의","위", "여자","야","얘","예","여","요","유","0"};
+    //수어 list
+    final String[][] list = new String[][] {{"애"},{"비읍"},{"지폐"},{"끓이다"},{"치읓"},{"다지다"},{"춥다"},{"기둥"},{"컴퓨터"},{"고객"},{"데이트"},{"디귿"},{"상의"},{"만두"},{"에"},{"8"},{"어"},{"으"},{"5"},{"4"},{"열매"},{"기역"},{"걸다"},{"건빵"}, {"히읗"}, {"집"},{"이"},{"가렵다"},{"지읒"},{"죽"},{"키읔"},{"사랑"},{"남자"},{"고기"},{"미음"},{"가장"},{"산"},{"버섯"},{"니은", "6"},{"9"},{"북쪽"},{"오"},{"외"},{"1", "아"},{"피읖"},{"가루"},{"발표하다"}, {"읽다"},{"녹음기"},{"관계"},{"갈비"},{"떡"},{"리을"},{"도로"},{"학교"},{"깨"},{"7"},{"시옷"},{"노예","심부름"},{"남쪽"},{"서다"},{"선생님"},{"10", "이응"},{"3"},{"티읕"},{"2"},{"우"},{"의"},{"산골"},{"위"},{"여자"},{"야"},{"얘"},{"예"},{"여"},{"요"},{"유"},{"0"}};
     String[] quiz_list;
     String[] quiz_result;   //X, 0, PASS 로 뜨게 된다.
 
@@ -455,7 +455,7 @@ public class Quiz extends AppCompatActivity
         //인터프리터 생성
         Interpreter tflite = getTfliteInterpreter("Trained_model.tflite");
 
-        float[][] output = new float[1][60];
+        float[][] output = new float[1][list.length];
         //인풋에 해당하는 결과 보기
         tflite.run(input, output);
 
@@ -465,32 +465,34 @@ public class Quiz extends AppCompatActivity
         Scalar green = new Scalar(0, 255, 0, 3);
         Scalar red = new Scalar(255, 0, 0, 3);
 
-        for(int i=0; i<60; i++) {
+        for(int i=0; i<output[0].length; i++) {
             if (Math.round(output[0][i]) == 1) {
-                //현재 단어와 동작 일치할 경우 - 초록색
-                if (quiz_list[pos - 1].equals(list[i])) {
-
-                    if (correctSet == 0) { //quizCorrect 타이머 작동안할때만 시작시키기
-                        quizCorrect.start();  //일치할경우 3초 세기 시작
-                        correctSet = 1;
+                for(int j=0; j<list[i].length; j++) {   //수화 동작 같은 단어들 모두를 비교
+                    //현재 단어와 동작 일치할 경우 - 초록색
+                    if (quiz_list[pos - 1].equals(list[i][j])) {
+                        if (correctSet == 0) { //quizCorrect 타이머 작동안할때만 시작시키기
+                            quizCorrect.start();  //일치할경우 3초 세기 시작
+                            correctSet = 1;
+                        }
+                        Imgproc.rectangle(matResult, new Point(15, 10), new Point(matResult.cols() - 15, matResult.rows() - 10), green, 30);
+                        break;
                     }
-                    Imgproc.rectangle(matResult, new Point(15, 10), new Point(matResult.cols() - 15, matResult.rows() - 10), green, 30);
-                }
-                //현재 단어와 동작 불일치 경우 - 빨간색
-                else {
-                    if (correctSet == 1) { //quizCorrect 타이머 작동중에만 중단
-                        quizCorrect.cancel();  //틀릴경우 타이머 중단
-                        if (countSet == 2) {
-                            correctSet = -1;    //10초 카운트가 끝나고 마지막 기회에서 단어 틀리면 더이상 퀴즈 맞추기 불가
-                            tv_imageNum.setText("WRONG");
-                            //다음 단어로 넘어가는 타이머 시작
-                            quizFinish.start();
-                        } else
-                            correctSet = 0;
-                        tv_correct.setText("");
+                    //현재 단어와 동작 불일치 경우 - 빨간색
+                    else {
+                        if (correctSet == 1) { //quizCorrect 타이머 작동중에만 중단
+                            quizCorrect.cancel();  //틀릴경우 타이머 중단
+                            if (countSet == 2) {
+                                correctSet = -1;    //10초 카운트가 끝나고 마지막 기회에서 단어 틀리면 더이상 퀴즈 맞추기 불가
+                                tv_imageNum.setText("WRONG");
+                                //다음 단어로 넘어가는 타이머 시작
+                                quizFinish.start();
+                            } else
+                                correctSet = 0;
+                            tv_correct.setText("");
+                        }
+                        Imgproc.rectangle(matResult, new Point(15, 10), new Point(matResult.cols() - 15, matResult.rows() - 10), red, 30);
+                        //   Imgproc.circle(matResult, new Point(mOpenCvCameraView.getHeight()/2, mOpenCvCameraView.getWidth()/2), 200, red, 20,0);
                     }
-                    Imgproc.rectangle(matResult, new Point(15, 10), new Point(matResult.cols() - 15, matResult.rows() - 10), red, 30);
-                    //   Imgproc.circle(matResult, new Point(mOpenCvCameraView.getHeight()/2, mOpenCvCameraView.getWidth()/2), 200, red, 20,0);
                 }
                 break;
             }

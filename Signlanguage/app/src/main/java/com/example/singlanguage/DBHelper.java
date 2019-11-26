@@ -68,6 +68,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         String line;
         try {
+            line = reader.readLine();   //2번째 행 값부터 디비에 넣기 위해 1번째 행 먼저 불러오기
             while((line = reader.readLine()) != null){
                 Log.d("My Activity","Line: "+ line);
                 //Split by ','
