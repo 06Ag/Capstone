@@ -16,19 +16,11 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_gravity="center"
-        android:layout_marginLeft="1dp"
-        android:layout_marginRight="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="50dp"
         android:layout_weight="1">
-
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:text=" 검색 :"
-            android:layout_marginLeft="1dp"
-            android:layout_gravity="center"
-            android:layout_weight="2"/>
 
 
         <EditText
@@ -36,7 +28,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_weight="4"
-            android:hint="검색내용을 입력하세요"
+            android:hint=" 수어 검색"
             android:gravity="left|center_vertical"
             android:textColor="#000000"
             android:textSize="20dp"
@@ -48,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:text="'?'"/>
+            android:text="검색"/>
 
     </LinearLayout>
 
