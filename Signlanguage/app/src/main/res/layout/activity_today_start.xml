@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:gravity="center_vertical"
+        android:gravity="center_horizontal|center_vertical"
         android:text="오늘 학습할 단어들의 목록입니다."
         android:textSize="20sp"/>
 
