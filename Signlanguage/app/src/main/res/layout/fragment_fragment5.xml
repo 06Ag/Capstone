@@ -76,6 +76,62 @@
                     android:text="열매" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_dumpling"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_dumpling"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/dumpling" />
+
+                <TextView
+                    android:id="@+id/txt_dumpling"
+                    style="@style/CustomTextView"
+                    android:text="만두" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_juk"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_juk"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/juk" />
+
+                <TextView
+                    android:id="@+id/txt_juk"
+                    style="@style/CustomTextView"
+                    android:text="죽" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_mushroom"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_mushroom"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/mushroom" />
+
+                <TextView
+                    android:id="@+id/txt_mushroom"
+                    style="@style/CustomTextView"
+                    android:text="버섯" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_sesame"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_sesame"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/sesame" />
+
+                <TextView
+                    android:id="@+id/txt_sesame"
+                    style="@style/CustomTextView"
+                    android:text="깨" />
+            </LinearLayout>
+
         </GridLayout>
     </ScrollView>
 

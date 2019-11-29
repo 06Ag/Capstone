@@ -76,6 +76,20 @@
                     android:text="선생님" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_slave"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_slave"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/slave" />
+
+                <TextView
+                    android:id="@+id/txt_slave"
+                    style="@style/CustomTextView"
+                    android:text="노예" />
+            </LinearLayout>
+
         </GridLayout>
     </ScrollView>
 

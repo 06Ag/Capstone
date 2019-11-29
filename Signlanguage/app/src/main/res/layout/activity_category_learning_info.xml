@@ -23,7 +23,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="290dp"
+        android:layout_height="280dp"
         android:layout_gravity="center_horizontal"
         android:scaleType="centerInside"
         opencv:srcCompat="@tools:sample/avatars" />
@@ -32,9 +32,10 @@
         android:id="@+id/word_inform"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="수형 정보"
-        android:textColor="@android:color/black"
-        android:textSize="17sp" />
+        android:layout_marginTop="5dp"
+        android:text="\t\t수형 정보"
+        android:textColor="#00547E"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/hand_explain"
@@ -49,9 +50,10 @@
         android:id="@+id/word_explain1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="단어 정보"
-        android:textColor="@android:color/black"
-        android:textSize="17sp" />
+        android:layout_marginTop="5dp"
+        android:text="\t\t단어 정보"
+        android:textColor="#00547E"
+        android:textSize="18sp" />
     <TextView
         android:id="@+id/word_explain2"
         android:layout_width="match_parent"
@@ -64,7 +66,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="0.2"
         android:orientation="horizontal">
 
         <Button
@@ -72,8 +74,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="학습 중단"
-            android:textSize="12sp" />
+            android:text="학습 중단" />
 
         <Button
             android:id="@+id/bt_next"

@@ -29,11 +29,15 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
         LinearLayout image_school = (LinearLayout) view.findViewById(R.id.layout_school);
         LinearLayout image_house = (LinearLayout) view.findViewById(R.id.layout_house);
         LinearLayout image_powder = (LinearLayout) view.findViewById(R.id.layout_powder);
+        LinearLayout image_bill = (LinearLayout) view.findViewById(R.id.layout_bill);
+        LinearLayout image_column = (LinearLayout) view.findViewById(R.id.layout_column);
 
         image_computer.setOnClickListener(this);
         image_school.setOnClickListener(this);
         image_house.setOnClickListener(this);
         image_powder.setOnClickListener(this);
+        image_bill.setOnClickListener(this);
+        image_column.setOnClickListener(this);
 
         return view;
     }
@@ -46,6 +50,8 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
         else if(v.getId() == R.id.layout_school)   intent.putExtra("name", "학교");
         else if(v.getId() == R.id.layout_house)   intent.putExtra("name", "집");
         else if(v.getId() == R.id.layout_powder)   intent.putExtra("name", "가루");
+        else if(v.getId() == R.id.layout_bill)   intent.putExtra("name", "지폐");
+        else if(v.getId() == R.id.layout_column)   intent.putExtra("name", "기둥");
 
         startActivity(intent);
     }
