@@ -27,11 +27,20 @@ public class Fragment5 extends Fragment implements View.OnClickListener{
         LinearLayout image_meat = (LinearLayout) view.findViewById(R.id.layout_meat);
         LinearLayout image_ricdough = (LinearLayout) view.findViewById(R.id.layout_ricedough);
         LinearLayout image_fruit = (LinearLayout) view.findViewById(R.id.layout_fruit);
+        LinearLayout image_dumpling = (LinearLayout) view.findViewById(R.id.layout_dumpling);
+        LinearLayout image_juk = (LinearLayout) view.findViewById(R.id.layout_juk);
+        LinearLayout image_mushroom = (LinearLayout) view.findViewById(R.id.layout_mushroom);
+        LinearLayout image_sesame = (LinearLayout) view.findViewById(R.id.layout_sesame);
+
 
         image_hardtack.setOnClickListener(this);
         image_meat.setOnClickListener(this);
         image_ricdough.setOnClickListener(this);
         image_fruit.setOnClickListener(this);
+        image_dumpling.setOnClickListener(this);
+        image_juk.setOnClickListener(this);
+        image_mushroom.setOnClickListener(this);
+        image_sesame.setOnClickListener(this);
 
         return view;
     }
@@ -44,6 +53,10 @@ public class Fragment5 extends Fragment implements View.OnClickListener{
         else if(v.getId() == R.id.layout_meat)   intent.putExtra("name", "고기");
         else if(v.getId() == R.id.layout_ricedough)   intent.putExtra("name", "떡");
         else if(v.getId() == R.id.layout_fruit)   intent.putExtra("name", "열매");
+        else if(v.getId() == R.id.layout_dumpling)   intent.putExtra("name", "만두");
+        else if(v.getId() == R.id.layout_juk)   intent.putExtra("name", "죽");
+        else if(v.getId() == R.id.layout_mushroom)   intent.putExtra("name", "버섯");
+        else if(v.getId() == R.id.layout_sesame)   intent.putExtra("name", "깨");
 
         startActivity(intent);
     }

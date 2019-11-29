@@ -1,6 +1,8 @@
 package com.example.singlanguage;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +29,7 @@ public class TodayLearning extends AppCompatActivity {
     TextView tv_cnt;    //외운 단어 수
     TextView tv_Ncnt;   //#
     TextView tv_proTitle;   //오늘의 성취도
+    TextView tv_proEx;  //하루 학습 단어 수
     ProgressBar pb_progress;
     @Override
     public void onBackPressed() {
@@ -54,6 +57,7 @@ public class TodayLearning extends AppCompatActivity {
         tv_progress = findViewById(R.id.tv_progress);
         pb_progress = findViewById(R.id.pb_progress);
         tv_Nday = findViewById(R.id.tv_Nday);
+        tv_proEx = findViewById(R.id.tv_proEx);
 
         String firstdate = dbToday.getDate(); //db에 저장되있는 처음 학습 날짜 불러옴
 
@@ -64,8 +68,11 @@ public class TodayLearning extends AppCompatActivity {
         final String date = simpleDateFormat.format(new Date());//오늘날짜 가져오기
 
         String name = dbToday.getName();
+        int countword= dbToday.getCount();
 
         tv_UserName.setText(name);// db에 저장되어있는 사람이름
+        tv_proEx.setText("현재 하루 학습 단어 수는 " + countword + "개 입니다.\n하루 목표치를 달성해보세요!"); //하루 학습 단어 수
+
 
         Date beginDate = null;
         Date endDate = null;
@@ -103,8 +110,6 @@ public class TodayLearning extends AppCompatActivity {
         final int wholeword = dbHelper.getchlearn();
         temp = String.valueOf(wholeword);
         tv_Ncnt.setText(temp);
-
-        int countword = dbToday.getCount(); //db에 저장되어있는 오늘의 학습 단어 수
 
         //바 부분을 DBTODAY에다가 pos 컬럼을 만들어서 구현해야함
         //학습한 단어 수 progress bar에 적용

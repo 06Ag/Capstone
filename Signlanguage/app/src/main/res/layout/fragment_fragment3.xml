@@ -78,6 +78,34 @@
                     android:text="가루" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_bill"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_bill"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/bill" />
+
+                <TextView
+                    android:id="@+id/txt_bill"
+                    style="@style/CustomTextView"
+                    android:text="지폐" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_column"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_column"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/column" />
+
+                <TextView
+                    android:id="@+id/txt_column"
+                    style="@style/CustomTextView"
+                    android:text="기둥" />
+            </LinearLayout>
+
         </GridLayout>
     </ScrollView>
 

@@ -27,11 +27,13 @@ public class Fragment4 extends Fragment implements View.OnClickListener{
         LinearLayout image_woman = (LinearLayout) view.findViewById(R.id.layout_woman);
         LinearLayout image_man = (LinearLayout) view.findViewById(R.id.layout_man);
         LinearLayout image_teacher = (LinearLayout) view.findViewById(R.id.layout_teacher);
+        LinearLayout image_slave = (LinearLayout) view.findViewById(R.id.layout_slave);
 
         image_customer.setOnClickListener(this);
         image_woman.setOnClickListener(this);
         image_man.setOnClickListener(this);
         image_teacher.setOnClickListener(this);
+        image_slave.setOnClickListener(this);
 
         return view;
     }
@@ -44,7 +46,7 @@ public class Fragment4 extends Fragment implements View.OnClickListener{
         else if(v.getId() == R.id.layout_woman)   intent.putExtra("name", "여자");
         else if(v.getId() == R.id.layout_man)   intent.putExtra("name", "남자");
         else if(v.getId() == R.id.layout_teacher)   intent.putExtra("name", "선생님");
-
+        else if(v.getId() == R.id.layout_slave)   intent.putExtra("name", "노예");
         startActivity(intent);
     }
 }
