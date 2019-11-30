@@ -130,7 +130,7 @@ public class CategoryLearning_study_camera extends AppCompatActivity
         imgview.setImageURI(uri_img);   //이미지뷰에 이미지 출력
 
         name = intent.getExtras().getString("name");
-        tv_imageNum.setText("동작을 따라해보세요.\n\n" + name);
+        tv_imageNum.setText(name);
 
         //임시로 stop시 전페이지로
         stop.setOnClickListener(new View.OnClickListener() {

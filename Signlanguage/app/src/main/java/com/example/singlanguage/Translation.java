@@ -52,7 +52,6 @@ public class Translation extends AppCompatActivity
 
     int lh, ls, lv, uh, us, uv;
     TextView tv_transResult;
-    TextView tv_hsvValue;
 
     private static final String TAG = "opencv";
     private Mat matInput;
@@ -103,7 +102,6 @@ public class Translation extends AppCompatActivity
         mOpenCvCameraView.setCameraIndex(cameraType); // front-camera(1),  back-camera(0)
 
         tv_transResult = (TextView) findViewById(R.id.transresult);
-        tv_hsvValue = (TextView) findViewById(R.id.tv_hsv_Value);
 
         Intent intent = getIntent();
         lh = intent.getExtras().getInt("LH");
@@ -112,8 +110,6 @@ public class Translation extends AppCompatActivity
         uh = intent.getExtras().getInt("UH");
         us = intent.getExtras().getInt("US");
         uv = intent.getExtras().getInt("UV");
-
-        tv_hsvValue.setText("HSV 값\nLH - " + lh + "  LS - " + ls + "  LV - " + lv + "\nUH - "+uh+"   US - " + us + "   UV - " + uv);
     }
     //딥러닝
     public void recognise() {
