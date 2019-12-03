@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -80,6 +81,9 @@ public class HsvSetting extends AppCompatActivity
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        ActionBar ab = getSupportActionBar() ;
+        ab.setTitle("Setting") ;
 
         setContentView(R.layout.activity_hsv_setting);
         //카메라 설정

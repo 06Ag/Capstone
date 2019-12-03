@@ -22,7 +22,7 @@
             android:layout_height="40dp"
             android:gravity="center_vertical"
             android:text="  #수어 이름"
-            android:background="#B0E0E6"
+            android:background="#FFFFCC"
             android:id="@+id/signname"
             android:layout_weight="1"/>
 
@@ -31,7 +31,7 @@
             android:layout_height="40dp"
             android:gravity="center_vertical"
             android:text=" 학습 여부"
-            android:background="#B0E0E6"
+            android:background="#FFFFCC"
             android:id="@+id/chlearn"
             android:layout_weight="1"/>
     </LinearLayout>

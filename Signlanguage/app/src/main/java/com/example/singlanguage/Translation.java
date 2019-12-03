@@ -47,12 +47,11 @@ import static android.Manifest.permission.CAMERA;
 public class Translation extends AppCompatActivity
         implements CameraBridgeViewBase.CvCameraViewListener2 {
 
-    //단어 총 82개
-    final String[][] list = new String[][] {{"애"},{"비읍"},{"지폐"},{"끓이다"},{"치읓"},{"다지다"},{"춥다"},{"기둥"},{"컴퓨터"},{"고객"},{"데이트"},{"디귿"},{"상의"},{"만두"},{"에"},{"8"},{"어"},{"으"},{"5"},{"4"},{"열매"},{"기역"},{"걸다"},{"건빵"}, {"히읗"}, {"집"},{"이"},{"가렵다"},{"지읒"},{"죽"},{"키읔"},{"사랑"},{"남자"},{"고기"},{"미음"},{"가장"},{"산"},{"버섯"},{"니은", "6"},{"9"},{"북쪽"},{"오"},{"외"},{"1", "아"},{"피읖"},{"가루"},{"발표하다"}, {"읽다"},{"녹음기"},{"관계"},{"갈비"},{"떡"},{"리을"},{"도로"},{"학교"},{"깨"},{"7"},{"시옷"},{"노예","심부름"},{"남쪽"},{"서다"},{"선생님"},{"10", "이응"},{"3"},{"티읕"},{"2"},{"우"},{"의"},{"산골"},{"위"},{"여자"},{"야"},{"얘"},{"예"},{"여"},{"요"},{"유"},{"0"}};
+    //단어 총 100개
+    final String[][] list = new String[][] {{"애"},{"가방"},{"비읍"},{"지폐"},{"챔피언"},{"치읓"},{"다지다"},{"춥다"},{"기둥"},{"컴퓨터"},{"문화"},{"고객"},{"데이트"},{"디귿"},{"상의"},{"만두"},{"에"},{"8"},{"어"},{"으"},{"5"},{"4"},{"열매"},{"신사"},{"꾼"},{"기역"},{"핸드백"},{"걸다"},{"건빵"}, {"히읗"}, {"집"},{"이"},{"가렵다"},{"지읒"},{"죽"},{"꼬마"},{"키읔"},{"법"},{"사랑"},{"만들다"},{"남자"},{"고기"},{"미음"},{"가장"},{"산"},{"버섯"},{"니은", "6"},{"9"},{"북쪽"},{"오"},{"외"},{"1", "아"},{"고아"},{"피읖"},{"탁구"},{"장소"},{"비행기"},{"가루"},{"발표"},{"호박"},{"읽다"},{"녹음기"},{"관계"},{"구출"},{"갈비"},{"떡"},{"리을"},{"도로"},{"학교"},{"깨"},{"7"},{"시옷"},{"노예","심부름"},{"남쪽"},{"서다"},{"선생님"},{"10", "이응"},{"3"},{"티읕"},{"단련"},{"2"},{"우"},{"의"},{"산골"},{"위"},{"아내"},{"여자"},{"글"},{"야"},{"얘"},{"예"},{"여"},{"요"},{"녀석"},{"유"},{"0"}};
 
     int lh, ls, lv, uh, us, uv;
     TextView tv_transResult;
-    TextView tv_hsvValue;
 
     private static final String TAG = "opencv";
     private Mat matInput;
@@ -103,7 +102,6 @@ public class Translation extends AppCompatActivity
         mOpenCvCameraView.setCameraIndex(cameraType); // front-camera(1),  back-camera(0)
 
         tv_transResult = (TextView) findViewById(R.id.transresult);
-        tv_hsvValue = (TextView) findViewById(R.id.tv_hsv_Value);
 
         Intent intent = getIntent();
         lh = intent.getExtras().getInt("LH");
@@ -112,8 +110,6 @@ public class Translation extends AppCompatActivity
         uh = intent.getExtras().getInt("UH");
         us = intent.getExtras().getInt("US");
         uv = intent.getExtras().getInt("UV");
-
-        tv_hsvValue.setText("HSV 값\nLH - " + lh + "  LS - " + ls + "  LV - " + lv + "\nUH - "+uh+"   US - " + us + "   UV - " + uv);
     }
     //딥러닝
     public void recognise() {

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -28,6 +29,9 @@ public class learning extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learning);
+
+        ActionBar ab = getSupportActionBar() ;
+        ab.setTitle("학습") ;
 
         final DBToday dbToday = DBToday.getInstance(getApplicationContext());
 

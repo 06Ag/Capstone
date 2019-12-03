@@ -71,7 +71,7 @@ public class TodayReview extends AppCompatActivity {
             }else{
                 temp = "x";
             }
-            list.add(String.format("#%s %s",getRPad(LIST_NAME[t],40," "),temp));
+            list.add(String.format("#%s %s",getRPad(LIST_NAME[t],47," "),temp));
         }
 
         //listview에 LIST_NAME , LIST_LEARN내용 넣기

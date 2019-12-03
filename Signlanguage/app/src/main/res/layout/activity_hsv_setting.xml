@@ -11,24 +11,17 @@
     tools:context=".HsvSetting">
 
     <TextView
-        android:id="@+id/set_title"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="#00ff0000"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="Setting"
-        android:textColor="#D30A2D49"
-        android:textSize="18dp"
-        android:layout_gravity="center"
-        />
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="손만 흰색으로 보이도록 설정해주세요."
+        android:gravity="center" />
 
     <!-- 카메라의 영상이 출력되는 영역 -->
     <org.opencv.android.JavaCameraView
         android:id="@+id/activity_surface_view"
         android:layout_width="wrap_content"
-        android:layout_height="370dp"
+        android:layout_height="380dp"
         android:visibility="gone"
         opencv:camera_id="any" />
 
@@ -248,7 +241,7 @@
         android:id="@+id/finish"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="15dp"
         android:background="#B0C4DE"
         android:text="Finish"
         android:layout_gravity="center"
