@@ -14,17 +14,17 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:text="퀴즈 중단"
-        android:background="#BC8F8F"
+        android:background="#ED7D79"
         android:textSize="12sp" />
-    <!-- 이전 / 다음 버튼 -->
+    <!-- 다음 버튼 -->
     <Button android:id="@+id/bt_next"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="2dp"
         android:text="PASS"
         android:textSize="12sp"
-        android:background="#FA8072"/>
+        android:background="#FFC09E"/>
     <!-- 10초 카운트 타이머 프로그레스 바 -->
     <LinearLayout
         android:layout_width="match_parent"
