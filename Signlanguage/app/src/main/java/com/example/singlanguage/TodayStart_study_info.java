@@ -90,8 +90,8 @@ public class TodayStart_study_info extends AppCompatActivity {
         String wordinfo = dbHelper.getResult_wordinfo(name);    //한국어 정보
         Uri uri_img = Uri.parse("android.resource://" + getPackageName() + "/" + id);   //uri에 이미지 주소 저장
         iv_img.setImageURI(uri_img);   //이미지뷰에 이미지 출력
-        tv_explain.setText(des);    //수어 동작에 대한 설명
-        word_explain.setText(wordinfo); //단어에 대한 설명
+        tv_explain.setText("\n\t" + des);    //수어 동작에 대한 설명
+        word_explain.setText("\n\t" + wordinfo); //단어에 대한 설명
         dbHelper.setLearn(firstword); //학습 여부 참으로 바꿔놓기
         if (dbpos < pos) {
             dbpos += 1;
@@ -124,8 +124,8 @@ public class TodayStart_study_info extends AppCompatActivity {
                     String wordinfo = dbHelper.getResult_wordinfo(name);    //한국어 정보
                     Uri uri_img = Uri.parse("android.resource://" + getPackageName() + "/" + id);   //uri에 이미지 주소 저장
                     iv_img.setImageURI(uri_img);   //이미지뷰에 이미지 출력
-                    tv_explain.setText(des);    //수어 동작에 대한 설명
-                    word_explain.setText(wordinfo); //단어에 대한 설명
+                    tv_explain.setText("\n\t" + des);    //수어 동작에 대한 설명
+                    word_explain.setText("\n\t" + wordinfo); //단어에 대한 설명
                 } else {
                     Toast toast = Toast.makeText(TodayStart_study_info.this, "처음 단어 입니다.", Toast.LENGTH_SHORT);
                     toast.show();
@@ -161,8 +161,8 @@ public class TodayStart_study_info extends AppCompatActivity {
                     String wordinfo = dbHelper.getResult_wordinfo(name);    //한국어 정보
                     Uri uri_img = Uri.parse("android.resource://" + getPackageName() + "/" + id);   //uri에 이미지 주소 저장
                     iv_img.setImageURI(uri_img);   //이미지뷰에 이미지 출력
-                    tv_explain.setText(des);    //수어 동작에 대한 설명
-                    word_explain.setText(wordinfo); //단어에 대한 설명
+                    tv_explain.setText("\n\t" + des);    //수어 동작에 대한 설명
+                    word_explain.setText("\n\t" + wordinfo); //단어에 대한 설명
                     dbHelper.setLearn(temp); //학습 여부 참으로 바꿔놓기
                     if (dbpos < pos) {
                         dbpos += 1;
