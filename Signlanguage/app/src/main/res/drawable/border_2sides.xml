@@ -4,13 +4,13 @@
     <!-- 상하 테두리-->
     <item
         android:bottom="7dp"
-        android:left="-30dp"
-        android:right="-30dp"
+        android:left="-500dp"
+        android:right="-500dp"
         android:top="7dp">
         <shape android:shape="rectangle" >
             <stroke
                 android:width="3dp"
-                android:color="#dcdcdc" />
+                android:color="#BE006699" />
         </shape>
     </item>
 

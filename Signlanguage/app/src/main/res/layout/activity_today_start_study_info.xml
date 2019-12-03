@@ -5,6 +5,19 @@
     android:orientation="vertical"
     android:layout_margin="5dp">
 
+    <!-- 수화 이름 -->
+    <TextView
+        android:id="@+id/tv_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="0.8"
+        android:gravity="center"
+        android:text="수화 이름"
+        android:background="@drawable/border_2sides"
+        android:textColor="#000000"
+        android:textSize="22sp" />
+
     <!-- 수화 이미지 -->
     <ImageView
         android:id="@+id/iv_img"
@@ -14,68 +27,66 @@
         android:layout_gravity="center_horizontal"
         android:scaleType="centerInside"
         android:src="@drawable/testpicture" />
-    <!-- 수화 이름 -->
-    <TextView
-        android:id="@+id/tv_image"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="수화 #1"
-        android:gravity="center"
-        android:textSize="22sp"
-        android:textColor="@android:color/black"/>
     <!-- 수화 설명 -->
+    <TextView
+        android:id="@+id/word_inform"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="\t\t수형 정보"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
     <TextView
         android:id="@+id/tv_explain"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="15sp"
-        android:text="explain" />
+        android:background="@drawable/border"
+        android:text="hand_explain" />>
     <!-- 단어 정보 -->
     <TextView
         android:id="@+id/tv_word_explain1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:text="단어 정보"
-        android:gravity="center_vertical"
-        android:textColor="@android:color/black"
-        android:textSize="17sp" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="\t\t단어 정보"
+        android:textColor="#000000"
+        android:textSize="18sp" />
     <TextView
         android:id="@+id/tv_word_explain2"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textSize="15sp"
+        android:background="@drawable/border"
         android:text="word_explain" />
 
     <!-- 이전 / 다음 버튼 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.8"
         android:orientation="horizontal">
 
         <Button android:id="@+id/bt_previous"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="이전"
-            android:textSize="12sp" />
+            android:text="이전" />
 
         <Button android:id="@+id/bt_next"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="다음"
-            android:textSize="12sp" />
+            android:text="다음" />
     </LinearLayout>
     <!-- 학습 중단/ 동작 배우기 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="0.8"
         android:orientation="horizontal">
 
         <Button
@@ -83,8 +94,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="학습 중단"
-            android:textSize="12sp" />
+            android:text="학습 중단" />
         <Button
             android:id="@+id/bt_camera"
             android:layout_width="0dp"
