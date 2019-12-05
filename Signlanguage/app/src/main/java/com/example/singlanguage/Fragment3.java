@@ -31,6 +31,10 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
         LinearLayout image_powder = (LinearLayout) view.findViewById(R.id.layout_powder);
         LinearLayout image_bill = (LinearLayout) view.findViewById(R.id.layout_bill);
         LinearLayout image_column = (LinearLayout) view.findViewById(R.id.layout_column);
+        LinearLayout image_handbag = (LinearLayout) view.findViewById(R.id.layout_handbag);
+        LinearLayout image_bag = (LinearLayout) view.findViewById(R.id.layout_bag);
+        LinearLayout image_plane = (LinearLayout) view.findViewById(R.id.layout_plane);
+        LinearLayout image_recorder = (LinearLayout) view.findViewById(R.id.layout_recorder);
 
         image_computer.setOnClickListener(this);
         image_school.setOnClickListener(this);
@@ -38,6 +42,10 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
         image_powder.setOnClickListener(this);
         image_bill.setOnClickListener(this);
         image_column.setOnClickListener(this);
+        image_handbag.setOnClickListener(this);
+        image_bag.setOnClickListener(this);
+        image_plane.setOnClickListener(this);
+        image_recorder.setOnClickListener(this);
 
         return view;
     }
@@ -52,6 +60,10 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
         else if(v.getId() == R.id.layout_powder)   intent.putExtra("name", "가루");
         else if(v.getId() == R.id.layout_bill)   intent.putExtra("name", "지폐");
         else if(v.getId() == R.id.layout_column)   intent.putExtra("name", "기둥");
+        else if(v.getId() == R.id.layout_handbag)   intent.putExtra("name", "손가방");
+        else if(v.getId() == R.id.layout_bag)   intent.putExtra("name", "가방");
+        else if(v.getId() == R.id.layout_plane)   intent.putExtra("name", "비행기");
+        else if(v.getId() == R.id.layout_recorder)   intent.putExtra("name", "녹음기");
 
         startActivity(intent);
     }

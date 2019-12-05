@@ -17,21 +17,6 @@
             android:layout_gravity="center_horizontal">
 
             <LinearLayout
-                android:id="@+id/layout_itch"
-                style="@style/CustomLinearLayout_ver">
-
-                <ImageView
-                    android:id="@+id/image_itch"
-                    style="@style/CustomImageView"
-                    android:src="@drawable/itch" />
-
-                <TextView
-                    android:id="@+id/txt_itch"
-                    style="@style/CustomTextView"
-                    android:text="가렵다" />
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/layout_road"
                 style="@style/CustomLinearLayout_ver">
                 <ImageView
@@ -43,6 +28,20 @@
                     android:id="@+id/txt_road"
                     style="@style/CustomTextView"
                     android:text="도로" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_mountain"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_mountain"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/mountain" />
+
+                <TextView
+                    android:id="@+id/txt_mountain"
+                    style="@style/CustomTextView"
+                    android:text="산" />
             </LinearLayout>
 
             <LinearLayout
@@ -75,6 +74,21 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/layout_itch"
+                style="@style/CustomLinearLayout_ver">
+
+                <ImageView
+                    android:id="@+id/image_itch"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/itch" />
+
+                <TextView
+                    android:id="@+id/txt_itch"
+                    style="@style/CustomTextView"
+                    android:text="가렵다" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/layout_most"
                 style="@style/CustomLinearLayout_ver">
                 <ImageView
@@ -104,20 +118,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout_mountain"
-                style="@style/CustomLinearLayout_ver">
-                <ImageView
-                    android:id="@+id/image_mountain"
-                    style="@style/CustomImageView"
-                    android:src="@drawable/mountain" />
-
-                <TextView
-                    android:id="@+id/txt_mountain"
-                    style="@style/CustomTextView"
-                    android:text="산" />
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/layout_discuss"
                 style="@style/CustomLinearLayout_ver">
 
@@ -130,6 +130,90 @@
                     android:id="@+id/txt_discuss"
                     style="@style/CustomTextView"
                     android:text="상의" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_culture"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_culture"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/culture" />
+
+                <TextView
+                    android:id="@+id/txt_culture"
+                    style="@style/CustomTextView"
+                    android:text="문화" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_write"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_write"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/write" />
+
+                <TextView
+                    android:id="@+id/txt_write"
+                    style="@style/CustomTextView"
+                    android:text="글" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_train"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_train"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/train" />
+
+                <TextView
+                    android:id="@+id/txt_train"
+                    style="@style/CustomTextView"
+                    android:text="단련" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_rescue"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_rescue"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/rescue" />
+
+                <TextView
+                    android:id="@+id/txt_rescue"
+                    style="@style/CustomTextView"
+                    android:text="구출" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_law"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_law"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/law" />
+
+                <TextView
+                    android:id="@+id/txt_law"
+                    style="@style/CustomTextView"
+                    android:text="법" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_pingpong"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_pingpong"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/pingpong" />
+
+                <TextView
+                    android:id="@+id/txt_pingpong"
+                    style="@style/CustomTextView"
+                    android:text="탁구" />
             </LinearLayout>
 
             <LinearLayout
@@ -206,34 +290,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/layout_recorder"
-                style="@style/CustomLinearLayout_ver">
-                <ImageView
-                    android:id="@+id/image_recorder"
-                    style="@style/CustomImageView"
-                    android:src="@drawable/recorder" />
-
-                <TextView
-                    android:id="@+id/txt_recorder"
-                    style="@style/CustomTextView"
-                    android:text="녹음기" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_boil"
-                style="@style/CustomLinearLayout_ver">
-                <ImageView
-                    android:id="@+id/image_boil"
-                    style="@style/CustomImageView"
-                    android:src="@drawable/boil" />
-
-                <TextView
-                    android:id="@+id/txt_boil"
-                    style="@style/CustomTextView"
-                    android:text="끓다" />
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/layout_chop"
                 style="@style/CustomLinearLayout_ver">
                 <ImageView
@@ -301,6 +357,34 @@
                     android:id="@+id/txt_stand"
                     style="@style/CustomTextView"
                     android:text="서다" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_make"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_make"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/make" />
+
+                <TextView
+                    android:id="@+id/txt_make"
+                    style="@style/CustomTextView"
+                    android:text="만들다" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_place"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_place"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/place" />
+
+                <TextView
+                    android:id="@+id/txt_place"
+                    style="@style/CustomTextView"
+                    android:text="장소" />
             </LinearLayout>
 
         </GridLayout>
