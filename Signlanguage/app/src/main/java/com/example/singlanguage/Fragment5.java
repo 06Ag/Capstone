@@ -31,7 +31,7 @@ public class Fragment5 extends Fragment implements View.OnClickListener{
         LinearLayout image_juk = (LinearLayout) view.findViewById(R.id.layout_juk);
         LinearLayout image_mushroom = (LinearLayout) view.findViewById(R.id.layout_mushroom);
         LinearLayout image_sesame = (LinearLayout) view.findViewById(R.id.layout_sesame);
-
+        LinearLayout image_pumpkin = (LinearLayout) view.findViewById(R.id.layout_pumpkin);
 
         image_hardtack.setOnClickListener(this);
         image_meat.setOnClickListener(this);
@@ -41,6 +41,7 @@ public class Fragment5 extends Fragment implements View.OnClickListener{
         image_juk.setOnClickListener(this);
         image_mushroom.setOnClickListener(this);
         image_sesame.setOnClickListener(this);
+        image_pumpkin.setOnClickListener(this);
 
         return view;
     }
@@ -57,6 +58,7 @@ public class Fragment5 extends Fragment implements View.OnClickListener{
         else if(v.getId() == R.id.layout_juk)   intent.putExtra("name", "죽");
         else if(v.getId() == R.id.layout_mushroom)   intent.putExtra("name", "버섯");
         else if(v.getId() == R.id.layout_sesame)   intent.putExtra("name", "깨");
+        else if(v.getId() == R.id.layout_pumpkin)   intent.putExtra("name", "호박");
 
         startActivity(intent);
     }
