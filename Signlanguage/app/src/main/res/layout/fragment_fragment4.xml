@@ -17,6 +17,104 @@
             android:layout_gravity="center_horizontal">
 
             <LinearLayout
+                android:id="@+id/layout_ggun"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_ggun"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/ggun" />
+
+                <TextView
+                    android:id="@+id/txt_ggun"
+                    style="@style/CustomTextView"
+                    android:text="꾼" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_champion"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_champion"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/champion" />
+
+                <TextView
+                    android:id="@+id/txt_champion"
+                    style="@style/CustomTextView"
+                    android:text="챔피언" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_gentleman"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_gentleman"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/gentleman" />
+
+                <TextView
+                    android:id="@+id/txt_gentleman"
+                    style="@style/CustomTextView"
+                    android:text="신사" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_kid"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_kid"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/kid" />
+
+                <TextView
+                    android:id="@+id/txt_kid"
+                    style="@style/CustomTextView"
+                    android:text="꼬마" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_orphan"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_orphan"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/orphan" />
+
+                <TextView
+                    android:id="@+id/txt_orphan"
+                    style="@style/CustomTextView"
+                    android:text="고아" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_you"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_you"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/you" />
+
+                <TextView
+                    android:id="@+id/txt_you"
+                    style="@style/CustomTextView"
+                    android:text="녀석" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_wife"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_wife"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/wife" />
+
+                <TextView
+                    android:id="@+id/txt_wife"
+                    style="@style/CustomTextView"
+                    android:text="아내" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/layout_customer"
                 style="@style/CustomLinearLayout_ver">
 

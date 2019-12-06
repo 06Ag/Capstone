@@ -106,6 +106,62 @@
                     android:text="기둥" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layout_recorder"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_recorder"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/recorder" />
+
+                <TextView
+                    android:id="@+id/txt_recorder"
+                    style="@style/CustomTextView"
+                    android:text="녹음기" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_handbag"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_handbag"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/handbag" />
+
+                <TextView
+                    android:id="@+id/txt_handbag"
+                    style="@style/CustomTextView"
+                    android:text="손가방" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_bag"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_bag"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/bag" />
+
+                <TextView
+                    android:id="@+id/txt_bag"
+                    style="@style/CustomTextView"
+                    android:text="가방" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_plane"
+                style="@style/CustomLinearLayout_ver">
+                <ImageView
+                    android:id="@+id/image_plane"
+                    style="@style/CustomImageView"
+                    android:src="@drawable/plane" />
+
+                <TextView
+                    android:id="@+id/txt_plane"
+                    style="@style/CustomTextView"
+                    android:text="비행기" />
+            </LinearLayout>
+
         </GridLayout>
     </ScrollView>
 
