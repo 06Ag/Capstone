@@ -31,7 +31,7 @@
                     <TextView
                         android:id="@+id/txt_giyeok"
                         style="@style/CustomTextView"
-                        android:text="기역" />
+                        android:text="ㄱ [기역]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -46,7 +46,7 @@
                     <TextView
                         android:id="@+id/txt_nieun"
                         style="@style/CustomTextView"
-                        android:text="니은" />
+                        android:text="ㄴ [니은]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -61,7 +61,7 @@
                     <TextView
                         android:id="@+id/txt_digeut"
                         style="@style/CustomTextView"
-                        android:text="디귿" />
+                        android:text="ㄷ [디귿]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -76,7 +76,7 @@
                     <TextView
                         android:id="@+id/txt_rieul"
                         style="@style/CustomTextView"
-                        android:text="리을" />
+                        android:text="ㄹ [리을]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -91,7 +91,7 @@
                     <TextView
                         android:id="@+id/txt_mieum"
                         style="@style/CustomTextView"
-                        android:text="미음" />
+                        android:text="ㅁ [미음]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -106,7 +106,7 @@
                     <TextView
                         android:id="@+id/txt_bieup"
                         style="@style/CustomTextView"
-                        android:text="비읍" />
+                        android:text="ㅂ [비읍]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -121,7 +121,7 @@
                     <TextView
                         android:id="@+id/txt_siot"
                         style="@style/CustomTextView"
-                        android:text="시옷" />
+                        android:text="ㅅ [시옷]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -136,7 +136,7 @@
                     <TextView
                         android:id="@+id/txt_ieung"
                         style="@style/CustomTextView"
-                        android:text="이응" />
+                        android:text="ㅇ [이응]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -151,7 +151,7 @@
                     <TextView
                         android:id="@+id/txt_jieut"
                         style="@style/CustomTextView"
-                        android:text="지읒" />
+                        android:text="ㅈ [지읒]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -166,7 +166,7 @@
                     <TextView
                         android:id="@+id/txt_chieut"
                         style="@style/CustomTextView"
-                        android:text="치읓" />
+                        android:text="ㅊ [치읓]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -181,7 +181,7 @@
                     <TextView
                         android:id="@+id/txt_kieuk"
                         style="@style/CustomTextView"
-                        android:text="키읔" />
+                        android:text="ㅋ [키읔]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -196,7 +196,7 @@
                     <TextView
                         android:id="@+id/txt_tieut"
                         style="@style/CustomTextView"
-                        android:text="티읕" />
+                        android:text="ㅌ [티읕]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -211,7 +211,7 @@
                     <TextView
                         android:id="@+id/txt_pieup"
                         style="@style/CustomTextView"
-                        android:text="피읖" />
+                        android:text="ㅍ [피읖]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -226,7 +226,7 @@
                     <TextView
                         android:id="@+id/txt_hieut"
                         style="@style/CustomTextView"
-                        android:text="히읗" />
+                        android:text="ㅎ [히읗]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -241,7 +241,7 @@
                     <TextView
                         android:id="@+id/txt_a"
                         style="@style/CustomTextView"
-                        android:text="ㅏ" />
+                        android:text="ㅏ [ㅏ]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -256,7 +256,7 @@
                     <TextView
                         android:id="@+id/txt_ya"
                         style="@style/CustomTextView"
-                        android:text="ㅑ" />
+                        android:text="ㅑ [ㅑ]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -271,7 +271,7 @@
                     <TextView
                         android:id="@+id/txt_eo"
                         style="@style/CustomTextView"
-                        android:text="ㅓ" />
+                        android:text="ㅓ [어]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -286,7 +286,7 @@
                     <TextView
                         android:id="@+id/txt_yeo"
                         style="@style/CustomTextView"
-                        android:text="ㅕ" />
+                        android:text="ㅕ [여]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -301,7 +301,7 @@
                     <TextView
                         android:id="@+id/txt_o"
                         style="@style/CustomTextView"
-                        android:text="ㅗ" />
+                        android:text="ㅗ [오]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -316,7 +316,7 @@
                     <TextView
                         android:id="@+id/txt_yo"
                         style="@style/CustomTextView"
-                        android:text="ㅛ" />
+                        android:text="ㅛ [요]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -331,7 +331,7 @@
                     <TextView
                         android:id="@+id/txt_u"
                         style="@style/CustomTextView"
-                        android:text="ㅜ" />
+                        android:text="ㅜ [우]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -346,7 +346,7 @@
                     <TextView
                         android:id="@+id/txt_yu"
                         style="@style/CustomTextView"
-                        android:text="ㅠ" />
+                        android:text="ㅠ [유]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -361,7 +361,7 @@
                     <TextView
                         android:id="@+id/txt_eu"
                         style="@style/CustomTextView"
-                        android:text="ㅡ" />
+                        android:text="ㅡ [으]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -376,7 +376,7 @@
                     <TextView
                         android:id="@+id/txt_i"
                         style="@style/CustomTextView"
-                        android:text="l" />
+                        android:text="l [이]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -391,7 +391,7 @@
                     <TextView
                         android:id="@+id/txt_ae"
                         style="@style/CustomTextView"
-                        android:text="ㅐ" />
+                        android:text="ㅐ [애]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -406,7 +406,7 @@
                     <TextView
                         android:id="@+id/txt_yae"
                         style="@style/CustomTextView"
-                        android:text="ㅒ" />
+                        android:text="ㅒ [얘]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -421,7 +421,7 @@
                     <TextView
                         android:id="@+id/txt_e"
                         style="@style/CustomTextView"
-                        android:text="ㅔ" />
+                        android:text="ㅔ [에]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -436,7 +436,7 @@
                     <TextView
                         android:id="@+id/txt_ye"
                         style="@style/CustomTextView"
-                        android:text="ㅖ" />
+                        android:text="ㅖ [예]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -451,7 +451,7 @@
                     <TextView
                         android:id="@+id/txt_ui"
                         style="@style/CustomTextView"
-                        android:text="ㅢ" />
+                        android:text="ㅢ [의]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -466,7 +466,7 @@
                     <TextView
                         android:id="@+id/txt_oe"
                         style="@style/CustomTextView"
-                        android:text="ㅚ" />
+                        android:text="ㅚ [외]" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -481,7 +481,7 @@
                     <TextView
                         android:id="@+id/txt_wi"
                         style="@style/CustomTextView"
-                        android:text="ㅟ" />
+                        android:text="ㅟ [위]" />
                 </LinearLayout>
 
         </GridLayout>
