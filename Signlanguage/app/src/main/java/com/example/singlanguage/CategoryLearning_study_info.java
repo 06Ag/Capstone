@@ -41,8 +41,8 @@ public class CategoryLearning_study_info extends AppCompatActivity{
 
         final String name = intent.getExtras().getString("name");
         tv_imageNum.setText(name);
-        hand_explain.setText("\n\t" + des);
-        word_explain.setText("\n\t" + wordinfo);
+        hand_explain.setText("\t" + des);
+        word_explain.setText("\t" + wordinfo);
 
         ActionBar ab = getSupportActionBar() ;
         ab.setTitle("카테고리 학습") ;
