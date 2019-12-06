@@ -25,9 +25,9 @@
 
         <EditText
             android:id="@+id/searchtext"
-            android:layout_width="300dp"
+            android:layout_width="0dp"
             android:layout_height="50dp"
-            android:layout_weight="4"
+            android:layout_weight="8"
             android:layout_marginRight="10dp"
             android:hint=" 수어 검색"
             android:gravity="left|center_vertical"
@@ -37,7 +37,7 @@
             android:background="@drawable/border_bottom" />
         <Button
             android:id="@+id/search"
-            android:layout_width="30dp"
+            android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_weight="1"
