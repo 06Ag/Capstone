@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:opencv="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:layout_margin="3dp">
+    android:layout_margin="1dp">
 
     <Button
         android:id="@+id/bt_stop"
