@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="5dp"
     tools:context=".SignSearch">
 
     <TextView
@@ -18,12 +18,17 @@
         android:layout_gravity="center"
         android:gravity="center_horizontal|center_vertical"
         />
-
-
-
+    <!-- 메세지 -->
     <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="단어 선택시 바로 학습하실 수 있습니다."
+        android:gravity="center" />
+    <!-- 검색 결과 -->
+    <ListView
     android:id="@+id/signresult"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"/>
 
     <!--<TextView

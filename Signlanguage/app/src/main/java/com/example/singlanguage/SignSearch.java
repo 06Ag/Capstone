@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,24 +34,21 @@ public class SignSearch extends AppCompatActivity {
         String name = intent.getExtras().getString("name");
 
         final DBHelper dbHelper = DBHelper.getInstance(getApplicationContext());
+        final String[][] result = dbHelper.selectResult(name.trim());
         // 데이터 출력
-        final TextView result = (TextView) findViewById(R.id.signresult);
-        result.setText(dbHelper.selectResult(name.trim()));
+        final ListView lv_result = (ListView) findViewById(R.id.signresult);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, result[1]);
+        lv_result.setAdapter(adapter);
         Toast.makeText(getApplicationContext(), "데이터 조회", Toast.LENGTH_SHORT).show();
 
         //결과 누르면 학습 페이지로 넘어감
-        result.setOnClickListener(new View.OnClickListener() {
+        lv_result.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent_res = getIntent();
-                String name = intent_res.getExtras().getString("name");
-                result.setTextColor(Color.BLACK);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final Intent intent = new Intent(getApplicationContext(), CategoryLearning_study_info.class);
-                intent.putExtra("name", name);
+                intent.putExtra("name", result[0][position]);
                 startActivity(intent);
             }
-
-
         });
     }
 }

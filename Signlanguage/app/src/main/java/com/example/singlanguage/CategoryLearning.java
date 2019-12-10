@@ -45,15 +45,9 @@ public class CategoryLearning extends AppCompatActivity {
 
     }
 
-    //액션바에 검색 기능 추가
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.actionbar_actions, menu) ;
-
-        final SearchView searchView = (SearchView)menu.findItem(R.id.action_search).getActionView();
-        searchView.setMaxWidth(Integer.MAX_VALUE);
-
-        searchView.setQueryHint("수화 이름으로 검색합니다.");
+        //getMenuInflater().inflate(R.menu.actionbar_actions, menu) ; 검색창
         final MenuItem item_setting = menu.add(0,0,0,"환경설정");
         item_setting.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {    //환경설정으로 넘어감
             public boolean onMenuItemClick (MenuItem item){
@@ -65,23 +59,6 @@ public class CategoryLearning extends AppCompatActivity {
         });
 
         return true ;
-    }
-
-    //액션바 이벤트 처리
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if(id == R.id.action_search){
-            //String na = Name.getText().toString();
-            final Intent intent = new Intent(getApplicationContext(), SignSearch.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-            intent.putExtra("name","기역");
-            startActivity(intent);
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

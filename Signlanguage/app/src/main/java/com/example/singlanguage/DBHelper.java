@@ -169,22 +169,24 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //수어 검색 기능을 위한 함수
-    public String selectResult(String sel) {
+    public String[][] selectResult(String sel) {
         // 읽기가 가능하게 DB 열기
         SQLiteDatabase db = getReadableDatabase();
-        String result = "";
-        Cursor cursor = db.rawQuery("SELECT * FROM SIGN_BOOK WHERE TRIM(name) = '"+sel.trim()+"' ;", null);
+        String[][] result;
+        int cnt;    //검색된 raw의 개수 저장
+        Cursor cursor = db.rawQuery("SELECT * FROM SIGN_BOOK WHERE TRIM(name) like '%"+sel.trim()+"%' ;", null);
+        cnt = cursor.getCount();
+        result = new String[2][cnt]; // {"수화이름", "수화정보-index번호,이름,분류1"} 형태로 저장
+        int i=0;    //while문에서 result배열에 값 넣을 때 사용할 임시 변수
         while (cursor.moveToNext()) {
-            result +=  cursor.getInt(0) //index번호
+            result[0][i] = cursor.getString(1); //수화이름
+            result[1][i] =  cursor.getInt(0) //index번호
                     + ". 수화 이름: "
                     + cursor.getString(1) //수화이름
                     + "\n"
                     + "  분류1: "
-                    + cursor.getString(2) //분류1
-                    + "\n";
-                    //+ "  분류2: "
-                    //+ cursor.getString(3) //분류2
-                    //+ "\n";
+                    + cursor.getString(2); //분류1
+            i++;
         }
         return result;
     }
