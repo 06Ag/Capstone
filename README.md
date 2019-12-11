@@ -10,7 +10,7 @@ Sign Language Education App
 
 # Tensorflow lite
 
-Keras 모델을 안드로이드에서 사용가능한 tensorflow lite모델로 바꾸는 명령어
+Keras 모델을 안드로이드에서 사용가능한 tensorflow lite 모델로 바꾸는 명령어
 
 ->
 
